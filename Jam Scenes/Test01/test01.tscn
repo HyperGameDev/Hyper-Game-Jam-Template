@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://ds0k7o0mu2cph"]
+
+[ext_resource type="PackedScene" uid="uid://rkba7etkgvan" path="res://UI/ui.tscn" id="1_tyutg"]
+[ext_resource type="PackedScene" uid="uid://cony25eh2s7r5" path="res://Game Aspects/player.tscn" id="2_88g7e"]
+[ext_resource type="PackedScene" uid="uid://bd37hkqpxvoy8" path="res://Game Aspects/ground.tscn" id="3_2cpaw"]
+[ext_resource type="PackedScene" uid="uid://i8k4f65p7crh" path="res://Test Scenes/3d_test_1.tscn" id="4_4kpnp"]
+[ext_resource type="PackedScene" uid="uid://buurv000eq5jx" path="res://Game Aspects/environment.tscn" id="5_2ssl4"]
+
+[node name="Node" type="Node"]
+
+[node name="UI" parent="." instance=ExtResource("1_tyutg")]
+timer_autostart = true
+timer_countup = true
+
+[node name="Ground" parent="." instance=ExtResource("3_2cpaw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.547734, 0)
+ground_color = Color(0.145098, 0.0823529, 0.227451, 1)
+
+[node name="Player" parent="." instance=ExtResource("2_88g7e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.19156, 0)
+
+[node name="Spatial_Context" type="Node3D" parent="."]
+transform = Transform3D(-0.04137, 0, 0.999144, 0, 1, 0, -0.999144, 0, -0.04137, -10.1926, 1.0269, 3.40409)
+
+[node name="3D_Test-1" parent="Spatial_Context" instance=ExtResource("4_4kpnp")]
+
+[node name="3D_Test-2" parent="Spatial_Context" instance=ExtResource("4_4kpnp")]
+transform = Transform3D(-0.961103, 0, 0.276191, 0, 1, 0, -0.276191, 0, -0.961103, -0.55133, 0, 13.3154)
+
+[node name="3D_Test-3" parent="Spatial_Context" instance=ExtResource("4_4kpnp")]
+transform = Transform3D(-0.302004, 0, -0.953307, 0, 1, 0, 0.953307, 0, -0.302004, 13.3375, 0, 8.03235)
+
+[node name="WorldEnvironment" parent="." instance=ExtResource("5_2ssl4")]
+sun_color = Color(0.737255, 0.854902, 1, 1)
+sun_energy = 0.945

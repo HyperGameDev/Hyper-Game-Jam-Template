@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dij35cmbjwwj1"]
+
+[ext_resource type="Script" path="res://Game Aspects/spawncontrol.gd" id="1_5jlmx"]
+[ext_resource type="PackedScene" uid="uid://dtopi63n0n2rp" path="res://Game Aspects/spawn_point.tscn" id="2_0k4ag"]
+
+[node name="Spawn_Controller" type="Timer"]
+autostart = true
+script = ExtResource("1_5jlmx")
+spawn_infinitely = false
+spawn_limit = 10
+
+[node name="Spawn_Point" parent="." instance=ExtResource("2_0k4ag")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02558, 0.906052, -3.88518)
+
+[node name="Spawn_Point2" parent="." instance=ExtResource("2_0k4ag")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4418, 0.906052, -3.88518)

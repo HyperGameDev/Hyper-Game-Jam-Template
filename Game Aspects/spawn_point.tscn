@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtopi63n0n2rp"]
+
+[ext_resource type="Script" path="res://Main Scenes/Spawner.gd" id="1_nef18"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_b47a7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xyubk"]
+albedo_color = Color(0, 0.207843, 1, 1)
+
+[node name="Spawn_Point" type="Node3D"]
+script = ExtResource("1_nef18")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_b47a7")
+surface_material_override/0 = SubResource("StandardMaterial3D_xyubk")

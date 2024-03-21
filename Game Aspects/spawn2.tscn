@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bshtrnrok0f5t"]
+
+[ext_resource type="Script" path="res://Game Aspects/spawn.gd" id="1_7rx1n"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_pqbah"]
+radius = 0.6
+
+[sub_resource type="SphereMesh" id="SphereMesh_dl0kx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gc52q"]
+albedo_color = Color(0.490196, 0.105882, 0.796078, 1)
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_7rx1n")
+spawn_is_enemy = true
+spawn_is_collectible = false
+
+[node name="Spawn_Area" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spawn_Area"]
+shape = SubResource("SphereShape3D_pqbah")
+
+[node name="Spawn_Mesh" type="Node3D" parent="."]
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Spawn_Mesh"]
+mesh = SubResource("SphereMesh_dl0kx")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_gc52q")

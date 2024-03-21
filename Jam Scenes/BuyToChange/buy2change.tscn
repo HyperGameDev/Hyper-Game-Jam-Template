@@ -1,0 +1,278 @@
+[gd_scene load_steps=21 format=3 uid="uid://dbkw8ixb7a0yp"]
+
+[ext_resource type="PackedScene" uid="uid://rkba7etkgvan" path="res://UI/ui.tscn" id="1_dh6yu"]
+[ext_resource type="PackedScene" uid="uid://cvrx5pd67sotw" path="res://Game Aspects/finish_line.tscn" id="1_m6jax"]
+[ext_resource type="PackedScene" uid="uid://bd37hkqpxvoy8" path="res://Game Aspects/ground.tscn" id="2_vwgtc"]
+[ext_resource type="Script" path="res://Main Scenes/CharacterBody3D.gd" id="3_50t85"]
+[ext_resource type="PackedScene" uid="uid://buurv000eq5jx" path="res://Game Aspects/environment.tscn" id="4_2kfpa"]
+[ext_resource type="Script" path="res://Game Aspects/Detectable_Area.gd" id="4_8qky4"]
+[ext_resource type="Script" path="res://Game Aspects/Weapon_Area.gd" id="5_wfa74"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_fh1ra"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vqgox"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_dytbt"]
+size = Vector3(2.815, 0.205, 0.35)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kmagy"]
+albedo_color = Color(0.0784314, 1, 1, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8mpn2"]
+points = PackedVector3Array(-1.4075, -0.1025, -0.175, -1.4075, 0.1025, -0.175, 1.4075, -0.1025, -0.175, -1.4075, -0.1025, 0.174966, -1.4075, 0.1025, 0.174966, 1.4075, 0.1025, -0.175, 1.4075, -0.1025, 0.174966, 1.4075, 0.1025, 0.174966)
+
+[sub_resource type="PrismMesh" id="PrismMesh_bdv3p"]
+size = Vector3(1.47, 1.84, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2jre5"]
+points = PackedVector3Array(-0.735, -0.92, -0.5, -0.735, -0.92, 0.5, 0, 0.92, -0.5, 0.735, -0.92, -0.5, 0.735, -0.92, 0.5, 0, 0.92, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4jfwk"]
+size = Vector3(6.54, 3.65, 0.165)
+
+[sub_resource type="BoxMesh" id="BoxMesh_uloho"]
+size = Vector3(1.1, 1.1, 1.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fjpep"]
+size = Vector3(2.6748, 2.31689, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wudvf"]
+size = Vector3(2.6748, 2.31689, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2t7wl"]
+size = Vector3(2.6748, 2.31689, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_ragj3"]
+size = Vector3(2.83, 2.76, 1.1)
+
+[node name="Node" type="Node"]
+
+[node name="Finish-Line" parent="." instance=ExtResource("1_m6jax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.166506, 0.0716563, -180.421)
+finish_line_visible = true
+
+[node name="UI" parent="." instance=ExtResource("1_dh6yu")]
+timer_length = 0.0
+timer_countup = true
+
+[node name="Ground" parent="." instance=ExtResource("2_vwgtc")]
+
+[node name="Player" type="CharacterBody3D" parent="Ground" groups=["Detectable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.547734, 0)
+script = ExtResource("3_50t85")
+tester_button = true
+
+[node name="Player_Area" type="Area3D" parent="Ground/Player"]
+script = ExtResource("4_8qky4")
+
+[node name="Player_Collision" type="CollisionShape3D" parent="Ground/Player/Player_Area"]
+shape = SubResource("ConvexPolygonShape3D_fh1ra")
+
+[node name="Camera3D" type="Camera3D" parent="Ground/Player"]
+transform = Transform3D(1, 0, 0, 0, 0.988494, 0.151261, 0, -0.151261, 0.988494, 0, 1.627, 4.24)
+
+[node name="Player_Mesh_Square" type="MeshInstance3D" parent="Ground/Player"]
+mesh = SubResource("BoxMesh_vqgox")
+
+[node name="Player_Collision_Square" type="CollisionShape3D" parent="Ground/Player"]
+shape = SubResource("ConvexPolygonShape3D_fh1ra")
+
+[node name="Weapon_Area" type="Area3D" parent="Ground/Player"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.219016, 0.332664, -1.48956)
+visible = false
+script = ExtResource("5_wfa74")
+
+[node name="Weapon" type="MeshInstance3D" parent="Ground/Player/Weapon_Area"]
+visible = false
+mesh = SubResource("BoxMesh_dytbt")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_kmagy")
+
+[node name="Weapon_Collision" type="CollisionShape3D" parent="Ground/Player/Weapon_Area"]
+shape = SubResource("ConvexPolygonShape3D_8mpn2")
+disabled = true
+
+[node name="Player_Mesh_Prism" type="MeshInstance3D" parent="Ground/Player"]
+visible = false
+mesh = SubResource("PrismMesh_bdv3p")
+
+[node name="Player_Collision_Prism" type="CollisionShape3D" parent="Ground/Player"]
+shape = SubResource("ConvexPolygonShape3D_2jre5")
+disabled = true
+
+[node name="WorldEnvironment" parent="." instance=ExtResource("4_2kfpa")]
+sun_color = Color(0.737255, 0.854902, 1, 1)
+sun_energy = 0.945
+
+[node name="Wall_Square" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0144596, 0.501439, -0.698635)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Wall_Square"]
+
+[node name="WallMesh" type="CSGMesh3D" parent="Wall_Square/CSGCombiner3D"]
+mesh = SubResource("BoxMesh_4jfwk")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Wall_Square/CSGCombiner3D"]
+operation = 2
+mesh = SubResource("BoxMesh_uloho")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_Square"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.91357, 0.658447, 0)
+shape = SubResource("BoxShape3D_fjpep")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Wall_Square"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.90386, 0.658447, 0)
+shape = SubResource("BoxShape3D_wudvf")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Wall_Square"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.120614, 1.79862, 0)
+shape = SubResource("BoxShape3D_2t7wl")
+
+[node name="Wall_Square2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0144596, 0.501439, -43.2361)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Wall_Square2"]
+
+[node name="WallMesh" type="CSGMesh3D" parent="Wall_Square2/CSGCombiner3D"]
+mesh = SubResource("BoxMesh_4jfwk")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Wall_Square2/CSGCombiner3D"]
+operation = 2
+mesh = SubResource("BoxMesh_uloho")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_Square2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.91357, 0.658447, 0)
+shape = SubResource("BoxShape3D_fjpep")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Wall_Square2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.90386, 0.658447, 0)
+shape = SubResource("BoxShape3D_wudvf")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Wall_Square2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.120614, 1.79862, 0)
+shape = SubResource("BoxShape3D_2t7wl")
+
+[node name="Wall_Square4" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0144596, 0.501439, -104.581)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Wall_Square4"]
+
+[node name="WallMesh" type="CSGMesh3D" parent="Wall_Square4/CSGCombiner3D"]
+mesh = SubResource("BoxMesh_4jfwk")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Wall_Square4/CSGCombiner3D"]
+operation = 2
+mesh = SubResource("BoxMesh_uloho")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_Square4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.91357, 0.658447, 0)
+shape = SubResource("BoxShape3D_fjpep")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Wall_Square4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.90386, 0.658447, 0)
+shape = SubResource("BoxShape3D_wudvf")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Wall_Square4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.120614, 1.79862, 0)
+shape = SubResource("BoxShape3D_2t7wl")
+
+[node name="Wall_Square5" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0144596, 0.501439, -131.033)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Wall_Square5"]
+
+[node name="WallMesh" type="CSGMesh3D" parent="Wall_Square5/CSGCombiner3D"]
+mesh = SubResource("BoxMesh_4jfwk")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Wall_Square5/CSGCombiner3D"]
+operation = 2
+mesh = SubResource("BoxMesh_uloho")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_Square5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.91357, 0.658447, 0)
+shape = SubResource("BoxShape3D_fjpep")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Wall_Square5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.90386, 0.658447, 0)
+shape = SubResource("BoxShape3D_wudvf")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Wall_Square5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.120614, 1.79862, 0)
+shape = SubResource("BoxShape3D_2t7wl")
+
+[node name="Wall_Square3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0144596, 0.501439, -59.8428)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Wall_Square3"]
+
+[node name="WallMesh" type="CSGMesh3D" parent="Wall_Square3/CSGCombiner3D"]
+mesh = SubResource("BoxMesh_4jfwk")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Wall_Square3/CSGCombiner3D"]
+operation = 2
+mesh = SubResource("BoxMesh_uloho")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_Square3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.91357, 0.658447, 0)
+shape = SubResource("BoxShape3D_fjpep")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Wall_Square3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.90386, 0.658447, 0)
+shape = SubResource("BoxShape3D_wudvf")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Wall_Square3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.120614, 1.79862, 0)
+shape = SubResource("BoxShape3D_2t7wl")
+
+[node name="Wall_Triangle" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0144596, 0.501439, -12.3574)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Wall_Triangle"]
+use_collision = true
+
+[node name="WallMesh" type="CSGMesh3D" parent="Wall_Triangle/CSGCombiner3D"]
+mesh = SubResource("BoxMesh_4jfwk")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Wall_Triangle/CSGCombiner3D"]
+operation = 2
+mesh = SubResource("PrismMesh_ragj3")
+
+[node name="Wall_Triangle2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0144596, 0.501439, -27.4425)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Wall_Triangle2"]
+use_collision = true
+
+[node name="WallMesh" type="CSGMesh3D" parent="Wall_Triangle2/CSGCombiner3D"]
+mesh = SubResource("BoxMesh_4jfwk")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Wall_Triangle2/CSGCombiner3D"]
+operation = 2
+mesh = SubResource("PrismMesh_ragj3")
+
+[node name="Wall_Triangle4" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0144596, 0.501439, -160.044)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Wall_Triangle4"]
+use_collision = true
+
+[node name="WallMesh" type="CSGMesh3D" parent="Wall_Triangle4/CSGCombiner3D"]
+mesh = SubResource("BoxMesh_4jfwk")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Wall_Triangle4/CSGCombiner3D"]
+operation = 2
+mesh = SubResource("PrismMesh_ragj3")
+
+[node name="Wall_Triangle3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0144596, 0.501439, -83.4503)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Wall_Triangle3"]
+use_collision = true
+
+[node name="WallMesh" type="CSGMesh3D" parent="Wall_Triangle3/CSGCombiner3D"]
+mesh = SubResource("BoxMesh_4jfwk")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Wall_Triangle3/CSGCombiner3D"]
+operation = 2
+mesh = SubResource("PrismMesh_ragj3")

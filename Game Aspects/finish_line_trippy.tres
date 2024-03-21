@@ -1,0 +1,19 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://bwwdpjmxndmkx"]
+
+[sub_resource type="Gradient" id="Gradient_0x36v"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.568075)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hjog4"]
+gradient = SubResource("Gradient_0x36v")
+width = 640
+height = 640
+fill_from = Vector2(0.438, 0.782)
+fill_to = Vector2(0.926, 0.674)
+repeat = 1
+
+[resource]
+albedo_texture = SubResource("GradientTexture2D_hjog4")
+uv1_scale = Vector3(0.504, 0.504, 1.69)
+uv1_triplanar = true
+uv1_world_triplanar = true

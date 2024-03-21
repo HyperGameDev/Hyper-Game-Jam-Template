@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bd37hkqpxvoy8"]
+
+[ext_resource type="Script" path="res://Game Aspects/ground.gd" id="1_phhx0"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_r58wa"]
+size = Vector2(3000, 3000)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ybwks"]
+albedo_color = Color(0.13, 0.07, 0.27, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dg2cm"]
+points = PackedVector3Array(-1500, 0, -1500, -1500, 0, 1500, 1500, 0, -1500, 1500, 0, 1500)
+
+[node name="Ground" type="StaticBody3D"]
+script = ExtResource("1_phhx0")
+
+[node name="Ground-Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_r58wa")
+surface_material_override/0 = SubResource("StandardMaterial3D_ybwks")
+
+[node name="Ground-Collision" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_dg2cm")

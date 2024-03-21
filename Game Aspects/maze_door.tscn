@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://vvrc7t0dh2di"]
+
+[ext_resource type="Script" path="res://Game Aspects/maze_door.gd" id="1_k0k3e"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_4jfwk"]
+size = Vector3(6.54, 3.65, 0.165)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_elwdu"]
+albedo_color = Color(1, 0.52549, 0, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_edhjm"]
+points = PackedVector3Array(3.27, 1.825, 0.0825, 3.27, 1.825, -0.0825, -3.27, 1.825, 0.0825, 3.27, -1.825, 0.0825, 3.27, -1.825, -0.0825, -3.27, 1.825, -0.0825, -3.27, -1.825, 0.0825, -3.27, -1.825, -0.0825)
+
+[node name="MazeDoor" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.77815, 0, -15.1129)
+script = ExtResource("1_k0k3e")
+
+[node name="WallMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_4jfwk")
+skeleton = NodePath("../../../WorldEnvironment")
+surface_material_override/0 = SubResource("StandardMaterial3D_elwdu")
+
+[node name="WallCollision" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_edhjm")

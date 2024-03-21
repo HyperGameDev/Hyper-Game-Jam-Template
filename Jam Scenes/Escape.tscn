@@ -1,0 +1,184 @@
+[gd_scene load_steps=22 format=3 uid="uid://dqrjw4nvje7ya"]
+
+[ext_resource type="PackedScene" uid="uid://rkba7etkgvan" path="res://UI/ui.tscn" id="1_q4tlf"]
+[ext_resource type="Script" path="res://Main Scenes/CharacterBody3D.gd" id="2_26syi"]
+[ext_resource type="Script" path="res://Main Scenes/Finish-Line.gd" id="3_2bvvc"]
+[ext_resource type="PackedScene" uid="uid://dylbd5u4o13n2" path="res://Jam Scenes/Escape/maze_wall.tscn" id="4_88fff"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_li1bm"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_jkwe2"]
+sky_material = SubResource("ProceduralSkyMaterial_li1bm")
+
+[sub_resource type="Environment" id="Environment_lqt8o"]
+background_mode = 2
+sky = SubResource("Sky_jkwe2")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PrismMesh" id="PrismMesh_d14n1"]
+size = Vector3(1, 2.05, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g6nq6"]
+albedo_color = Color(0.247059, 0.247059, 0.160784, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_c7w4q"]
+height = 2.37
+
+[sub_resource type="SphereMesh" id="SphereMesh_i4fpl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b3ucm"]
+albedo_color = Color(1, 0.184314, 0.423529, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1bxc7"]
+radius = 1.158
+height = 4.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_dpejl"]
+size = Vector2(3000, 3000)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7oxwq"]
+albedo_color = Color(0.133333, 0.0745098, 0.270588, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_mv0g2"]
+points = PackedVector3Array(-1500, 0, -1500, -1500, 0, 1500, 1500, 0, -1500, 1500, 0, 1500)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_hh5p2"]
+lightmap_size_hint = Vector2i(27, 23)
+size = Vector2(25, 7)
+
+[sub_resource type="Gradient" id="Gradient_e1gek"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.568075)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6ifrm"]
+gradient = SubResource("Gradient_e1gek")
+width = 640
+height = 640
+fill_from = Vector2(0.438, 0.782)
+fill_to = Vector2(0.926, 0.674)
+repeat = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m3wdu"]
+albedo_texture = SubResource("GradientTexture2D_6ifrm")
+uv1_scale = Vector3(0.504, 0.504, 1.69)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_j0itt"]
+points = PackedVector3Array(12.5, 3.5, 3.5, 12.5, 3.5, -3.5, -12.5, 3.5, 3.5, 12.5, -3.5, 3.5, 12.5, -3.5, -3.5, -12.5, 3.5, -3.5, -12.5, -3.5, 3.5, -12.5, -3.5, -3.5)
+
+[node name="Node" type="Node"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_lqt8o")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="UI" parent="." instance=ExtResource("1_q4tlf")]
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.741989, 0)
+script = ExtResource("2_26syi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.0932201, 0, 0)
+mesh = SubResource("PrismMesh_d14n1")
+surface_material_override/0 = SubResource("StandardMaterial3D_g6nq6")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 1.32365)
+mesh = SubResource("CapsuleMesh_c7w4q")
+surface_material_override/0 = SubResource("StandardMaterial3D_g6nq6")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.346256, -1.31334)
+mesh = SubResource("SphereMesh_i4fpl")
+surface_material_override/0 = SubResource("StandardMaterial3D_b3ucm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, -0.00822045, 0.999966, 0, -0.999966, -0.00822045, 0, 0, 0.53666)
+shape = SubResource("CapsuleShape3D_1bxc7")
+
+[node name="Player_Area" type="Area3D" parent="Player"]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Player/Player_Area"]
+transform = Transform3D(1, 0, 0, 0, -0.00822045, 0.999966, 0, -0.999966, -0.00822045, 0, 0, 0.53666)
+shape = SubResource("CapsuleShape3D_1bxc7")
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 0.939645, 0.342151, 0, -0.342151, 0.939645, 0, 1.28931, 2.57385)
+
+[node name="Ground" type="StaticBody3D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Ground-Mesh" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("PlaneMesh_dpejl")
+surface_material_override/0 = SubResource("StandardMaterial3D_7oxwq")
+
+[node name="Ground-Mesh2" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("PlaneMesh_dpejl")
+surface_material_override/0 = SubResource("StandardMaterial3D_7oxwq")
+
+[node name="Ground-Collision" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("ConvexPolygonShape3D_mv0g2")
+
+[node name="Maze" type="Node3D" parent="."]
+
+[node name="MazeWall" parent="Maze" instance=ExtResource("4_88fff")]
+
+[node name="MazeWall11" parent="Maze" instance=ExtResource("4_88fff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3211, 0, -33.2656)
+
+[node name="MazeWall4" parent="Maze" instance=ExtResource("4_88fff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -21.0932)
+
+[node name="MazeWall5" parent="Maze" instance=ExtResource("4_88fff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.2007, 0, -11.3348)
+
+[node name="MazeWall14" parent="Maze" instance=ExtResource("4_88fff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.2007, 0, -11.3348)
+
+[node name="MazeWall2" parent="Maze" instance=ExtResource("4_88fff")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.78507, 0, -2.38211)
+
+[node name="MazeWall3" parent="Maze" instance=ExtResource("4_88fff")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.45426, 0, -2.38211)
+
+[node name="MazeWall6" parent="Maze" instance=ExtResource("4_88fff")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -19.4428, 0, -13.8407)
+
+[node name="MazeWall9" parent="Maze" instance=ExtResource("4_88fff")]
+transform = Transform3D(-0.00740017, 0, 0.999973, 0, 1, 0, -0.999973, 0, -0.00740017, -8.79945, 0, -23.506)
+
+[node name="MazeWall12" parent="Maze" instance=ExtResource("4_88fff")]
+transform = Transform3D(-0.00740017, 0, 0.999973, 0, 1, 0, -0.999973, 0, -0.00740017, 2.20379, 0, -23.506)
+
+[node name="MazeWall13" parent="Maze" instance=ExtResource("4_88fff")]
+transform = Transform3D(-0.00740017, 0, 0.999973, 0, 1, 0, -0.999973, 0, -0.00740017, -19.7245, 0, -23.506)
+
+[node name="MazeWall10" parent="Maze" instance=ExtResource("4_88fff")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12.3149, 0, -23.506)
+
+[node name="MazeWall7" parent="Maze" instance=ExtResource("4_88fff")]
+transform = Transform3D(0.00956421, 0, 0.999954, 0, 1, 0, -0.999954, 0, 0.00956421, 12.1804, 0, -13.4762)
+
+[node name="MazeWall8" parent="Maze" instance=ExtResource("4_88fff")]
+transform = Transform3D(-0.999954, 0, 0.00956417, 0, 1, 0, -0.00956417, 0, -0.999954, 9.58612, 0, -4.25853)
+
+[node name="Finish-Line" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0447, 0.0405207, -33.6402)
+script = ExtResource("3_2bvvc")
+
+[node name="Finish-Line_Mesh" type="MeshInstance3D" parent="Finish-Line"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
+sorting_use_aabb_center = false
+mesh = SubResource("PlaneMesh_hh5p2")
+surface_material_override/0 = SubResource("StandardMaterial3D_m3wdu")
+
+[node name="Finish-Line_Collision" type="CollisionShape3D" parent="Finish-Line"]
+shape = SubResource("ConvexPolygonShape3D_j0itt")

@@ -1,0 +1,19 @@
+Procedural Maze
+Maze walls and stuff?
+Hit points
+Buffs (extra lives etc)
+spawner visibility
+Doors open if condition met
+
+collectibles need to look for player i think, not anything?? somethign wrong with collision
+
+you win message
+
+misc trigger zones (eg walking over an area makes something else happen; even a checkpoint)
+
+configurable death/finish length (eg less/more/no slomo delay on finish/death)
+
+Spawns detect "walls" differently (ie dont clip through, nor get collected or something)
+
+
+TURN OFF BTTV 

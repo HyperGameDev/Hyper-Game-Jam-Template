@@ -1,0 +1,52 @@
+[gd_scene load_steps=10 format=3 uid="uid://74jimhkiyt8t"]
+
+[ext_resource type="PackedScene" uid="uid://rkba7etkgvan" path="res://UI/ui.tscn" id="1_tsci8"]
+[ext_resource type="PackedScene" uid="uid://buurv000eq5jx" path="res://Game Aspects/environment.tscn" id="2_ketgd"]
+[ext_resource type="PackedScene" uid="uid://i8k4f65p7crh" path="res://Test Scenes/3d_test_1.tscn" id="2_ot1hk"]
+[ext_resource type="PackedScene" uid="uid://cony25eh2s7r5" path="res://Game Aspects/player.tscn" id="3_viqpx"]
+[ext_resource type="PackedScene" uid="uid://bd37hkqpxvoy8" path="res://Game Aspects/ground.tscn" id="4_fng86"]
+[ext_resource type="PackedScene" uid="uid://cvrx5pd67sotw" path="res://Game Aspects/finish_line.tscn" id="4_sro01"]
+[ext_resource type="Script" path="res://Game Aspects/spawncontrol.gd" id="8_8r13o"]
+[ext_resource type="PackedScene" uid="uid://dtopi63n0n2rp" path="res://Game Aspects/spawn_point.tscn" id="8_o034l"]
+[ext_resource type="PackedScene" uid="uid://bshtrnrok0f5t" path="res://Game Aspects/spawn2.tscn" id="10_qy0vc"]
+
+[node name="main" type="Node"]
+
+[node name="WorldEnvironment" parent="." instance=ExtResource("2_ketgd")]
+sun_color = Color(0.737255, 0.854902, 1, 1)
+sun_energy = 0.945
+
+[node name="UI" parent="." instance=ExtResource("1_tsci8")]
+timer_length = 2.0
+timer_countup = true
+
+[node name="Player" parent="." groups=["Detectable"] instance=ExtResource("3_viqpx")]
+
+[node name="Ground" parent="." instance=ExtResource("4_fng86")]
+
+[node name="Finish-Line" parent="." instance=ExtResource("4_sro01")]
+finish_line_visible = true
+
+[node name="Spatial_Context" type="Node3D" parent="."]
+transform = Transform3D(-0.04137, 0, 0.999144, 0, 1, 0, -0.999144, 0, -0.04137, 12.7756, 0, -7.1936)
+
+[node name="3D_Test-1" parent="Spatial_Context" instance=ExtResource("2_ot1hk")]
+
+[node name="3D_Test-2" parent="Spatial_Context" instance=ExtResource("2_ot1hk")]
+transform = Transform3D(-0.961103, 0, 0.276191, 0, 1, 0, -0.276191, 0, -0.961103, -0.55133, 0, 13.3154)
+
+[node name="3D_Test-3" parent="Spatial_Context" instance=ExtResource("2_ot1hk")]
+transform = Transform3D(-0.302004, 0, -0.953307, 0, 1, 0, 0.953307, 0, -0.302004, 13.3375, 0, 8.03235)
+
+[node name="Spawn_Controller" type="Timer" parent="."]
+autostart = true
+script = ExtResource("8_8r13o")
+spawn_infinitely = false
+spawn_limit = 10
+
+[node name="Spawn_Point" parent="Spawn_Controller" instance=ExtResource("8_o034l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.83389, 0.0989643, -3.15097)
+
+[node name="Spawn_Point2" parent="Spawn_Controller" instance=ExtResource("8_o034l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7341, 0.0989643, -6.73285)
+spawn_object = ExtResource("10_qy0vc")

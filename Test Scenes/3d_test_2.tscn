@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfvwsi64xy332"]
+
+[ext_resource type="Script" path="res://Node3D.gd" id="1_uuvmm"]
+[ext_resource type="PackedScene" uid="uid://rkba7etkgvan" path="res://UI/ui.tscn" id="2_djp0u"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_e2820"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_uuvmm")
+
+[node name="UI" parent="." instance=ExtResource("2_djp0u")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_e2820")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.35082)
