@@ -1,0 +1,5 @@
+timer ends game at 0
+
+clean up spawn settings
+
+timer needs *delta
