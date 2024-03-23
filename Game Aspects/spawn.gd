@@ -16,6 +16,8 @@ class_name Spawn
 @export_group("Collectible Settings")
 @export var collectible_points = 1
 @export var collectible_despawn_time = .1
+@export var spawn_adds_time = false
+@export var spawn_opens_door = false
 
 
 
@@ -39,6 +41,12 @@ func player_collided(area):
 			if area.is_in_group("Detectable"):
 				$Spawn_Mesh.visible = false
 				Messenger.add_point.emit(collectible_points)
+				if spawn_adds_time:
+					var time_to_add: float = 2
+					Messenger.add_time.emit(time_to_add)
+				if spawn_opens_door:
+					Messenger.open_doors_1.emit()
+				
 			
 			await get_tree().create_timer(collectible_despawn_time).timeout
 			queue_free()

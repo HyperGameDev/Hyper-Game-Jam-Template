@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dt31gbq0iosdi"]
+
+[ext_resource type="Script" path="res://Game Aspects/maze_door.gd" id="1_p25eg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f3ago"]
+albedo_color = Color(0, 0, 0.352941, 1)
+
+[node name="MazeDoor" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8178, 0, -7.52292)
+script = ExtResource("1_p25eg")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0858917, 0.990723, 0)
+material_override = SubResource("StandardMaterial3D_f3ago")
+use_collision = true
+size = Vector3(10.7293, 8.12646, 1)

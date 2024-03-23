@@ -1,0 +1,104 @@
+[gd_scene load_steps=17 format=3 uid="uid://bnribbkobvjug"]
+
+[ext_resource type="Script" path="res://Jam Scenes/ShapeOfTime/shape_of_time.gd" id="1_1dqeu"]
+[ext_resource type="PackedScene" uid="uid://rkba7etkgvan" path="res://UI/ui.tscn" id="1_vfy1u"]
+[ext_resource type="PackedScene" uid="uid://cony25eh2s7r5" path="res://Game Aspects/player.tscn" id="2_ojmoq"]
+[ext_resource type="PackedScene" uid="uid://bd37hkqpxvoy8" path="res://Game Aspects/ground.tscn" id="3_keah6"]
+[ext_resource type="PackedScene" uid="uid://buurv000eq5jx" path="res://Game Aspects/environment.tscn" id="4_0ixj4"]
+[ext_resource type="PackedScene" uid="uid://bsvo68bfmmc3f" path="res://Game Aspects/maze_wall_01.tscn" id="5_gxmjh"]
+[ext_resource type="PackedScene" uid="uid://dt31gbq0iosdi" path="res://Game Aspects/maze_door2.tscn" id="6_u5nu4"]
+[ext_resource type="PackedScene" uid="uid://divnxn4mxielj" path="res://Game Aspects/spawn_clock.tscn" id="8_u6gsn"]
+[ext_resource type="Script" path="res://Main Scenes/Finish-Line.gd" id="9_jgaik"]
+[ext_resource type="PackedScene" uid="uid://cvrx5pd67sotw" path="res://Game Aspects/finish_line.tscn" id="10_ui0tm"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_cgwo2"]
+lightmap_size_hint = Vector2i(27, 23)
+size = Vector2(25, 7)
+
+[sub_resource type="Gradient" id="Gradient_v1lyj"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.5)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0d88t"]
+noise_type = 2
+frequency = 0.002
+fractal_type = 0
+cellular_jitter = 0.0
+cellular_return_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_n8umj"]
+color_ramp = SubResource("Gradient_v1lyj")
+noise = SubResource("FastNoiseLite_0d88t")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5cqgw"]
+albedo_texture = SubResource("NoiseTexture2D_n8umj")
+uv1_scale = Vector3(-0.275, -0.275, -0.275)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_tch6w"]
+points = PackedVector3Array(12.5, 3.5, 3.5, 12.5, 3.5, -3.5, -12.5, 3.5, 3.5, 12.5, -3.5, 3.5, 12.5, -3.5, -3.5, -12.5, 3.5, -3.5, -12.5, -3.5, 3.5, -12.5, -3.5, -3.5)
+
+[node name="Node" type="Node"]
+script = ExtResource("1_1dqeu")
+
+[node name="UI" parent="." instance=ExtResource("1_vfy1u")]
+timer_length = 2.0
+
+[node name="Player" parent="." groups=["Detectable"] instance=ExtResource("2_ojmoq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.19159, 0.547734, 0)
+
+[node name="Ground" parent="." instance=ExtResource("3_keah6")]
+
+[node name="WorldEnvironment" parent="." instance=ExtResource("4_0ixj4")]
+sun_color = Color(0.737255, 0.854902, 1, 1)
+sun_energy = 0.945
+
+[node name="Room1" type="Node3D" parent="."]
+
+[node name="MazeWall" parent="Room1" instance=ExtResource("5_gxmjh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.19692, 0, 11.5974)
+
+[node name="MazeDoor" parent="Room1" instance=ExtResource("6_u5nu4")]
+
+[node name="MazeWall2" parent="Room1" instance=ExtResource("5_gxmjh")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.57535, 0, -2.06351)
+
+[node name="MazeWall3" parent="Room1" instance=ExtResource("5_gxmjh")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.60691, 0, -2.06351)
+
+[node name="MazeWall4" parent="Room1" instance=ExtResource("5_gxmjh")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.57535, 0, 6.6068)
+
+[node name="MazeWall5" parent="Room1" instance=ExtResource("5_gxmjh")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.60691, 0, 6.6068)
+
+[node name="Spawn" parent="." instance=ExtResource("8_u6gsn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.08271, 2.21418, 8.63266)
+spawn_moving = false
+spawn_is_enemy = false
+spawn_is_collectible = true
+enemy_instakills = false
+collectible_points = 1
+spawn_adds_time = true
+spawn_opens_door = true
+
+[node name="Checkpoint" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.49203, -11.5948)
+script = ExtResource("9_jgaik")
+finish_line_visible = true
+is_checkpoint = true
+
+[node name="Finish-Line_Mesh" type="MeshInstance3D" parent="Checkpoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
+visible = false
+sorting_use_aabb_center = false
+mesh = SubResource("PlaneMesh_cgwo2")
+surface_material_override/0 = SubResource("StandardMaterial3D_5cqgw")
+
+[node name="Finish-Line_Collision" type="CollisionShape3D" parent="Checkpoint"]
+shape = SubResource("ConvexPolygonShape3D_tch6w")
+
+[node name="Finish-Line" parent="." instance=ExtResource("10_ui0tm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -26.7654)
+finish_line_visible = true

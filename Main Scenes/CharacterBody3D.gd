@@ -17,6 +17,8 @@ func _ready():
 	Messenger.on_bought_prism.connect(bought_prism)
 	Messenger.on_bought_square.connect(bought_square)
 	
+	add_to_group("Detectable")
+	
 func bought_prism():
 	$Player_Mesh_Square.visible = false
 	$Player_Collision_Square.disabled = true

@@ -1,16 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://bsvo68bfmmc3f"]
+[gd_scene load_steps=2 format=3 uid="uid://bsvo68bfmmc3f"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_4jfwk"]
-size = Vector3(6.54, 3.65, 0.165)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f3ago"]
+albedo_color = Color(1, 0.792157, 0.105882, 1)
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_edhjm"]
-points = PackedVector3Array(3.27, 1.825, 0.0825, 3.27, 1.825, -0.0825, -3.27, 1.825, 0.0825, 3.27, -1.825, 0.0825, 3.27, -1.825, -0.0825, -3.27, 1.825, -0.0825, -3.27, -1.825, 0.0825, -3.27, -1.825, -0.0825)
+[node name="MazeWall" type="Node3D"]
 
-[node name="MazeWall" type="StaticBody3D"]
-
-[node name="WallMesh" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_4jfwk")
-skeleton = NodePath("../../../WorldEnvironment")
-
-[node name="WallCollision" type="CollisionShape3D" parent="."]
-shape = SubResource("ConvexPolygonShape3D_edhjm")
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0858917, 0.990723, 0)
+material_override = SubResource("StandardMaterial3D_f3ago")
+use_collision = true
+size = Vector3(10.7293, 8.12646, 1)

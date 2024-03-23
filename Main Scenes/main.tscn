@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://74jimhkiyt8t"]
+[gd_scene load_steps=11 format=3 uid="uid://74jimhkiyt8t"]
 
 [ext_resource type="PackedScene" uid="uid://rkba7etkgvan" path="res://UI/ui.tscn" id="1_tsci8"]
 [ext_resource type="PackedScene" uid="uid://buurv000eq5jx" path="res://Game Aspects/environment.tscn" id="2_ketgd"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Game Aspects/spawncontrol.gd" id="8_8r13o"]
 [ext_resource type="PackedScene" uid="uid://dtopi63n0n2rp" path="res://Game Aspects/spawn_point.tscn" id="8_o034l"]
 [ext_resource type="PackedScene" uid="uid://bshtrnrok0f5t" path="res://Game Aspects/spawn2.tscn" id="10_qy0vc"]
+[ext_resource type="PackedScene" uid="uid://divnxn4mxielj" path="res://Game Aspects/spawn_clock.tscn" id="10_uryoi"]
 
 [node name="main" type="Node"]
 
@@ -18,13 +19,13 @@ sun_energy = 0.945
 
 [node name="UI" parent="." instance=ExtResource("1_tsci8")]
 timer_length = 2.0
-timer_countup = true
 
 [node name="Player" parent="." groups=["Detectable"] instance=ExtResource("3_viqpx")]
 
 [node name="Ground" parent="." instance=ExtResource("4_fng86")]
 
 [node name="Finish-Line" parent="." instance=ExtResource("4_sro01")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, -12.851)
 finish_line_visible = true
 
 [node name="Spatial_Context" type="Node3D" parent="."]
@@ -50,3 +51,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.83389, 0.0989643, -3.15097
 [node name="Spawn_Point2" parent="Spawn_Controller" instance=ExtResource("8_o034l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7341, 0.0989643, -6.73285)
 spawn_object = ExtResource("10_qy0vc")
+
+[node name="Spawn" parent="." instance=ExtResource("10_uryoi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.51971, 0.60124, -3.89465)
+spawn_moving = false
+spawn_is_enemy = false
+spawn_is_collectible = true
+enemy_instakills = false
+collectible_points = 1
+spawn_adds_time = true
+spawn_opens_door = true

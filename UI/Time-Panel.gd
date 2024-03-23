@@ -7,6 +7,7 @@ var race_begun = false
 
 
 func _ready():
+	Messenger.add_time.connect(on_add_time)
 	if get_owner().timer_visible:
 		self.visible = true
 	self.visible = get_owner().timer_visible
@@ -30,6 +31,7 @@ func _process(delta):
 	if time_shown <= 0.00:
 		get_owner().timer_autostart = false
 		%Time.text = str(0)
+		Messenger.game_over.emit()
 		
 	if get_owner().timer_for_racing and !race_begun:
 		if Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_right") or Input.is_action_pressed("ui_up") or Input.is_action_pressed("ui_down"):
@@ -37,6 +39,9 @@ func _process(delta):
 			await get_tree().create_timer(1.0).timeout
 			race_begun = true
 
+func on_add_time(time_to_add):
+	print(time_to_add, " is trying to be added")
+	time_shown += time_to_add
 
 func count():
 	if time_shown > 60.0:

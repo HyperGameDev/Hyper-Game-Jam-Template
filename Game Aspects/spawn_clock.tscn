@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://divnxn4mxielj"]
+
+[ext_resource type="Script" path="res://Game Aspects/spawn.gd" id="1_mnkdy"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_l8k26"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_picjd"]
+height = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6lmbc"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_m3drd"]
+size = Vector3(0.55, 1.015, 0.375)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ledp0"]
+size = Vector3(0.08, 0.04, 0.555)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mli7x"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vm2bt"]
+size = Vector3(0.08, 0.04, 0.355)
+
+[node name="Spawn" type="Node3D"]
+script = ExtResource("1_mnkdy")
+spawn_direction = Vector3(0, 0, 1)
+spawn_is_enemy = true
+spawn_is_collectible = false
+collectible_points = 10
+
+[node name="Spawn_Area" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spawn_Area"]
+shape = SubResource("SphereShape3D_l8k26")
+
+[node name="Spawn_Mesh" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Spawn_Mesh"]
+mesh = SubResource("CylinderMesh_picjd")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_6lmbc")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Spawn_Mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.694297, 0)
+visible = false
+mesh = SubResource("PrismMesh_m3drd")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_6lmbc")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Spawn_Mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02133, 0.102215, -0.21196)
+mesh = SubResource("BoxMesh_ledp0")
+surface_material_override/0 = SubResource("StandardMaterial3D_mli7x")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Spawn_Mesh"]
+transform = Transform3D(0.633138, -3.38343e-08, -0.774039, 3.38343e-08, 1, -1.60361e-08, 0.774039, -1.60361e-08, 0.633138, 0.137236, 0.102215, -0.0179132)
+mesh = SubResource("BoxMesh_vm2bt")
+surface_material_override/0 = SubResource("StandardMaterial3D_mli7x")

@@ -16,10 +16,13 @@ extends CanvasLayer
 
 func _ready():
 	Messenger.game_over.connect(end_game)
-	Messenger.you_won.connect(show_win)
+	Messenger.game_win.connect(show_win)
 	
 func end_game():
 	timer_autostart = false
+	#%"You Lost".visible = true
+	pass
 
 func show_win():
-	$Label.visible = true
+	#%"You Won".visible = true
+	pass
