@@ -5,8 +5,8 @@
 [sub_resource type="PlaneMesh" id="PlaneMesh_r58wa"]
 size = Vector2(3000, 3000)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ybwks"]
-albedo_color = Color(0.13, 0.07, 0.27, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hevxf"]
+albedo_color = Color(0, 0.32549, 0, 1)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dg2cm"]
 points = PackedVector3Array(-1500, 0, -1500, -1500, 0, 1500, 1500, 0, -1500, 1500, 0, 1500)
@@ -16,7 +16,7 @@ script = ExtResource("1_phhx0")
 
 [node name="Ground-Mesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_r58wa")
-surface_material_override/0 = SubResource("StandardMaterial3D_ybwks")
+surface_material_override/0 = SubResource("StandardMaterial3D_hevxf")
 
 [node name="Ground-Collision" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_dg2cm")

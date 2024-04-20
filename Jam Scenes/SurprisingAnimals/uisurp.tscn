@@ -1,0 +1,61 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7jjucvqtsnyx"]
+
+[ext_resource type="Script" path="res://Jam Scenes/SurprisingAnimals/Owl.gd" id="1_qfwlg"]
+
+[node name="Control" type="CanvasLayer"]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 26.0
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Owl" type="Button" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 70
+text = " Owl "
+
+[node name="Rabbit" type="Button" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 70
+text = " Rabbit "
+
+[node name="Deer" type="Button" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 70
+text = " Deer"
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 184.0
+grow_horizontal = 2
+
+[node name="Deer" type="Label" parent="MarginContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 61
+text = "I have a bushy tail, and antlers."
+horizontal_alignment = 1
+
+[node name="Rabbit" type="Label" parent="MarginContainer2"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 61
+text = "I have a bushy tail, and hop!"
+horizontal_alignment = 1
+
+[node name="Owl" type="Label" parent="MarginContainer2"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 61
+text = "I have bushy eyebrows, and a beak."
+horizontal_alignment = 1
+script = ExtResource("1_qfwlg")

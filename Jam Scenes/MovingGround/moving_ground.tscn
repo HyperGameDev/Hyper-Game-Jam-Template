@@ -1,0 +1,158 @@
+[gd_scene load_steps=6 format=3 uid="uid://d1u0tfjggbtlq"]
+
+[ext_resource type="PackedScene" uid="uid://dxfw8wfnigqn" path="res://Game Aspects/moving_plat.tscn" id="1_f8dtl"]
+[ext_resource type="PackedScene" uid="uid://buurv000eq5jx" path="res://Game Aspects/environment.tscn" id="2_01j7o"]
+[ext_resource type="PackedScene" uid="uid://cony25eh2s7r5" path="res://Game Aspects/player.tscn" id="3_opwtg"]
+[ext_resource type="PackedScene" uid="uid://rkba7etkgvan" path="res://UI/ui.tscn" id="4_vj45r"]
+[ext_resource type="PackedScene" uid="uid://i8k4f65p7crh" path="res://Test Scenes/3d_test_1.tscn" id="5_nqa80"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MovingPlat" parent="." instance=ExtResource("1_f8dtl")]
+
+[node name="MovingPlat2" parent="." instance=ExtResource("1_f8dtl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.3036)
+state1 = true
+
+[node name="MovingPlat5" parent="." instance=ExtResource("1_f8dtl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.51756, 0, -21.7113)
+state1 = true
+
+[node name="MovingPlat3" parent="." instance=ExtResource("1_f8dtl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.56958, 0, -19.4209)
+
+[node name="MovingPlat4" parent="." instance=ExtResource("1_f8dtl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.56958, 0, -29.7245)
+state1 = true
+
+[node name="MovingPlat10" parent="." instance=ExtResource("1_f8dtl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.9481, 0, -11.8197)
+state1 = true
+
+[node name="MovingPlat6" parent="." instance=ExtResource("1_f8dtl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.9947, 0, -29.7245)
+state1 = true
+
+[node name="MovingPlat7" parent="." instance=ExtResource("1_f8dtl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5266, 0, -40.2341)
+
+[node name="MovingPlat8" parent="." instance=ExtResource("1_f8dtl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.0895, 0, -40.2341)
+
+[node name="MovingPlat9" parent="." instance=ExtResource("1_f8dtl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.0895, 0, -11.9485)
+
+[node name="MovingPlat11" parent="." instance=ExtResource("1_f8dtl")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 51.6441, 0, -79.6631)
+
+[node name="MovingPlat12" parent="." instance=ExtResource("1_f8dtl")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 42.5108, 0, -74.8937)
+state1 = true
+
+[node name="MovingPlat13" parent="." instance=ExtResource("1_f8dtl")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 36.8042, 0, -61.1768)
+state1 = true
+
+[node name="MovingPlat14" parent="." instance=ExtResource("1_f8dtl")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 29.9995, 0, -79.1563)
+
+[node name="MovingPlat15" parent="." instance=ExtResource("1_f8dtl")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 20.8661, 0, -74.3869)
+state1 = true
+
+[node name="MovingPlat16" parent="." instance=ExtResource("1_f8dtl")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 50.4004, 0, -56.5096)
+state1 = true
+
+[node name="MovingPlat17" parent="." instance=ExtResource("1_f8dtl")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 34.5508, 0, -48.1805)
+state1 = true
+
+[node name="MovingPlat18" parent="." instance=ExtResource("1_f8dtl")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 20.3894, 0, -52.595)
+
+[node name="MovingPlat19" parent="." instance=ExtResource("1_f8dtl")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.68076, 0, -78.8474)
+
+[node name="MovingPlat20" parent="." instance=ExtResource("1_f8dtl")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 31.7537, 0, -91.9402)
+
+[node name="MovingPlat21" parent="." instance=ExtResource("1_f8dtl")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -47.0854, 0, -80.7365)
+
+[node name="MovingPlat22" parent="." instance=ExtResource("1_f8dtl")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -42.0829, 0, -71.7288)
+state1 = true
+
+[node name="MovingPlat23" parent="." instance=ExtResource("1_f8dtl")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -28.2238, 0, -66.3767)
+state1 = true
+
+[node name="MovingPlat24" parent="." instance=ExtResource("1_f8dtl")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -46.0224, 0, -59.1121)
+
+[node name="MovingPlat25" parent="." instance=ExtResource("1_f8dtl")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -41.0198, 0, -50.1043)
+state1 = true
+
+[node name="MovingPlat26" parent="." instance=ExtResource("1_f8dtl")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -23.9076, 0, -80.0884)
+state1 = true
+
+[node name="MovingPlat27" parent="." instance=ExtResource("1_f8dtl")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -15.1738, 0, -64.4581)
+state1 = true
+
+[node name="MovingPlat28" parent="." instance=ExtResource("1_f8dtl")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -19.2229, 0, -50.188)
+
+[node name="MovingPlat29" parent="." instance=ExtResource("1_f8dtl")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -45.1142, 0, -35.809)
+
+[node name="MovingPlat30" parent="." instance=ExtResource("1_f8dtl")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -58.8471, 0, -60.5371)
+
+[node name="WorldEnvironment" parent="." instance=ExtResource("2_01j7o")]
+sun_color = Color(0.737255, 0.854902, 1, 1)
+sun_energy = 0.945
+
+[node name="Player" parent="." groups=["Detectable"] instance=ExtResource("3_opwtg")]
+
+[node name="UI" parent="." instance=ExtResource("4_vj45r")]
+timer_visible = false
+timer_length = 0.0
+timer_countup = true
+score_visible = false
+
+[node name="Spatial_Context" type="Node3D" parent="."]
+transform = Transform3D(-0.0943235, 0, 2.27805, 0, 2.28, 0, -2.27805, 0, -0.0943235, -13.0757, -9.25036, -5.66033)
+
+[node name="3D_Test-1" parent="Spatial_Context" instance=ExtResource("5_nqa80")]
+
+[node name="3D_Test-2" parent="Spatial_Context" instance=ExtResource("5_nqa80")]
+transform = Transform3D(-0.961103, 0, 0.276191, 0, 1, 0, -0.276191, 0, -0.961103, -0.55133, 0, 13.3154)
+
+[node name="3D_Test-3" parent="Spatial_Context" instance=ExtResource("5_nqa80")]
+transform = Transform3D(-0.302004, 0, -0.953307, 0, 1, 0, 0.953307, 0, -0.302004, 13.3375, 0, 8.03235)
+
+[node name="Spatial_Context2" type="Node3D" parent="."]
+transform = Transform3D(-1.65831, 0, 1.56474, 0, 2.28, 0, -1.56474, 0, -1.65831, -30.476, -9.25036, -5.66033)
+
+[node name="3D_Test-1" parent="Spatial_Context2" instance=ExtResource("5_nqa80")]
+
+[node name="3D_Test-2" parent="Spatial_Context2" instance=ExtResource("5_nqa80")]
+transform = Transform3D(-0.961103, 0, 0.276191, 0, 1, 0, -0.276191, 0, -0.961103, -0.55133, 0, 13.3154)
+
+[node name="3D_Test-3" parent="Spatial_Context2" instance=ExtResource("5_nqa80")]
+transform = Transform3D(-0.302004, 0, -0.953307, 0, 1, 0, 0.953307, 0, -0.302004, 13.3375, 0, 8.03235)
+
+[node name="Spatial_Context3" type="Node3D" parent="."]
+transform = Transform3D(-1.65831, 0, 1.56474, 0, 2.28, 0, -1.56474, 0, -1.65831, -12.0721, -5.29467, -25.6957)
+
+[node name="3D_Test-1" parent="Spatial_Context3" instance=ExtResource("5_nqa80")]
+
+[node name="3D_Test-2" parent="Spatial_Context3" instance=ExtResource("5_nqa80")]
+transform = Transform3D(-0.961103, 0, 0.276191, 0, 1, 0, -0.276191, 0, -0.961103, -0.55133, 0, 13.3154)
+
+[node name="3D_Test-3" parent="Spatial_Context3" instance=ExtResource("5_nqa80")]
+transform = Transform3D(-0.302004, 0, -0.953307, 0, 1, 0, 0.953307, 0, -0.302004, 13.3375, 0, 8.03235)

@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxfw8wfnigqn"]
+
+[ext_resource type="Script" path="res://Game Aspects/MovingPlat.gd" id="1_lqg74"]
+[ext_resource type="Script" path="res://Game Aspects/movingplayarea.gd" id="2_grwq8"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_wpc7j"]
+points = PackedVector3Array(3.791, 0.20373, 3.8135, -3.791, -0.151746, -3.7685, -3.791, -0.151746, 3.8135, -3.791, 0.20373, -3.7685, 3.791, -0.151746, -3.7685, -3.791, 0.20373, 3.8135, 3.791, -0.151746, 3.8135, 3.791, 0.20373, -3.7685)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gv163"]
+size = Vector3(7.465, 0.185, 7.42)
+
+[node name="MovingPlat" type="StaticBody3D"]
+collision_layer = 3
+collision_mask = 0
+script = ExtResource("1_lqg74")
+default_color = Color(0.858824, 0.741176, 0.898039, 1)
+bounce1_color = Color(0, 0, 0, 1)
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 3
+collision_mask = 0
+script = ExtResource("2_grwq8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("ConvexPolygonShape3D_wpc7j")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_gv163")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_wpc7j")

@@ -1,0 +1,1945 @@
+[gd_scene load_steps=20 format=3 uid="uid://yb3y8ikbqfwo"]
+
+[ext_resource type="PackedScene" uid="uid://buurv000eq5jx" path="res://Game Aspects/environment.tscn" id="1_4nffh"]
+[ext_resource type="Script" path="res://Jam Scenes/SurprisingAnimals/surprising_animals.gd" id="1_ycax7"]
+[ext_resource type="Texture2D" uid="uid://dywu7kf6lqgfv" path="res://Jam Scenes/SurprisingAnimals/images/owl.png" id="2_nmgvd"]
+[ext_resource type="Texture2D" uid="uid://db82immevfkwr" path="res://Jam Scenes/SurprisingAnimals/images/deer.png" id="3_bnhe7"]
+[ext_resource type="Texture2D" uid="uid://dn2ptv7ppy627" path="res://Jam Scenes/SurprisingAnimals/images/rabbit.png" id="4_1jm36"]
+[ext_resource type="PackedScene" uid="uid://b7jjucvqtsnyx" path="res://Jam Scenes/SurprisingAnimals/uisurp.tscn" id="6_xlpld"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1wf00"]
+size = Vector2(500, 500)
+
+[sub_resource type="Gradient" id="Gradient_dlieq"]
+offsets = PackedFloat32Array(0, 0.974729)
+colors = PackedColorArray(0, 0.129412, 0, 1, 0.4, 0.203922, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mupeb"]
+noise_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cw7cg"]
+width = 3000
+height = 3000
+color_ramp = SubResource("Gradient_dlieq")
+noise = SubResource("FastNoiseLite_mupeb")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hevxf"]
+albedo_texture = SubResource("NoiseTexture2D_cw7cg")
+
+[sub_resource type="PrismMesh" id="PrismMesh_m7dw0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hg1u0"]
+albedo_color = Color(0, 0.384314, 0.105882, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_62i8w"]
+top_radius = 0.205
+bottom_radius = 0.205
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bnwg6"]
+albedo_color = Color(0.364706, 0.188235, 0.113725, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7mbpy"]
+lightmap_size_hint = Vector2i(14, 34)
+size = Vector3(1, 2.335, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q2qni"]
+transparency = 1
+albedo_texture = ExtResource("2_nmgvd")
+roughness = 0.95
+emission = Color(0.176471, 0.176471, 0.176471, 1)
+uv1_scale = Vector3(2.425, 2.425, 2.425)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3xkgi"]
+transparency = 1
+albedo_texture = ExtResource("3_bnhe7")
+roughness = 0.95
+emission = Color(0.176471, 0.176471, 0.176471, 1)
+uv1_scale = Vector3(3, 3, 3)
+uv1_offset = Vector3(0, -0.06, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g85hb"]
+transparency = 1
+albedo_texture = ExtResource("4_1jm36")
+roughness = 0.95
+emission = Color(0.176471, 0.176471, 0.176471, 1)
+uv1_scale = Vector3(3, 3, 3)
+uv1_offset = Vector3(0, -0.06, 0)
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.234715, 0.0777742, 0.160774)
+script = ExtResource("1_ycax7")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 1.241, -0.497)
+fov = 55.4
+
+[node name="Forest" type="Node3D" parent="."]
+transform = Transform3D(0.887454, 0, 0.460897, 0, 1, 0, -0.460897, 0, 0.887454, -1.86581, 1.15781, -2.3371)
+
+[node name="Ground" type="MeshInstance3D" parent="Forest"]
+transform = Transform3D(0.887454, 0, -0.460897, 0, 1, 0, 0.460897, 0, 0.887454, 2.06744, -1.88731, 0.0673759)
+mesh = SubResource("PlaneMesh_1wf00")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hevxf")
+
+[node name="Trees" type="Node3D" parent="Forest"]
+
+[node name="Trees" type="Node3D" parent="Forest/Trees"]
+
+[node name="Tree_Leaves" type="MeshInstance3D" parent="Forest/Trees/Trees"]
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees/Tree_Leaves"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves4" type="MeshInstance3D" parent="Forest/Trees/Trees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52422, 0, -2.93488)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees/Tree_Leaves4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves2" type="MeshInstance3D" parent="Forest/Trees/Trees"]
+transform = Transform3D(0.526199, 0, -0.850361, 0, 1, 0, 0.850361, 0, 0.526199, 4.21484, 0, 2.18897)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees/Tree_Leaves2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves3" type="MeshInstance3D" parent="Forest/Trees/Trees"]
+transform = Transform3D(0.99999, 0, 0.00450292, 0, 1, 0, -0.00450292, 0, 0.99999, 3.87214, 0, 0.590167)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees/Tree_Leaves3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Trees3" type="Node3D" parent="Forest/Trees"]
+transform = Transform3D(-0.314837, 0, 0.949145, 0, 1, 0, -0.949145, 0, -0.314837, 10.809, 0, -10.839)
+
+[node name="Tree_Leaves" type="MeshInstance3D" parent="Forest/Trees/Trees3"]
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees3/Tree_Leaves"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves4" type="MeshInstance3D" parent="Forest/Trees/Trees3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52422, 0, -2.93488)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees3/Tree_Leaves4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves2" type="MeshInstance3D" parent="Forest/Trees/Trees3"]
+transform = Transform3D(0.526199, 0, -0.850361, 0, 1, 0, 0.850361, 0, 0.526199, 4.21484, 0, 2.18897)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees3/Tree_Leaves2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves3" type="MeshInstance3D" parent="Forest/Trees/Trees3"]
+transform = Transform3D(0.99999, 0, 0.00450292, 0, 1, 0, -0.00450292, 0, 0.99999, 3.87214, 0, 0.590167)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees3/Tree_Leaves3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Trees4" type="Node3D" parent="Forest/Trees"]
+transform = Transform3D(-0.971627, 0, -0.236516, 0, 1, 0, 0.236516, 0, -0.971627, 13.6937, 0, -19.5707)
+
+[node name="Tree_Leaves" type="MeshInstance3D" parent="Forest/Trees/Trees4"]
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees4/Tree_Leaves"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves4" type="MeshInstance3D" parent="Forest/Trees/Trees4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52422, 0, -2.93488)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees4/Tree_Leaves4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves2" type="MeshInstance3D" parent="Forest/Trees/Trees4"]
+transform = Transform3D(0.526199, 0, -0.850361, 0, 1, 0, 0.850361, 0, 0.526199, 4.21484, 0, 2.18897)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees4/Tree_Leaves2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves3" type="MeshInstance3D" parent="Forest/Trees/Trees4"]
+transform = Transform3D(0.99999, 0, 0.00450292, 0, 1, 0, -0.00450292, 0, 0.99999, 3.87214, 0, 0.590167)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees4/Tree_Leaves3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Trees2" type="Node3D" parent="Forest/Trees"]
+transform = Transform3D(0.245781, 0, 0.969325, 0, 1, 0, -0.969325, 0, 0.245781, 5.74709, 0, -3.76372)
+
+[node name="Tree_Leaves" type="MeshInstance3D" parent="Forest/Trees/Trees2"]
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees2/Tree_Leaves"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves4" type="MeshInstance3D" parent="Forest/Trees/Trees2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52422, 0, -2.93488)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees2/Tree_Leaves4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves2" type="MeshInstance3D" parent="Forest/Trees/Trees2"]
+transform = Transform3D(0.526199, 0, -0.850361, 0, 1, 0, 0.850361, 0, 0.526199, 4.21484, 0, 2.18897)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees2/Tree_Leaves2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves3" type="MeshInstance3D" parent="Forest/Trees/Trees2"]
+transform = Transform3D(0.99999, 0, 0.00450292, 0, 1, 0, -0.00450292, 0, 0.99999, 3.87214, 0, 0.590167)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees2/Tree_Leaves3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Trees5" type="Node3D" parent="Forest/Trees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.8955, 0, -22.9047)
+
+[node name="Tree_Leaves" type="MeshInstance3D" parent="Forest/Trees/Trees5"]
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees5/Tree_Leaves"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves4" type="MeshInstance3D" parent="Forest/Trees/Trees5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52422, 0, -2.93488)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees5/Tree_Leaves4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves2" type="MeshInstance3D" parent="Forest/Trees/Trees5"]
+transform = Transform3D(0.526199, 0, -0.850361, 0, 1, 0, 0.850361, 0, 0.526199, 4.21484, 0, 2.18897)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees5/Tree_Leaves2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves3" type="MeshInstance3D" parent="Forest/Trees/Trees5"]
+transform = Transform3D(0.99999, 0, 0.00450292, 0, 1, 0, -0.00450292, 0, 0.99999, 3.87214, 0, 0.590167)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees5/Tree_Leaves3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Trees6" type="Node3D" parent="Forest/Trees"]
+transform = Transform3D(-0.314837, 0, 0.949145, 0, 1, 0, -0.949145, 0, -0.314837, 22.7045, 0, -33.7437)
+
+[node name="Tree_Leaves" type="MeshInstance3D" parent="Forest/Trees/Trees6"]
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees6/Tree_Leaves"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves4" type="MeshInstance3D" parent="Forest/Trees/Trees6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52422, 0, -2.93488)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees6/Tree_Leaves4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves2" type="MeshInstance3D" parent="Forest/Trees/Trees6"]
+transform = Transform3D(0.526199, 0, -0.850361, 0, 1, 0, 0.850361, 0, 0.526199, 4.21484, 0, 2.18897)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees6/Tree_Leaves2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves3" type="MeshInstance3D" parent="Forest/Trees/Trees6"]
+transform = Transform3D(0.99999, 0, 0.00450292, 0, 1, 0, -0.00450292, 0, 0.99999, 3.87214, 0, 0.590167)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees6/Tree_Leaves3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Trees7" type="Node3D" parent="Forest/Trees"]
+transform = Transform3D(-0.971627, 0, -0.236516, 0, 1, 0, 0.236516, 0, -0.971627, 25.5892, 0, -42.4754)
+
+[node name="Tree_Leaves" type="MeshInstance3D" parent="Forest/Trees/Trees7"]
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees7/Tree_Leaves"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves4" type="MeshInstance3D" parent="Forest/Trees/Trees7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52422, 0, -2.93488)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees7/Tree_Leaves4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves2" type="MeshInstance3D" parent="Forest/Trees/Trees7"]
+transform = Transform3D(0.526199, 0, -0.850361, 0, 1, 0, 0.850361, 0, 0.526199, 4.21484, 0, 2.18897)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees7/Tree_Leaves2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves3" type="MeshInstance3D" parent="Forest/Trees/Trees7"]
+transform = Transform3D(0.99999, 0, 0.00450292, 0, 1, 0, -0.00450292, 0, 0.99999, 3.87214, 0, 0.590167)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees7/Tree_Leaves3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Trees8" type="Node3D" parent="Forest/Trees"]
+transform = Transform3D(0.245781, 0, 0.969325, 0, 1, 0, -0.969325, 0, 0.245781, 17.6426, 0, -26.6684)
+
+[node name="Tree_Leaves" type="MeshInstance3D" parent="Forest/Trees/Trees8"]
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees8/Tree_Leaves"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves4" type="MeshInstance3D" parent="Forest/Trees/Trees8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52422, 0, -2.93488)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees8/Tree_Leaves4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves2" type="MeshInstance3D" parent="Forest/Trees/Trees8"]
+transform = Transform3D(0.526199, 0, -0.850361, 0, 1, 0, 0.850361, 0, 0.526199, 4.21484, 0, 2.18897)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees8/Tree_Leaves2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves3" type="MeshInstance3D" parent="Forest/Trees/Trees8"]
+transform = Transform3D(0.99999, 0, 0.00450292, 0, 1, 0, -0.00450292, 0, 0.99999, 3.87214, 0, 0.590167)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees8/Tree_Leaves3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Trees9" type="Node3D" parent="Forest/Trees"]
+transform = Transform3D(-0.996721, 0, 0.0809122, 0, 1, 0, -0.0809122, 0, -0.996721, 32.4866, 0, -31.8614)
+
+[node name="Tree_Leaves" type="MeshInstance3D" parent="Forest/Trees/Trees9"]
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees9/Tree_Leaves"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves4" type="MeshInstance3D" parent="Forest/Trees/Trees9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52422, 0, -2.93488)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees9/Tree_Leaves4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves2" type="MeshInstance3D" parent="Forest/Trees/Trees9"]
+transform = Transform3D(0.526199, 0, -0.850361, 0, 1, 0, 0.850361, 0, 0.526199, 4.21484, 0, 2.18897)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees9/Tree_Leaves2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves3" type="MeshInstance3D" parent="Forest/Trees/Trees9"]
+transform = Transform3D(0.99999, 0, 0.00450292, 0, 1, 0, -0.00450292, 0, 0.99999, 3.87214, 0, 0.590167)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees9/Tree_Leaves3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Trees10" type="Node3D" parent="Forest/Trees"]
+transform = Transform3D(0.237008, 0, -0.971508, 0, 1, 0, 0.971508, 0, 0.237008, 20.8361, 0, -21.9325)
+
+[node name="Tree_Leaves" type="MeshInstance3D" parent="Forest/Trees/Trees10"]
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees10/Tree_Leaves"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves4" type="MeshInstance3D" parent="Forest/Trees/Trees10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52422, 0, -2.93488)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees10/Tree_Leaves4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves2" type="MeshInstance3D" parent="Forest/Trees/Trees10"]
+transform = Transform3D(0.526199, 0, -0.850361, 0, 1, 0, 0.850361, 0, 0.526199, 4.21484, 0, 2.18897)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees10/Tree_Leaves2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves3" type="MeshInstance3D" parent="Forest/Trees/Trees10"]
+transform = Transform3D(0.99999, 0, 0.00450292, 0, 1, 0, -0.00450292, 0, 0.99999, 3.87214, 0, 0.590167)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees10/Tree_Leaves3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Trees11" type="Node3D" parent="Forest/Trees"]
+transform = Transform3D(0.987579, 0, 0.157124, 0, 1, 0, -0.157124, 0, 0.987579, 17.2543, 0, -13.4629)
+
+[node name="Tree_Leaves" type="MeshInstance3D" parent="Forest/Trees/Trees11"]
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees11/Tree_Leaves"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves4" type="MeshInstance3D" parent="Forest/Trees/Trees11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52422, 0, -2.93488)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees11/Tree_Leaves4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves2" type="MeshInstance3D" parent="Forest/Trees/Trees11"]
+transform = Transform3D(0.526199, 0, -0.850361, 0, 1, 0, 0.850361, 0, 0.526199, 4.21484, 0, 2.18897)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees11/Tree_Leaves2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves3" type="MeshInstance3D" parent="Forest/Trees/Trees11"]
+transform = Transform3D(0.99999, 0, 0.00450292, 0, 1, 0, -0.00450292, 0, 0.99999, 3.87214, 0, 0.590167)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees11/Tree_Leaves3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Trees12" type="Node3D" parent="Forest/Trees"]
+transform = Transform3D(-0.323405, 0, -0.94626, 0, 1, 0, 0.94626, 0, -0.323405, 26.4539, 0, -28.5751)
+
+[node name="Tree_Leaves" type="MeshInstance3D" parent="Forest/Trees/Trees12"]
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees12/Tree_Leaves"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves4" type="MeshInstance3D" parent="Forest/Trees/Trees12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52422, 0, -2.93488)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees12/Tree_Leaves4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves2" type="MeshInstance3D" parent="Forest/Trees/Trees12"]
+transform = Transform3D(0.526199, 0, -0.850361, 0, 1, 0, 0.850361, 0, 0.526199, 4.21484, 0, 2.18897)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees12/Tree_Leaves2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves3" type="MeshInstance3D" parent="Forest/Trees/Trees12"]
+transform = Transform3D(0.99999, 0, 0.00450292, 0, 1, 0, -0.00450292, 0, 0.99999, 3.87214, 0, 0.590167)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees12/Tree_Leaves3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Trees13" type="Node3D" parent="Forest/Trees"]
+transform = Transform3D(-0.996721, 0, 0.0809122, 0, 1, 0, -0.0809122, 0, -0.996721, 18.7769, 0, -9.99434)
+
+[node name="Tree_Leaves" type="MeshInstance3D" parent="Forest/Trees/Trees13"]
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees13/Tree_Leaves"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves4" type="MeshInstance3D" parent="Forest/Trees/Trees13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52422, 0, -2.93488)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees13/Tree_Leaves4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves2" type="MeshInstance3D" parent="Forest/Trees/Trees13"]
+transform = Transform3D(0.526199, 0, -0.850361, 0, 1, 0, 0.850361, 0, 0.526199, 4.21484, 0, 2.18897)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees13/Tree_Leaves2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves3" type="MeshInstance3D" parent="Forest/Trees/Trees13"]
+transform = Transform3D(0.99999, 0, 0.00450292, 0, 1, 0, -0.00450292, 0, 0.99999, 3.87214, 0, 0.590167)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees13/Tree_Leaves3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Trees14" type="Node3D" parent="Forest/Trees"]
+transform = Transform3D(0.237008, 0, -0.971508, 0, 1, 0, 0.971508, 0, 0.237008, 7.12635, 0, -0.0654655)
+
+[node name="Tree_Leaves" type="MeshInstance3D" parent="Forest/Trees/Trees14"]
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees14/Tree_Leaves"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves4" type="MeshInstance3D" parent="Forest/Trees/Trees14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52422, 0, -2.93488)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees14/Tree_Leaves4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves2" type="MeshInstance3D" parent="Forest/Trees/Trees14"]
+transform = Transform3D(0.526199, 0, -0.850361, 0, 1, 0, 0.850361, 0, 0.526199, 4.21484, 0, 2.18897)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees14/Tree_Leaves2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves3" type="MeshInstance3D" parent="Forest/Trees/Trees14"]
+transform = Transform3D(0.99999, 0, 0.00450292, 0, 1, 0, -0.00450292, 0, 0.99999, 3.87214, 0, 0.590167)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees14/Tree_Leaves3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Trees15" type="Node3D" parent="Forest/Trees"]
+transform = Transform3D(0.987579, 0, 0.157124, 0, 1, 0, -0.157124, 0, 0.987579, 3.54453, 0, 8.40418)
+
+[node name="Tree_Leaves" type="MeshInstance3D" parent="Forest/Trees/Trees15"]
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees15/Tree_Leaves"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves4" type="MeshInstance3D" parent="Forest/Trees/Trees15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52422, 0, -2.93488)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees15/Tree_Leaves4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves2" type="MeshInstance3D" parent="Forest/Trees/Trees15"]
+transform = Transform3D(0.526199, 0, -0.850361, 0, 1, 0, 0.850361, 0, 0.526199, 4.21484, 0, 2.18897)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees15/Tree_Leaves2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves3" type="MeshInstance3D" parent="Forest/Trees/Trees15"]
+transform = Transform3D(0.99999, 0, 0.00450292, 0, 1, 0, -0.00450292, 0, 0.99999, 3.87214, 0, 0.590167)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees15/Tree_Leaves3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Trees16" type="Node3D" parent="Forest/Trees"]
+transform = Transform3D(-0.323405, 0, -0.94626, 0, 1, 0, 0.94626, 0, -0.323405, 12.7441, 0, -6.70797)
+
+[node name="Tree_Leaves" type="MeshInstance3D" parent="Forest/Trees/Trees16"]
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees16/Tree_Leaves"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves4" type="MeshInstance3D" parent="Forest/Trees/Trees16"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52422, 0, -2.93488)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees16/Tree_Leaves4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves2" type="MeshInstance3D" parent="Forest/Trees/Trees16"]
+transform = Transform3D(0.526199, 0, -0.850361, 0, 1, 0, 0.850361, 0, 0.526199, 4.21484, 0, 2.18897)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees16/Tree_Leaves2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves3" type="MeshInstance3D" parent="Forest/Trees/Trees16"]
+transform = Transform3D(0.99999, 0, 0.00450292, 0, 1, 0, -0.00450292, 0, 0.99999, 3.87214, 0, 0.590167)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees16/Tree_Leaves3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Trees17" type="Node3D" parent="Forest/Trees"]
+transform = Transform3D(-0.99823, 0, -0.0594806, 0, 1, 0, 0.0594806, 0, -0.99823, 14.0757, 0, -34.9527)
+
+[node name="Tree_Leaves" type="MeshInstance3D" parent="Forest/Trees/Trees17"]
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees17/Tree_Leaves"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves4" type="MeshInstance3D" parent="Forest/Trees/Trees17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52422, 0, -2.93488)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees17/Tree_Leaves4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves2" type="MeshInstance3D" parent="Forest/Trees/Trees17"]
+transform = Transform3D(0.526199, 0, -0.850361, 0, 1, 0, 0.850361, 0, 0.526199, 4.21484, 0, 2.18897)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees17/Tree_Leaves2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves3" type="MeshInstance3D" parent="Forest/Trees/Trees17"]
+transform = Transform3D(0.99999, 0, 0.00450292, 0, 1, 0, -0.00450292, 0, 0.99999, 3.87214, 0, 0.590167)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees17/Tree_Leaves3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Trees18" type="Node3D" parent="Forest/Trees"]
+transform = Transform3D(0.370736, 0, -0.928738, 0, 1, 0, 0.928738, 0, 0.370736, 3.93056, 0, -23.4899)
+
+[node name="Tree_Leaves" type="MeshInstance3D" parent="Forest/Trees/Trees18"]
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees18/Tree_Leaves"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves4" type="MeshInstance3D" parent="Forest/Trees/Trees18"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52422, 0, -2.93488)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees18/Tree_Leaves4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves2" type="MeshInstance3D" parent="Forest/Trees/Trees18"]
+transform = Transform3D(0.526199, 0, -0.850361, 0, 1, 0, 0.850361, 0, 0.526199, 4.21484, 0, 2.18897)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees18/Tree_Leaves2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves3" type="MeshInstance3D" parent="Forest/Trees/Trees18"]
+transform = Transform3D(0.99999, 0, 0.00450292, 0, 1, 0, -0.00450292, 0, 0.99999, 3.87214, 0, 0.590167)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees18/Tree_Leaves3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Trees19" type="Node3D" parent="Forest/Trees"]
+transform = Transform3D(0.955839, 0, 0.29389, 0, 1, 0, -0.29389, 0, 0.955839, 1.57025, 0, -14.6021)
+
+[node name="Tree_Leaves" type="MeshInstance3D" parent="Forest/Trees/Trees19"]
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees19/Tree_Leaves"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves4" type="MeshInstance3D" parent="Forest/Trees/Trees19"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52422, 0, -2.93488)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees19/Tree_Leaves4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves2" type="MeshInstance3D" parent="Forest/Trees/Trees19"]
+transform = Transform3D(0.526199, 0, -0.850361, 0, 1, 0, 0.850361, 0, 0.526199, 4.21484, 0, 2.18897)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees19/Tree_Leaves2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves3" type="MeshInstance3D" parent="Forest/Trees/Trees19"]
+transform = Transform3D(0.99999, 0, 0.00450292, 0, 1, 0, -0.00450292, 0, 0.99999, 3.87214, 0, 0.590167)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees19/Tree_Leaves3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Trees20" type="Node3D" parent="Forest/Trees"]
+transform = Transform3D(-0.18769, 0, -0.982228, 0, 1, 0, 0.982228, 0, -0.18769, 8.56263, 0, -30.8538)
+
+[node name="Tree_Leaves" type="MeshInstance3D" parent="Forest/Trees/Trees20"]
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees20/Tree_Leaves"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves4" type="MeshInstance3D" parent="Forest/Trees/Trees20"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52422, 0, -2.93488)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees20/Tree_Leaves4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves2" type="MeshInstance3D" parent="Forest/Trees/Trees20"]
+transform = Transform3D(0.526199, 0, -0.850361, 0, 1, 0, 0.850361, 0, 0.526199, 4.21484, 0, 2.18897)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees20/Tree_Leaves2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves3" type="MeshInstance3D" parent="Forest/Trees/Trees20"]
+transform = Transform3D(0.99999, 0, 0.00450292, 0, 1, 0, -0.00450292, 0, 0.99999, 3.87214, 0, 0.590167)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees20/Tree_Leaves3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Trees21" type="Node3D" parent="Forest/Trees"]
+transform = Transform3D(-0.99823, 0, -0.0594806, 0, 1, 0, 0.0594806, 0, -0.99823, 3.56363, 0, -11.381)
+
+[node name="Tree_Leaves" type="MeshInstance3D" parent="Forest/Trees/Trees21"]
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees21/Tree_Leaves"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves4" type="MeshInstance3D" parent="Forest/Trees/Trees21"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52422, 0, -2.93488)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees21/Tree_Leaves4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves2" type="MeshInstance3D" parent="Forest/Trees/Trees21"]
+transform = Transform3D(0.526199, 0, -0.850361, 0, 1, 0, 0.850361, 0, 0.526199, 4.21484, 0, 2.18897)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees21/Tree_Leaves2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves3" type="MeshInstance3D" parent="Forest/Trees/Trees21"]
+transform = Transform3D(0.99999, 0, 0.00450292, 0, 1, 0, -0.00450292, 0, 0.99999, 3.87214, 0, 0.590167)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees21/Tree_Leaves3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Trees22" type="Node3D" parent="Forest/Trees"]
+transform = Transform3D(0.370736, 0, -0.928738, 0, 1, 0, 0.928738, 0, 0.370736, -6.58149, 0, 0.0817354)
+
+[node name="Tree_Leaves" type="MeshInstance3D" parent="Forest/Trees/Trees22"]
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees22/Tree_Leaves"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves4" type="MeshInstance3D" parent="Forest/Trees/Trees22"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52422, 0, -2.93488)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees22/Tree_Leaves4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves2" type="MeshInstance3D" parent="Forest/Trees/Trees22"]
+transform = Transform3D(0.526199, 0, -0.850361, 0, 1, 0, 0.850361, 0, 0.526199, 4.21484, 0, 2.18897)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees22/Tree_Leaves2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves3" type="MeshInstance3D" parent="Forest/Trees/Trees22"]
+transform = Transform3D(0.99999, 0, 0.00450292, 0, 1, 0, -0.00450292, 0, 0.99999, 3.87214, 0, 0.590167)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees22/Tree_Leaves3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Trees23" type="Node3D" parent="Forest/Trees"]
+transform = Transform3D(0.955839, 0, 0.29389, 0, 1, 0, -0.29389, 0, 0.955839, -8.94179, 0, 8.96955)
+
+[node name="Tree_Leaves" type="MeshInstance3D" parent="Forest/Trees/Trees23"]
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees23/Tree_Leaves"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves4" type="MeshInstance3D" parent="Forest/Trees/Trees23"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52422, 0, -2.93488)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees23/Tree_Leaves4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves2" type="MeshInstance3D" parent="Forest/Trees/Trees23"]
+transform = Transform3D(0.526199, 0, -0.850361, 0, 1, 0, 0.850361, 0, 0.526199, 4.21484, 0, 2.18897)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees23/Tree_Leaves2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves3" type="MeshInstance3D" parent="Forest/Trees/Trees23"]
+transform = Transform3D(0.99999, 0, 0.00450292, 0, 1, 0, -0.00450292, 0, 0.99999, 3.87214, 0, 0.590167)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees23/Tree_Leaves3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Trees24" type="Node3D" parent="Forest/Trees"]
+transform = Transform3D(-0.18769, 0, -0.982228, 0, 1, 0, 0.982228, 0, -0.18769, -1.94941, 0, -7.2821)
+
+[node name="Tree_Leaves" type="MeshInstance3D" parent="Forest/Trees/Trees24"]
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees24/Tree_Leaves"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves4" type="MeshInstance3D" parent="Forest/Trees/Trees24"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52422, 0, -2.93488)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees24/Tree_Leaves4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves2" type="MeshInstance3D" parent="Forest/Trees/Trees24"]
+transform = Transform3D(0.526199, 0, -0.850361, 0, 1, 0, 0.850361, 0, 0.526199, 4.21484, 0, 2.18897)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees24/Tree_Leaves2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves3" type="MeshInstance3D" parent="Forest/Trees/Trees24"]
+transform = Transform3D(0.99999, 0, 0.00450292, 0, 1, 0, -0.00450292, 0, 0.99999, 3.87214, 0, 0.590167)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees24/Tree_Leaves3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Trees25" type="Node3D" parent="Forest/Trees"]
+transform = Transform3D(-0.99823, 0, -0.0594806, 0, 1, 0, 0.0594806, 0, -0.99823, 14.0177, 0, -51.5356)
+
+[node name="Tree_Leaves" type="MeshInstance3D" parent="Forest/Trees/Trees25"]
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees25/Tree_Leaves"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves4" type="MeshInstance3D" parent="Forest/Trees/Trees25"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52422, 0, -2.93488)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees25/Tree_Leaves4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves2" type="MeshInstance3D" parent="Forest/Trees/Trees25"]
+transform = Transform3D(0.526199, 0, -0.850361, 0, 1, 0, 0.850361, 0, 0.526199, 4.21484, 0, 2.18897)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees25/Tree_Leaves2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves3" type="MeshInstance3D" parent="Forest/Trees/Trees25"]
+transform = Transform3D(0.99999, 0, 0.00450292, 0, 1, 0, -0.00450292, 0, 0.99999, 3.87214, 0, 0.590167)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees25/Tree_Leaves3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Trees26" type="Node3D" parent="Forest/Trees"]
+transform = Transform3D(0.370736, 0, -0.928738, 0, 1, 0, 0.928738, 0, 0.370736, 3.87261, 0, -40.0728)
+
+[node name="Tree_Leaves" type="MeshInstance3D" parent="Forest/Trees/Trees26"]
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees26/Tree_Leaves"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves4" type="MeshInstance3D" parent="Forest/Trees/Trees26"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52422, 0, -2.93488)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees26/Tree_Leaves4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves2" type="MeshInstance3D" parent="Forest/Trees/Trees26"]
+transform = Transform3D(0.526199, 0, -0.850361, 0, 1, 0, 0.850361, 0, 0.526199, 4.21484, 0, 2.18897)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees26/Tree_Leaves2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves3" type="MeshInstance3D" parent="Forest/Trees/Trees26"]
+transform = Transform3D(0.99999, 0, 0.00450292, 0, 1, 0, -0.00450292, 0, 0.99999, 3.87214, 0, 0.590167)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees26/Tree_Leaves3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Trees27" type="Node3D" parent="Forest/Trees"]
+transform = Transform3D(0.955839, 0, 0.29389, 0, 1, 0, -0.29389, 0, 0.955839, 1.51231, 0, -31.185)
+
+[node name="Tree_Leaves" type="MeshInstance3D" parent="Forest/Trees/Trees27"]
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees27/Tree_Leaves"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves4" type="MeshInstance3D" parent="Forest/Trees/Trees27"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52422, 0, -2.93488)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees27/Tree_Leaves4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves2" type="MeshInstance3D" parent="Forest/Trees/Trees27"]
+transform = Transform3D(0.526199, 0, -0.850361, 0, 1, 0, 0.850361, 0, 0.526199, 4.21484, 0, 2.18897)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees27/Tree_Leaves2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves3" type="MeshInstance3D" parent="Forest/Trees/Trees27"]
+transform = Transform3D(0.99999, 0, 0.00450292, 0, 1, 0, -0.00450292, 0, 0.99999, 3.87214, 0, 0.590167)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees27/Tree_Leaves3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Trees28" type="Node3D" parent="Forest/Trees"]
+transform = Transform3D(-0.18769, 0, -0.982228, 0, 1, 0, 0.982228, 0, -0.18769, 8.5047, 0, -47.4367)
+
+[node name="Tree_Leaves" type="MeshInstance3D" parent="Forest/Trees/Trees28"]
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees28/Tree_Leaves"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves4" type="MeshInstance3D" parent="Forest/Trees/Trees28"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52422, 0, -2.93488)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees28/Tree_Leaves4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves2" type="MeshInstance3D" parent="Forest/Trees/Trees28"]
+transform = Transform3D(0.526199, 0, -0.850361, 0, 1, 0, 0.850361, 0, 0.526199, 4.21484, 0, 2.18897)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees28/Tree_Leaves2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves3" type="MeshInstance3D" parent="Forest/Trees/Trees28"]
+transform = Transform3D(0.99999, 0, 0.00450292, 0, 1, 0, -0.00450292, 0, 0.99999, 3.87214, 0, 0.590167)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees28/Tree_Leaves3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Trees29" type="Node3D" parent="Forest/Trees"]
+transform = Transform3D(-0.99823, 0, -0.0594806, 0, 1, 0, 0.0594806, 0, -0.99823, 3.50569, 0, -27.9639)
+
+[node name="Tree_Leaves" type="MeshInstance3D" parent="Forest/Trees/Trees29"]
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees29/Tree_Leaves"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves4" type="MeshInstance3D" parent="Forest/Trees/Trees29"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52422, 0, -2.93488)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees29/Tree_Leaves4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves2" type="MeshInstance3D" parent="Forest/Trees/Trees29"]
+transform = Transform3D(0.526199, 0, -0.850361, 0, 1, 0, 0.850361, 0, 0.526199, 4.21484, 0, 2.18897)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees29/Tree_Leaves2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves3" type="MeshInstance3D" parent="Forest/Trees/Trees29"]
+transform = Transform3D(0.99999, 0, 0.00450292, 0, 1, 0, -0.00450292, 0, 0.99999, 3.87214, 0, 0.590167)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees29/Tree_Leaves3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Trees30" type="Node3D" parent="Forest/Trees"]
+transform = Transform3D(0.370736, 0, -0.928738, 0, 1, 0, 0.928738, 0, 0.370736, -6.63943, 0, -16.5012)
+
+[node name="Tree_Leaves" type="MeshInstance3D" parent="Forest/Trees/Trees30"]
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees30/Tree_Leaves"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves4" type="MeshInstance3D" parent="Forest/Trees/Trees30"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52422, 0, -2.93488)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees30/Tree_Leaves4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves2" type="MeshInstance3D" parent="Forest/Trees/Trees30"]
+transform = Transform3D(0.526199, 0, -0.850361, 0, 1, 0, 0.850361, 0, 0.526199, 4.21484, 0, 2.18897)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees30/Tree_Leaves2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves3" type="MeshInstance3D" parent="Forest/Trees/Trees30"]
+transform = Transform3D(0.99999, 0, 0.00450292, 0, 1, 0, -0.00450292, 0, 0.99999, 3.87214, 0, 0.590167)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees30/Tree_Leaves3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Trees31" type="Node3D" parent="Forest/Trees"]
+transform = Transform3D(0.955839, 0, 0.29389, 0, 1, 0, -0.29389, 0, 0.955839, -8.99973, 0, -7.61336)
+
+[node name="Tree_Leaves" type="MeshInstance3D" parent="Forest/Trees/Trees31"]
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees31/Tree_Leaves"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves4" type="MeshInstance3D" parent="Forest/Trees/Trees31"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52422, 0, -2.93488)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees31/Tree_Leaves4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves2" type="MeshInstance3D" parent="Forest/Trees/Trees31"]
+transform = Transform3D(0.526199, 0, -0.850361, 0, 1, 0, 0.850361, 0, 0.526199, 4.21484, 0, 2.18897)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees31/Tree_Leaves2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves3" type="MeshInstance3D" parent="Forest/Trees/Trees31"]
+transform = Transform3D(0.99999, 0, 0.00450292, 0, 1, 0, -0.00450292, 0, 0.99999, 3.87214, 0, 0.590167)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees31/Tree_Leaves3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Trees32" type="Node3D" parent="Forest/Trees"]
+transform = Transform3D(-0.18769, 0, -0.982228, 0, 1, 0, 0.982228, 0, -0.18769, -2.00735, 0, -23.865)
+
+[node name="Tree_Leaves" type="MeshInstance3D" parent="Forest/Trees/Trees32"]
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees32/Tree_Leaves"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves4" type="MeshInstance3D" parent="Forest/Trees/Trees32"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52422, 0, -2.93488)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees32/Tree_Leaves4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves2" type="MeshInstance3D" parent="Forest/Trees/Trees32"]
+transform = Transform3D(0.526199, 0, -0.850361, 0, 1, 0, 0.850361, 0, 0.526199, 4.21484, 0, 2.18897)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees32/Tree_Leaves2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves3" type="MeshInstance3D" parent="Forest/Trees/Trees32"]
+transform = Transform3D(0.99999, 0, 0.00450292, 0, 1, 0, -0.00450292, 0, 0.99999, 3.87214, 0, 0.590167)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees32/Tree_Leaves3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Trees33" type="Node3D" parent="Forest/Trees"]
+transform = Transform3D(-0.993672, 0, 0.112319, 0, 1, 0, -0.112319, 0, -0.993672, 45.175, 0, -34.694)
+
+[node name="Tree_Leaves" type="MeshInstance3D" parent="Forest/Trees/Trees33"]
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees33/Tree_Leaves"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves4" type="MeshInstance3D" parent="Forest/Trees/Trees33"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52422, 0, -2.93488)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees33/Tree_Leaves4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves2" type="MeshInstance3D" parent="Forest/Trees/Trees33"]
+transform = Transform3D(0.526199, 0, -0.850361, 0, 1, 0, 0.850361, 0, 0.526199, 4.21484, 0, 2.18897)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees33/Tree_Leaves2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves3" type="MeshInstance3D" parent="Forest/Trees/Trees33"]
+transform = Transform3D(0.99999, 0, 0.00450292, 0, 1, 0, -0.00450292, 0, 0.99999, 3.87214, 0, 0.590167)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees33/Tree_Leaves3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Trees34" type="Node3D" parent="Forest/Trees"]
+transform = Transform3D(0.206238, 0, -0.978502, 0, 1, 0, 0.978502, 0, 0.206238, 33.217, 0, -25.1377)
+
+[node name="Tree_Leaves" type="MeshInstance3D" parent="Forest/Trees/Trees34"]
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees34/Tree_Leaves"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves4" type="MeshInstance3D" parent="Forest/Trees/Trees34"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52422, 0, -2.93488)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees34/Tree_Leaves4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves2" type="MeshInstance3D" parent="Forest/Trees/Trees34"]
+transform = Transform3D(0.526199, 0, -0.850361, 0, 1, 0, 0.850361, 0, 0.526199, 4.21484, 0, 2.18897)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees34/Tree_Leaves2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves3" type="MeshInstance3D" parent="Forest/Trees/Trees34"]
+transform = Transform3D(0.99999, 0, 0.00450292, 0, 1, 0, -0.00450292, 0, 0.99999, 3.87214, 0, 0.590167)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees34/Tree_Leaves3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Trees35" type="Node3D" parent="Forest/Trees"]
+transform = Transform3D(0.992044, 0, 0.125887, 0, 1, 0, -0.125887, 0, 0.992044, 29.3698, 0, -16.7853)
+
+[node name="Tree_Leaves" type="MeshInstance3D" parent="Forest/Trees/Trees35"]
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees35/Tree_Leaves"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves4" type="MeshInstance3D" parent="Forest/Trees/Trees35"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52422, 0, -2.93488)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees35/Tree_Leaves4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves2" type="MeshInstance3D" parent="Forest/Trees/Trees35"]
+transform = Transform3D(0.526199, 0, -0.850361, 0, 1, 0, 0.850361, 0, 0.526199, 4.21484, 0, 2.18897)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees35/Tree_Leaves2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves3" type="MeshInstance3D" parent="Forest/Trees/Trees35"]
+transform = Transform3D(0.99999, 0, 0.00450292, 0, 1, 0, -0.00450292, 0, 0.99999, 3.87214, 0, 0.590167)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees35/Tree_Leaves3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Trees36" type="Node3D" parent="Forest/Trees"]
+transform = Transform3D(-0.353099, 0, -0.935586, 0, 1, 0, 0.935586, 0, -0.353099, 39.0416, 0, -31.5997)
+
+[node name="Tree_Leaves" type="MeshInstance3D" parent="Forest/Trees/Trees36"]
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees36/Tree_Leaves"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves4" type="MeshInstance3D" parent="Forest/Trees/Trees36"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52422, 0, -2.93488)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees36/Tree_Leaves4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves2" type="MeshInstance3D" parent="Forest/Trees/Trees36"]
+transform = Transform3D(0.526199, 0, -0.850361, 0, 1, 0, 0.850361, 0, 0.526199, 4.21484, 0, 2.18897)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees36/Tree_Leaves2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves3" type="MeshInstance3D" parent="Forest/Trees/Trees36"]
+transform = Transform3D(0.99999, 0, 0.00450292, 0, 1, 0, -0.00450292, 0, 0.99999, 3.87214, 0, 0.590167)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees36/Tree_Leaves3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Trees37" type="Node3D" parent="Forest/Trees"]
+transform = Transform3D(-0.993672, 0, 0.112319, 0, 1, 0, -0.112319, 0, -0.993672, 30.7822, 0, -13.2704)
+
+[node name="Tree_Leaves" type="MeshInstance3D" parent="Forest/Trees/Trees37"]
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees37/Tree_Leaves"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves4" type="MeshInstance3D" parent="Forest/Trees/Trees37"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52422, 0, -2.93488)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees37/Tree_Leaves4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves2" type="MeshInstance3D" parent="Forest/Trees/Trees37"]
+transform = Transform3D(0.526199, 0, -0.850361, 0, 1, 0, 0.850361, 0, 0.526199, 4.21484, 0, 2.18897)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees37/Tree_Leaves2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves3" type="MeshInstance3D" parent="Forest/Trees/Trees37"]
+transform = Transform3D(0.99999, 0, 0.00450292, 0, 1, 0, -0.00450292, 0, 0.99999, 3.87214, 0, 0.590167)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees37/Tree_Leaves3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Trees38" type="Node3D" parent="Forest/Trees"]
+transform = Transform3D(0.206238, 0, -0.978502, 0, 1, 0, 0.978502, 0, 0.206238, 18.8242, 0, -3.71406)
+
+[node name="Tree_Leaves" type="MeshInstance3D" parent="Forest/Trees/Trees38"]
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees38/Tree_Leaves"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves4" type="MeshInstance3D" parent="Forest/Trees/Trees38"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52422, 0, -2.93488)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees38/Tree_Leaves4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves2" type="MeshInstance3D" parent="Forest/Trees/Trees38"]
+transform = Transform3D(0.526199, 0, -0.850361, 0, 1, 0, 0.850361, 0, 0.526199, 4.21484, 0, 2.18897)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees38/Tree_Leaves2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves3" type="MeshInstance3D" parent="Forest/Trees/Trees38"]
+transform = Transform3D(0.99999, 0, 0.00450292, 0, 1, 0, -0.00450292, 0, 0.99999, 3.87214, 0, 0.590167)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees38/Tree_Leaves3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Trees39" type="Node3D" parent="Forest/Trees"]
+transform = Transform3D(0.992044, 0, 0.125887, 0, 1, 0, -0.125887, 0, 0.992044, 14.9769, 0, 4.63836)
+
+[node name="Tree_Leaves" type="MeshInstance3D" parent="Forest/Trees/Trees39"]
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees39/Tree_Leaves"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves4" type="MeshInstance3D" parent="Forest/Trees/Trees39"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52422, 0, -2.93488)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees39/Tree_Leaves4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves2" type="MeshInstance3D" parent="Forest/Trees/Trees39"]
+transform = Transform3D(0.526199, 0, -0.850361, 0, 1, 0, 0.850361, 0, 0.526199, 4.21484, 0, 2.18897)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees39/Tree_Leaves2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves3" type="MeshInstance3D" parent="Forest/Trees/Trees39"]
+transform = Transform3D(0.99999, 0, 0.00450292, 0, 1, 0, -0.00450292, 0, 0.99999, 3.87214, 0, 0.590167)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees39/Tree_Leaves3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Trees40" type="Node3D" parent="Forest/Trees"]
+transform = Transform3D(-0.353099, 0, -0.935586, 0, 1, 0, 0.935586, 0, -0.353099, 24.6487, 0, -10.176)
+
+[node name="Tree_Leaves" type="MeshInstance3D" parent="Forest/Trees/Trees40"]
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees40/Tree_Leaves"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves4" type="MeshInstance3D" parent="Forest/Trees/Trees40"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52422, 0, -2.93488)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees40/Tree_Leaves4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves2" type="MeshInstance3D" parent="Forest/Trees/Trees40"]
+transform = Transform3D(0.526199, 0, -0.850361, 0, 1, 0, 0.850361, 0, 0.526199, 4.21484, 0, 2.18897)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees40/Tree_Leaves2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Tree_Leaves3" type="MeshInstance3D" parent="Forest/Trees/Trees40"]
+transform = Transform3D(0.99999, 0, 0.00450292, 0, 1, 0, -0.00450292, 0, 0.99999, 3.87214, 0, 0.590167)
+mesh = SubResource("PrismMesh_m7dw0")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hg1u0")
+
+[node name="Tree_Trunk" type="MeshInstance3D" parent="Forest/Trees/Trees40/Tree_Leaves3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.46705, 0.0157971)
+mesh = SubResource("CylinderMesh_62i8w")
+surface_material_override/0 = SubResource("StandardMaterial3D_bnwg6")
+
+[node name="Owl" type="MeshInstance3D" parent="Forest"]
+transform = Transform3D(0.872922, 0.0763181, -0.481853, 0, 0.987688, 0.156434, 0.48786, -0.136555, 0.862175, 2.25752, -1.10779, -0.323658)
+mesh = SubResource("BoxMesh_7mbpy")
+surface_material_override/0 = SubResource("StandardMaterial3D_q2qni")
+
+[node name="Deer" type="MeshInstance3D" parent="Forest"]
+transform = Transform3D(2.15612, 0.188506, -1.19018, 0, 2.43959, 0.386393, 1.20501, -0.337291, 2.12957, 8.54594, -1.47862, -10.9918)
+mesh = SubResource("BoxMesh_7mbpy")
+surface_material_override/0 = SubResource("StandardMaterial3D_3xkgi")
+
+[node name="Rabbit" type="MeshInstance3D" parent="Forest"]
+transform = Transform3D(2.15612, 0.188506, -1.19018, 0, 2.43959, 0.386393, 1.20501, -0.337291, 2.12957, 16.2773, -1.47862, -26.5506)
+mesh = SubResource("BoxMesh_7mbpy")
+surface_material_override/0 = SubResource("StandardMaterial3D_g85hb")
+
+[node name="WorldEnvironment" parent="." instance=ExtResource("1_4nffh")]
+sun_color = Color(0.737255, 0.854902, 1, 1)
+sun_energy = 0.945
+
+[node name="Control" parent="." instance=ExtResource("6_xlpld")]

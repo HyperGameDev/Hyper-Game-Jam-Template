@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://nabxmqtptrjr"]
+
+[ext_resource type="Script" path="res://Jam Scenes/Exciting Evil/instakill.gd" id="1_xd3fu"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_8oeqp"]
+height = 4.00939
+radius = 0.605894
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tmc32"]
+height = 3.685
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sja77"]
+albedo_color = Color(0.490196, 0.254902, 0.054902, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_wkx3y"]
+points = PackedVector3Array(0.523611, 1.87138, 0.231128, -0.529246, -1.87138, -0.178122, -0.475105, -1.67891, 0.15455, -0.529246, 1.87138, -0.178122, 0.406535, -1.87138, -0.412067, 0.231128, -1.87138, 0.523611, -0.23666, 1.87138, 0.523611, -0.178122, 1.87138, -0.529246, 0.406535, 1.87138, -0.412067, -0.178122, -1.87138, -0.529246, 0.523611, -1.87138, 0.231128, -0.412067, -1.87138, 0.406535, 0.348101, 1.87138, 0.465073, 0.523611, -1.87138, -0.23666, -0.412067, 1.87138, 0.406535, -0.23666, -1.87138, 0.523611, 0.523611, 1.87138, -0.23666, 0.231128, 1.87138, 0.523611, 0.465073, -1.87138, 0.348101, 0.15455, 1.67891, -0.475105, 0.348101, -1.87138, 0.465073, 0.465073, 1.87138, 0.348101, -0.475105, 1.67891, 0.15455, 0.15455, -1.67891, -0.475105)
+
+[node name="Log" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.48202, -13.268)
+mass = 0.01
+linear_velocity = Vector3(0, 0, 11.75)
+
+[node name="Area3D" type="Area3D" parent="."]
+script = ExtResource("1_xd3fu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.00141859, 1.57114, 0.0239401)
+shape = SubResource("CylinderShape3D_8oeqp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.00158453, 1.54768, -0.00223351)
+mesh = SubResource("CylinderMesh_tmc32")
+surface_material_override/0 = SubResource("StandardMaterial3D_sja77")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 1.56478, 0)
+shape = SubResource("ConvexPolygonShape3D_wkx3y")

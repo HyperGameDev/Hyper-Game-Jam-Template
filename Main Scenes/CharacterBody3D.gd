@@ -1,8 +1,8 @@
 extends CharacterBody3D
 
 
-const SPEED = 10
-const JUMP_VELOCITY = 6
+const SPEED = 6
+const JUMP_VELOCITY = 3
 
 # Get the gravity from the project ssettings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -10,6 +10,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var tester_button = false
 
 var game_over = false
+var add_point = false
 
 func _ready():
 	Messenger.game_over.connect(end_game)
@@ -43,9 +44,14 @@ func kill_player():
 
 
 func _physics_process(delta):
+	if %RayCast3D.is_colliding():
+		%RayCast3D.get_collider().bounces = 1
 
 	if !game_over:
 		movement(delta)
+		
+	if self.global_position.y <= -50:
+		get_tree().reload_current_scene()
 
 		
 	
@@ -58,7 +64,6 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-
 
 func movement(delta):
 	# Handle Jump.
@@ -76,11 +81,14 @@ func movement(delta):
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	# For 2D movement, just swap everything after = with 0 on each the if and else
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+	#if direction:
+		#velocity.x = 0
+		#velocity.z = direction.z * SPEED
+	#else:
+		#velocity.x = 0
+		#velocity.z = move_toward(velocity.z, 0, SPEED)
+		
+	velocity.x = 0
+	velocity.z = -1 * SPEED
 
 	move_and_slide()

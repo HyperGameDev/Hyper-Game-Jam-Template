@@ -3,7 +3,10 @@
 [ext_resource type="Script" path="res://Game Aspects/environment.gd" id="1_jgxhw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1sf0e"]
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+sky_top_color = Color(0.337255, 0.431373, 0.717647, 1)
+sky_horizon_color = Color(0.392157, 0.419608, 0.619608, 1)
+sky_cover_modulate = Color(0.988235, 1, 1, 1)
+ground_horizon_color = Color(0.278431, 0.219608, 0, 1)
 
 [sub_resource type="Sky" id="Sky_qdcl0"]
 sky_material = SubResource("ProceduralSkyMaterial_1sf0e")
@@ -19,5 +22,5 @@ environment = SubResource("Environment_juqpr")
 script = ExtResource("1_jgxhw")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 6.45946, 0)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.45946, 0)
 shadow_enabled = true

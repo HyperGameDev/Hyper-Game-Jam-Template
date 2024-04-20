@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://cj3cyv3eh4j4i"]
+
+[ext_resource type="Texture2D" uid="uid://db82immevfkwr" path="res://Jam Scenes/SurprisingAnimals/images/deer.png" id="1_ocbin"]
+[ext_resource type="Texture2D" uid="uid://dn2ptv7ppy627" path="res://Jam Scenes/SurprisingAnimals/images/rabbit.png" id="2_syu0g"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_right = 381.0
+offset_bottom = 137.0
+theme_override_font_sizes/font_size = 100
+text = "Hello UI"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Deer" type="Sprite2D" parent="."]
+position = Vector2(364, 293)
+scale = Vector2(0.332, 0.557)
+texture = ExtResource("1_ocbin")
+
+[node name="Rabbit" type="Sprite2D" parent="."]
+position = Vector2(552, 466)
+texture = ExtResource("2_syu0g")
