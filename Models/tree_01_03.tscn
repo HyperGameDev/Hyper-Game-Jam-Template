@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://iy8auh1qjwxr"]
+
+[ext_resource type="PackedScene" uid="uid://u04upkes05cn" path="res://UI/tree_01-03.blend" id="1_p6l4g"]
+[ext_resource type="Script" path="res://Models/tree.gd" id="2_1ycrm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ubfut"]
+albedo_color = Color(0.792157, 0.407843, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q1u7l"]
+albedo_color = Color(0, 0.752941, 0.443137, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gtfup"]
+size = Vector3(1, 2.22449, 1)
+
+[node name="tree_01-03" instance=ExtResource("1_p6l4g")]
+
+[node name="Trunk" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ubfut")
+
+[node name="Leaves" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q1u7l")
+
+[node name="Area3D" type="Area3D" parent="." index="2"]
+script = ExtResource("2_1ycrm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.612244, 0)
+shape = SubResource("BoxShape3D_gtfup")

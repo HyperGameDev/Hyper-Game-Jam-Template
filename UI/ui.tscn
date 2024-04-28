@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://rkba7etkgvan"]
+[gd_scene load_steps=8 format=3 uid="uid://rkba7etkgvan"]
 
 [ext_resource type="Script" path="res://UI/ui.gd" id="1_6hci8"]
 [ext_resource type="Script" path="res://UI/Score-Panel.gd" id="2_bfoar"]
 [ext_resource type="Script" path="res://UI/Time-Panel.gd" id="2_vby6c"]
 [ext_resource type="Script" path="res://UI/BuyMenu.gd" id="3_mynwa"]
 [ext_resource type="Script" path="res://UI/Restart-Panel.gd" id="3_oqhc3"]
+[ext_resource type="AudioStream" uid="uid://os3b04qj7w7" path="res://UI/GORESqsh_Brain Crush Splat Squish Layer 1-003.wav" id="6_lm7ob"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gfd4g"]
 
@@ -118,7 +119,6 @@ text = "0"
 horizontal_alignment = 1
 
 [node name="Time-Panel" type="Panel" parent="MarginContainer/HBoxContainer"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("2_vby6c")
@@ -187,6 +187,10 @@ grow_vertical = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 100
 text = "You Lost..."
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("6_lm7ob")
 
 [connection signal="pressed" from="BuyMenu/Square" to="BuyMenu" method="_on_square_pressed"]
 [connection signal="pressed" from="BuyMenu/Prism" to="BuyMenu" method="_on_prism_pressed"]

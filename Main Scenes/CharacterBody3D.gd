@@ -81,14 +81,14 @@ func movement(delta):
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	# For 2D movement, just swap everything after = with 0 on each the if and else
-	#if direction:
-		#velocity.x = 0
-		#velocity.z = direction.z * SPEED
-	#else:
-		#velocity.x = 0
-		#velocity.z = move_toward(velocity.z, 0, SPEED)
+	if direction:
+		velocity.x = direction.x * SPEED
+		velocity.z = direction.z * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.z = move_toward(velocity.z, 0, SPEED)
 		
-	velocity.x = 0
-	velocity.z = -1 * SPEED
+	#velocity.x = 0
+	#velocity.z = -1 * SPEED
 
 	move_and_slide()

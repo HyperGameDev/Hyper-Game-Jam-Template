@@ -58,6 +58,7 @@ func count():
 	
 	if get_owner().timer_countup:
 		time_shown += .01
+		Messenger.add_point.emit(-1)
 		
 
 

@@ -16,8 +16,8 @@ func _process(delta):
 	if in_room and Input.is_action_just_pressed("ui_accept"):
 		Messenger.add_point.emit(1)
 	
-	if !in_room and Input.is_action_just_pressed("ui_accept"):
-		Messenger.add_point.emit(-4)
+	#if !in_room and Input.is_action_just_pressed("ui_accept"):
+		#Messenger.add_point.emit(-4)
 		
 	
 func on_area_entered(area):
