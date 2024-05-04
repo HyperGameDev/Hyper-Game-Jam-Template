@@ -12,6 +12,7 @@ extends StaticBody3D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$"Ground-Mesh".get_surface_override_material(0).set_albedo(ground_color)
+	$Area_Ground.add_to_group("Ground")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

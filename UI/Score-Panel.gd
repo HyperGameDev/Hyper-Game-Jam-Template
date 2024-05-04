@@ -22,6 +22,7 @@ func stop_scoring():
 	scoring_allowed = false
 
 func _process(delta):
-	if score <= 0:
-		%AudioStreamPlayer.playing = true
-		Messenger.game_over.emit()	
+	#if score <= 0:
+		#%AudioStreamPlayer.playing = true
+		#Messenger.game_over.emit()	
+	pass
