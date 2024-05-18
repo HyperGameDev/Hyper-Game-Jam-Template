@@ -1,0 +1,94 @@
+[gd_scene load_steps=8 format=3 uid="uid://cfpiejifa580p"]
+
+[ext_resource type="PackedScene" uid="uid://bd37hkqpxvoy8" path="res://Game Aspects/ground.tscn" id="1_2jn48"]
+[ext_resource type="Script" path="res://Jam Scenes/BossRush/boss-rush.gd" id="1_mnkm2"]
+[ext_resource type="PackedScene" uid="uid://cony25eh2s7r5" path="res://Game Aspects/player.tscn" id="2_uvacq"]
+[ext_resource type="PackedScene" uid="uid://buurv000eq5jx" path="res://Game Aspects/environment.tscn" id="3_jwa7c"]
+[ext_resource type="PackedScene" uid="uid://i8k4f65p7crh" path="res://Test Scenes/3d_test_1.tscn" id="4_m68xm"]
+[ext_resource type="PackedScene" uid="uid://fcepfsauf5yl" path="res://Game Aspects/BOSSENEMY.tscn" id="5_tqn8i"]
+[ext_resource type="PackedScene" uid="uid://rkba7etkgvan" path="res://UI/ui.tscn" id="6_e4nhh"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_mnkm2")
+
+[node name="Ground" parent="." instance=ExtResource("1_2jn48")]
+
+[node name="Player" parent="." groups=["Detectable"] instance=ExtResource("2_uvacq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.547734, 6.66516)
+
+[node name="WorldEnvironment" parent="." instance=ExtResource("3_jwa7c")]
+sun_color = Color(0.737255, 0.854902, 1, 1)
+sun_energy = 0.945
+
+[node name="Spatial_Context" type="Node3D" parent="."]
+transform = Transform3D(-0.04137, 0, 0.999144, 0, 1, 0, -0.999144, 0, -0.04137, -6.39309, 0, 1.09462)
+
+[node name="3D_Test-1" parent="Spatial_Context" instance=ExtResource("4_m68xm")]
+
+[node name="3D_Test-2" parent="Spatial_Context" instance=ExtResource("4_m68xm")]
+transform = Transform3D(-0.961103, 0, 0.276191, 0, 1, 0, -0.276191, 0, -0.961103, -0.55133, 0, 13.3154)
+
+[node name="3D_Test-3" parent="Spatial_Context" instance=ExtResource("4_m68xm")]
+transform = Transform3D(-0.302004, 0, -0.953307, 0, 1, 0, 0.953307, 0, -0.302004, 13.3375, 0, 8.03235)
+
+[node name="Spatial_Context2" type="Node3D" parent="."]
+transform = Transform3D(-0.833491, 0, 0.552534, 0, 1, 0, -0.552534, 0, -0.833491, -6.39309, 0, -16.3397)
+
+[node name="3D_Test-1" parent="Spatial_Context2" instance=ExtResource("4_m68xm")]
+
+[node name="3D_Test-2" parent="Spatial_Context2" instance=ExtResource("4_m68xm")]
+transform = Transform3D(-0.961103, 0, 0.276191, 0, 1, 0, -0.276191, 0, -0.961103, -0.55133, 0, 13.3154)
+
+[node name="3D_Test-3" parent="Spatial_Context2" instance=ExtResource("4_m68xm")]
+transform = Transform3D(-0.302004, 0, -0.953307, 0, 1, 0, 0.953307, 0, -0.302004, 13.3375, 0, 8.03235)
+
+[node name="Spatial_Context3" type="Node3D" parent="."]
+transform = Transform3D(-0.248149, 0, -0.968722, 0, 1, 0, 0.968722, 0, -0.248149, 24.9387, 0, -16.3397)
+
+[node name="3D_Test-1" parent="Spatial_Context3" instance=ExtResource("4_m68xm")]
+
+[node name="3D_Test-2" parent="Spatial_Context3" instance=ExtResource("4_m68xm")]
+transform = Transform3D(-0.961103, 0, 0.276191, 0, 1, 0, -0.276191, 0, -0.961103, -0.55133, 0, 13.3154)
+
+[node name="3D_Test-3" parent="Spatial_Context3" instance=ExtResource("4_m68xm")]
+transform = Transform3D(-0.302004, 0, -0.953307, 0, 1, 0, 0.953307, 0, -0.302004, 13.3375, 0, 8.03235)
+
+[node name="Spatial_Context4" type="Node3D" parent="."]
+transform = Transform3D(0.364406, 0, -0.93124, 0, 1, 0, 0.93124, 0, 0.364406, -17.9045, 0, -16.3397)
+
+[node name="3D_Test-1" parent="Spatial_Context4" instance=ExtResource("4_m68xm")]
+
+[node name="3D_Test-2" parent="Spatial_Context4" instance=ExtResource("4_m68xm")]
+transform = Transform3D(-0.961103, 0, 0.276191, 0, 1, 0, -0.276191, 0, -0.961103, -0.55133, 0, 13.3154)
+
+[node name="3D_Test-3" parent="Spatial_Context4" instance=ExtResource("4_m68xm")]
+transform = Transform3D(-0.302004, 0, -0.953307, 0, 1, 0, 0.953307, 0, -0.302004, 13.3375, 0, 8.03235)
+
+[node name="Spatial_Context5" type="Node3D" parent="."]
+transform = Transform3D(0.364406, 0, -0.93124, 0, 1, 0, 0.93124, 0, 0.364406, 20.9309, 0, -44.0131)
+
+[node name="3D_Test-1" parent="Spatial_Context5" instance=ExtResource("4_m68xm")]
+
+[node name="3D_Test-2" parent="Spatial_Context5" instance=ExtResource("4_m68xm")]
+transform = Transform3D(-0.961103, 0, 0.276191, 0, 1, 0, -0.276191, 0, -0.961103, -0.55133, 0, 13.3154)
+
+[node name="3D_Test-3" parent="Spatial_Context5" instance=ExtResource("4_m68xm")]
+transform = Transform3D(-0.302004, 0, -0.953307, 0, 1, 0, 0.953307, 0, -0.302004, 13.3375, 0, 8.03235)
+
+[node name="Spatial_Context6" type="Node3D" parent="."]
+transform = Transform3D(-0.521665, 0, -0.853151, 0, 1, 0, 0.853151, 0, -0.521665, -31.9253, 0, -44.0131)
+
+[node name="3D_Test-1" parent="Spatial_Context6" instance=ExtResource("4_m68xm")]
+
+[node name="3D_Test-2" parent="Spatial_Context6" instance=ExtResource("4_m68xm")]
+transform = Transform3D(-0.961103, 0, 0.276191, 0, 1, 0, -0.276191, 0, -0.961103, -0.55133, 0, 13.3154)
+
+[node name="3D_Test-3" parent="Spatial_Context6" instance=ExtResource("4_m68xm")]
+transform = Transform3D(-0.302004, 0, -0.953307, 0, 1, 0, 0.953307, 0, -0.302004, 13.3375, 0, 8.03235)
+
+[node name="Boss-Enemy" parent="." instance=ExtResource("5_tqn8i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.151444, 0.5, -0.0262451)
+
+[node name="UI" parent="." instance=ExtResource("6_e4nhh")]
+timer_length = 0.0
+timer_countup = true

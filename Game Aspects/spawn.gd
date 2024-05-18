@@ -11,7 +11,7 @@ class_name Spawn
 @export var spawn_appearance : PackedScene
 @export var spawn_is_enemy = false
 @export var spawn_is_collectible = true
-@export_group("Enemy Settings")
+@export_group("Node")
 @export var enemy_instakills = true
 @export_group("Collectible Settings")
 @export var collectible_points = 1

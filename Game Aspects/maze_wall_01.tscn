@@ -1,7 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://bsvo68bfmmc3f"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f3ago"]
-albedo_color = Color(1, 0.792157, 0.105882, 1)
+albedo_color = Color(0.137255, 0.956863, 0.741176, 1)
 
 [node name="MazeWall" type="Node3D"]
 

@@ -1,5 +1,6 @@
 extends Panel
 
+@export var end_on_zero = false
 var time_counter = 0.0
 @onready var time_shown = get_owner().timer_length
 
@@ -35,7 +36,8 @@ func _process(delta):
 	if time_shown <= 0.00:
 		get_owner().timer_autostart = false
 		%Time.text = str(0)
-		#Messenger.game_over.emit()
+		if end_on_zero:
+			Messenger.game_over.emit()
 		
 	if get_owner().timer_for_racing and !race_begun and !dead:
 		if Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_right") or Input.is_action_pressed("ui_up") or Input.is_action_pressed("ui_down") or Input.is_action_pressed("ui_accept"):

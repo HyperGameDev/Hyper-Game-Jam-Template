@@ -6,7 +6,7 @@ var scoring_allowed = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	update_score(500)
+	#update_score(500)
 	Messenger.game_over.connect(stop_scoring)
 	
 	if get_owner().score_visible:

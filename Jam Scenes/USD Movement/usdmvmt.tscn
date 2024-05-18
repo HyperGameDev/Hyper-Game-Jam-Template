@@ -1,0 +1,441 @@
+[gd_scene load_steps=8 format=3 uid="uid://b4t83qc64ema2"]
+
+[ext_resource type="Script" path="res://Jam Scenes/USD Movement/usdmvmt.gd" id="1_ca38t"]
+[ext_resource type="PackedScene" uid="uid://bd37hkqpxvoy8" path="res://Game Aspects/ground.tscn" id="1_j1vb8"]
+[ext_resource type="PackedScene" uid="uid://cony25eh2s7r5" path="res://Game Aspects/player.tscn" id="2_apxdv"]
+[ext_resource type="PackedScene" uid="uid://buurv000eq5jx" path="res://Game Aspects/environment.tscn" id="4_8wy1w"]
+[ext_resource type="PackedScene" uid="uid://bsvo68bfmmc3f" path="res://Game Aspects/maze_wall_01.tscn" id="5_5vyqr"]
+[ext_resource type="PackedScene" uid="uid://rkba7etkgvan" path="res://UI/ui.tscn" id="7_e1uqf"]
+[ext_resource type="PackedScene" uid="uid://bshtrnrok0f5t" path="res://Game Aspects/spawn2.tscn" id="8_0bqxk"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_ca38t")
+
+[node name="Ground" parent="." instance=ExtResource("1_j1vb8")]
+ground_color = Color(0.537255, 0.65098, 0.333333, 1)
+
+[node name="Player" parent="Ground" groups=["Detectable"] instance=ExtResource("2_apxdv")]
+
+[node name="WorldEnvironment" parent="Ground" instance=ExtResource("4_8wy1w")]
+sun_color = Color(0.737255, 0.854902, 1, 1)
+sun_energy = 2.278
+
+[node name="MazeWall" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.12665, -1.92749, 1.65528)
+
+[node name="MazeWall3" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.12665, -1.92749, -8.84472)
+
+[node name="MazeWall4" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.12665, -1.92749, -19.4447)
+
+[node name="MazeWall5" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.12665, -1.92749, -29.9447)
+
+[node name="MazeWall2" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.02665, -1.92749, 12.2303)
+
+[node name="MazeWall6" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.3733, -1.92749, 1.65528)
+
+[node name="MazeWall7" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.3733, -1.92749, -8.84472)
+
+[node name="MazeWall8" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.3733, -1.92749, -19.3447)
+
+[node name="MazeWall9" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.3733, -1.92749, -29.8447)
+
+[node name="MazeWall10" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.3733, -1.92749, 12.2303)
+
+[node name="MazeWall13" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.12665, -1.92749, -50.8447)
+
+[node name="MazeWall14" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.12665, -1.92749, -61.3447)
+
+[node name="MazeWall15" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.12665, -1.92749, -71.9447)
+
+[node name="MazeWall16" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.12665, -1.92749, -82.4447)
+
+[node name="MazeWall17" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.02665, -1.92749, -40.2697)
+
+[node name="MazeWall18" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.3733, -1.92749, -50.8447)
+
+[node name="MazeWall19" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.3733, -1.92749, -61.3447)
+
+[node name="MazeWall20" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.3733, -1.92749, -71.8447)
+
+[node name="MazeWall21" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.3733, -1.92749, -82.3447)
+
+[node name="MazeWall22" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.3733, -1.92749, -40.2697)
+
+[node name="MazeWall23" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.12665, -1.92749, -103.345)
+
+[node name="MazeWall24" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.12665, -1.92749, -113.845)
+
+[node name="MazeWall25" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.12665, -1.92749, -124.445)
+
+[node name="MazeWall26" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.12665, -1.92749, -134.945)
+
+[node name="MazeWall27" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.02665, -1.92749, -92.7697)
+
+[node name="MazeWall28" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.3733, -1.92749, -103.345)
+
+[node name="MazeWall29" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.3733, -1.92749, -113.845)
+
+[node name="MazeWall30" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.3733, -1.92749, -124.345)
+
+[node name="MazeWall31" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.3733, -1.92749, -134.845)
+
+[node name="MazeWall32" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.3733, -1.92749, -92.7697)
+
+[node name="MazeWall33" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.12665, -1.92749, -155.845)
+
+[node name="MazeWall34" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.12665, -1.92749, -166.345)
+
+[node name="MazeWall35" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.12665, -1.92749, -176.945)
+
+[node name="MazeWall36" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.12665, -1.92749, -187.445)
+
+[node name="MazeWall37" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.02665, -1.92749, -145.27)
+
+[node name="MazeWall38" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.3733, -1.92749, -155.845)
+
+[node name="MazeWall39" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.3733, -1.92749, -166.345)
+
+[node name="MazeWall40" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.3733, -1.92749, -176.845)
+
+[node name="MazeWall41" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.3733, -1.92749, -187.345)
+
+[node name="MazeWall42" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.3733, -1.92749, -145.27)
+
+[node name="MazeWall43" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.12665, -1.92749, -207.845)
+
+[node name="MazeWall44" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.12665, -1.92749, -218.345)
+
+[node name="MazeWall45" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.12665, -1.92749, -228.945)
+
+[node name="MazeWall46" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.12665, -1.92749, -239.445)
+
+[node name="MazeWall47" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.02665, -1.92749, -197.27)
+
+[node name="MazeWall48" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.3733, -1.92749, -207.845)
+
+[node name="MazeWall49" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.3733, -1.92749, -218.345)
+
+[node name="MazeWall50" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.3733, -1.92749, -228.845)
+
+[node name="MazeWall51" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.3733, -1.92749, -239.345)
+
+[node name="MazeWall52" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.3733, -1.92749, -197.27)
+
+[node name="MazeWall53" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.12665, -1.92749, -260.345)
+
+[node name="MazeWall54" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.12665, -1.92749, -270.845)
+
+[node name="MazeWall55" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.12665, -1.92749, -281.445)
+
+[node name="MazeWall56" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.12665, -1.92749, -291.945)
+
+[node name="MazeWall57" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.02665, -1.92749, -249.77)
+
+[node name="MazeWall58" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.3733, -1.92749, -260.345)
+
+[node name="MazeWall59" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.3733, -1.92749, -270.845)
+
+[node name="MazeWall60" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.3733, -1.92749, -281.345)
+
+[node name="MazeWall61" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.3733, -1.92749, -291.845)
+
+[node name="MazeWall62" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.3733, -1.92749, -249.77)
+
+[node name="MazeWall11" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4.12665, -3.07749, 17.7303)
+
+[node name="MazeWall12" parent="." instance=ExtResource("5_5vyqr")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6.37335, -3.07749, 17.7303)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="UI" parent="." instance=ExtResource("7_e1uqf")]
+timer_length = 25.0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 314.0
+offset_bottom = 273.0
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = -5
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 200
+text = "03"
+
+[node name="Node3D" parent="." instance=ExtResource("8_0bqxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.5, -5)
+spawn_moving = false
+spawn_is_enemy = false
+spawn_is_collectible = true
+
+[node name="Node3D20" parent="." instance=ExtResource("8_0bqxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 2, -5)
+spawn_moving = false
+spawn_is_enemy = false
+spawn_is_collectible = true
+
+[node name="Node3D21" parent="." instance=ExtResource("8_0bqxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -15.5)
+spawn_moving = false
+spawn_is_enemy = false
+spawn_is_collectible = true
+
+[node name="Node3D22" parent="." instance=ExtResource("8_0bqxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -37.5)
+spawn_moving = false
+spawn_is_enemy = false
+spawn_is_collectible = true
+
+[node name="Node3D23" parent="." instance=ExtResource("8_0bqxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 2, -76)
+spawn_moving = false
+spawn_is_enemy = false
+spawn_is_collectible = true
+
+[node name="Node3D24" parent="." instance=ExtResource("8_0bqxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, -96.5)
+spawn_moving = false
+spawn_is_enemy = false
+spawn_is_collectible = true
+
+[node name="Node3D25" parent="." instance=ExtResource("8_0bqxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 2, -104)
+spawn_moving = false
+spawn_is_enemy = false
+spawn_is_collectible = true
+
+[node name="Node3D26" parent="." instance=ExtResource("8_0bqxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, -131)
+spawn_moving = false
+spawn_is_enemy = false
+spawn_is_collectible = true
+
+[node name="Node3D27" parent="." instance=ExtResource("8_0bqxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 2, -131)
+spawn_moving = false
+spawn_is_enemy = false
+spawn_is_collectible = true
+
+[node name="Node3D28" parent="." instance=ExtResource("8_0bqxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 2, -112)
+spawn_moving = false
+spawn_is_enemy = false
+spawn_is_collectible = true
+
+[node name="Node3D29" parent="." instance=ExtResource("8_0bqxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 2, -154)
+spawn_moving = false
+spawn_is_enemy = false
+spawn_is_collectible = true
+
+[node name="Node3D30" parent="." instance=ExtResource("8_0bqxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 2, -169.5)
+spawn_moving = false
+spawn_is_enemy = false
+spawn_is_collectible = true
+
+[node name="Node3D31" parent="." instance=ExtResource("8_0bqxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2, -180.5)
+spawn_moving = false
+spawn_is_enemy = false
+spawn_is_collectible = true
+
+[node name="Node3D32" parent="." instance=ExtResource("8_0bqxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 2, -180.5)
+spawn_moving = false
+spawn_is_enemy = false
+spawn_is_collectible = true
+
+[node name="Node3D33" parent="." instance=ExtResource("8_0bqxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 2, -210)
+spawn_moving = false
+spawn_is_enemy = false
+spawn_is_collectible = true
+
+[node name="Node3D34" parent="." instance=ExtResource("8_0bqxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 2, -225)
+spawn_moving = false
+spawn_is_enemy = false
+spawn_is_collectible = true
+
+[node name="Node3D35" parent="." instance=ExtResource("8_0bqxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 2, -249.5)
+spawn_moving = false
+spawn_is_enemy = false
+spawn_is_collectible = true
+
+[node name="Node3D36" parent="." instance=ExtResource("8_0bqxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 2, -203.5)
+spawn_moving = false
+spawn_is_enemy = false
+spawn_is_collectible = true
+
+[node name="Node3D2" parent="." instance=ExtResource("8_0bqxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.5, -8.5)
+spawn_moving = false
+spawn_is_enemy = false
+spawn_is_collectible = true
+
+[node name="Node3D3" parent="." instance=ExtResource("8_0bqxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 0.5, -8.5)
+spawn_moving = false
+spawn_is_enemy = false
+spawn_is_collectible = true
+
+[node name="Node3D4" parent="." instance=ExtResource("8_0bqxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.5, -23)
+spawn_moving = false
+spawn_is_enemy = false
+spawn_is_collectible = true
+
+[node name="Node3D5" parent="." instance=ExtResource("8_0bqxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0.5, -41)
+spawn_moving = false
+spawn_is_enemy = false
+spawn_is_collectible = true
+
+[node name="Node3D6" parent="." instance=ExtResource("8_0bqxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 0.5, -41)
+spawn_moving = false
+spawn_is_enemy = false
+spawn_is_collectible = true
+
+[node name="Node3D7" parent="." instance=ExtResource("8_0bqxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.5, -88)
+spawn_moving = false
+spawn_is_enemy = false
+spawn_is_collectible = true
+
+[node name="Node3D8" parent="." instance=ExtResource("8_0bqxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.5, -31.5)
+spawn_moving = false
+spawn_is_enemy = false
+spawn_is_collectible = true
+
+[node name="Node3D9" parent="." instance=ExtResource("8_0bqxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.5, -17.5)
+spawn_moving = false
+spawn_is_enemy = false
+spawn_is_collectible = true
+
+[node name="Node3D10" parent="." instance=ExtResource("8_0bqxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 0.5, -12.5)
+spawn_moving = false
+spawn_is_enemy = false
+spawn_is_collectible = true
+
+[node name="Node3D11" parent="." instance=ExtResource("8_0bqxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, -12.5)
+spawn_moving = false
+spawn_is_enemy = false
+spawn_is_collectible = true
+
+[node name="Node3D12" parent="." instance=ExtResource("8_0bqxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.5, -3.5)
+spawn_moving = false
+spawn_is_enemy = false
+spawn_is_collectible = true
+
+[node name="Node3D13" parent="." instance=ExtResource("8_0bqxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.5, -26.5)
+spawn_moving = false
+spawn_is_enemy = false
+spawn_is_collectible = true
+
+[node name="Node3D14" parent="." instance=ExtResource("8_0bqxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.5, -70)
+spawn_moving = false
+spawn_is_enemy = false
+spawn_is_collectible = true
+
+[node name="Node3D15" parent="." instance=ExtResource("8_0bqxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0.5, -70)
+spawn_moving = false
+spawn_is_enemy = false
+spawn_is_collectible = true
+
+[node name="Node3D16" parent="." instance=ExtResource("8_0bqxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, -47)
+spawn_moving = false
+spawn_is_enemy = false
+spawn_is_collectible = true
+
+[node name="Node3D17" parent="." instance=ExtResource("8_0bqxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, -147)
+spawn_moving = false
+spawn_is_enemy = false
+spawn_is_collectible = true
+
+[node name="Node3D18" parent="." instance=ExtResource("8_0bqxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0.5, -114.5)
+spawn_moving = false
+spawn_is_enemy = false
+spawn_is_collectible = true
+
+[node name="Node3D19" parent="." instance=ExtResource("8_0bqxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, -60.5)
+spawn_moving = false
+spawn_is_enemy = false
+spawn_is_collectible = true

@@ -8,7 +8,7 @@ radius = 0.6
 [sub_resource type="SphereMesh" id="SphereMesh_dl0kx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gc52q"]
-albedo_color = Color(0.490196, 0.105882, 0.796078, 1)
+albedo_color = Color(1.2, 1.2, 1.2, 1)
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_7rx1n")

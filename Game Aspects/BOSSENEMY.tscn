@@ -1,0 +1,153 @@
+[gd_scene load_steps=11 format=3 uid="uid://fcepfsauf5yl"]
+
+[ext_resource type="Script" path="res://Game Aspects/BOSSENEMY.gd" id="1_6iyaq"]
+[ext_resource type="Script" path="res://Game Aspects/Area_Boss.gd" id="1_g1dbw"]
+[ext_resource type="Script" path="res://Game Aspects/spawncontrol.gd" id="2_o10ea"]
+[ext_resource type="PackedScene" uid="uid://dtopi63n0n2rp" path="res://Game Aspects/spawn_point.tscn" id="3_ypfk0"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_x8shx"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jqemy"]
+albedo_color = Color(0.619608, 0.113725, 0, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_cqubt"]
+points = PackedVector3Array(-1, -1, -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, -1, 1, 1, 1, -1, -1, -1, -1, 1, -1, 1, -1)
+
+[sub_resource type="Animation" id="Animation_qwmgc"]
+resource_name = "movement"
+length = 6.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Spawn_Controller/Spawn_Point:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.0115604, 0.451122, 0.82324), Vector3(-2.40753, 0.451122, 0.82324), Vector3(2.43265, 0.451122, 0.82324)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Spawn_Controller2/Spawn_Point:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-2.14812, 0.451122, 0.82324), Vector3(-4.56721, 0.451122, 0.82324), Vector3(0.272964, 0.451122, 0.82324)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Spawn_Controller3/Spawn_Point:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(2.20489, 0.451122, 0.82324), Vector3(-0.214206, 0.451122, 0.82324), Vector3(4.62597, 0.451122, 0.82324)]
+}
+
+[sub_resource type="Animation" id="Animation_x7jo7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Spawn_Controller/Spawn_Point:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.0115604, 0.451122, 0.82324)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Spawn_Controller2/Spawn_Point:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-2.14812, 0.451122, 0.82324)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Spawn_Controller3/Spawn_Point:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(2.20489, 0.451122, 0.82324)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cyaed"]
+_data = {
+"RESET": SubResource("Animation_x7jo7"),
+"movement": SubResource("Animation_qwmgc")
+}
+
+[node name="Boss-Enemy" type="Node3D"]
+script = ExtResource("1_6iyaq")
+
+[node name="Area_Boss" type="Area3D" parent="."]
+script = ExtResource("1_g1dbw")
+
+[node name="Label3D" type="Label3D" parent="Area_Boss"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.67346, 0.409248)
+text = "0"
+font_size = 317
+outline_size = 127
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area_Boss"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.843372, 0)
+mesh = SubResource("BoxMesh_x8shx")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_jqemy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area_Boss"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.843372, 0)
+shape = SubResource("ConvexPolygonShape3D_cqubt")
+
+[node name="Spawn_Controller" type="Timer" parent="."]
+wait_time = 1.3
+autostart = true
+script = ExtResource("2_o10ea")
+spawn_limit = 10
+
+[node name="Spawn_Point" parent="Spawn_Controller" instance=ExtResource("3_ypfk0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0115604, 0.451122, 0.82324)
+
+[node name="Spawn_Controller2" type="Timer" parent="."]
+autostart = true
+script = ExtResource("2_o10ea")
+spawn_limit = 10
+
+[node name="Spawn_Point" parent="Spawn_Controller2" instance=ExtResource("3_ypfk0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.14812, 0.451122, 0.82324)
+
+[node name="Spawn_Controller3" type="Timer" parent="."]
+autostart = true
+script = ExtResource("2_o10ea")
+spawn_limit = 10
+
+[node name="Spawn_Point" parent="Spawn_Controller3" instance=ExtResource("3_ypfk0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.20489, 0.451122, 0.82324)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cyaed")
+}

@@ -1,12 +1,13 @@
 extends CharacterBody3D
 
 
-const SPEED = 6
-const JUMP_VELOCITY = 3
+const SPEED = 10
+const JUMP_VELOCITY = 5
 
 # Get the gravity from the project ssettings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+var upside_down = false
 @export var tester_button = false
 
 var game_over = false
@@ -44,6 +45,11 @@ func kill_player():
 
 
 func _physics_process(delta):
+	if upside_down:
+		$Camera3D.rotation.z = 3.14
+	else:
+		$Camera3D.rotation.z = 0
+		
 	if %RayCast3D.is_colliding():
 		%RayCast3D.get_collider().bounces = 1
 
@@ -69,6 +75,8 @@ func movement(delta):
 	# Handle Jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+	if Input.is_action_just_pressed("Action"):
+		#velocity.y = JUMP_VELOCITY
 		$Weapon_Area/Weapon_Collision.disabled = false
 		$Weapon_Area/Weapon.visible = true
 		await get_tree().create_timer(.3).timeout

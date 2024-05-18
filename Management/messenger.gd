@@ -13,3 +13,5 @@ signal game_win
 
 signal on_bought_square
 signal on_bought_prism
+
+signal kill_enemy
