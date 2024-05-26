@@ -1,8 +1,10 @@
 extends CharacterBody3D
 
-
 const SPEED = 10
 const JUMP_VELOCITY = 5
+
+@export var default_color: Color = Color(.35,.2,.4)
+@export var active_color: Color = Color(1,1,.6)
 
 # Get the gravity from the project ssettings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -13,13 +15,21 @@ var upside_down = false
 var game_over = false
 var add_point = false
 
+var default_material = StandardMaterial3D.new()
+var active_material = StandardMaterial3D.new()
+
 func _ready():
+	$Timer.timeout.connect(on_timeout)
 	Messenger.game_over.connect(end_game)
 	Messenger.player_dead.connect(kill_player)
 	Messenger.on_bought_prism.connect(bought_prism)
 	Messenger.on_bought_square.connect(bought_square)
 	
 	add_to_group("Detectable")
+	# Material setup
+	default_material.set_albedo(default_color)
+	active_material.set_albedo(active_color)
+	
 	
 func bought_prism():
 	$Player_Mesh_Square.visible = false
@@ -35,6 +45,14 @@ func bought_square():
 	$Player_Mesh_Prism.visible = false
 	$Player_Collision_Prism.disabled = true
 	
+	
+func on_timeout():
+	#var block1 = randi()
+	#var block2 = randi()
+	#
+	#match block1 
+	pass
+
 func end_game():
 	#Engine.set_time_scale(.3)
 	#await get_tree().create_timer(.3).timeout
@@ -45,13 +63,13 @@ func kill_player():
 
 
 func _physics_process(delta):
-	if upside_down:
-		$Camera3D.rotation.z = 3.14
-	else:
-		$Camera3D.rotation.z = 0
-		
-	if %RayCast3D.is_colliding():
-		%RayCast3D.get_collider().bounces = 1
+	#if upside_down:
+		#$Camera3D.rotation.z = 3.14
+	#else:
+		#$Camera3D.rotation.z = 0
+		#
+	#if %RayCast3D.is_colliding():
+		#%RayCast3D.get_collider().bounces = 1
 
 	if !game_over:
 		movement(delta)

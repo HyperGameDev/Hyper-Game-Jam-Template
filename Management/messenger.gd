@@ -15,3 +15,5 @@ signal on_bought_square
 signal on_bought_prism
 
 signal kill_enemy
+
+signal change_tiles
