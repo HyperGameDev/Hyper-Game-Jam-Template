@@ -6,7 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://buurv000eq5jx" path="res://Game Aspects/environment.tscn" id="4_8wy1w"]
 [ext_resource type="PackedScene" uid="uid://bsvo68bfmmc3f" path="res://Game Aspects/maze_wall_01.tscn" id="5_5vyqr"]
 [ext_resource type="PackedScene" uid="uid://rkba7etkgvan" path="res://UI/ui.tscn" id="7_e1uqf"]
-[ext_resource type="PackedScene" uid="uid://bshtrnrok0f5t" path="res://Game Aspects/spawn2.tscn" id="8_0bqxk"]
+[ext_resource type="PackedScene" uid="uid://bshtrnrok0f5t" path="res://Game Aspects/spawn_collectible.tscn" id="8_0bqxk"]
+
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_ca38t")

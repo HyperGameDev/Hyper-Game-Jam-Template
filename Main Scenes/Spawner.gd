@@ -1,7 +1,7 @@
 class_name Spawn_Point
 extends Node3D
 
-@export var spawn_object: PackedScene = preload("res://Game Aspects/spawn.tscn")
+@export var spawn_object: PackedScene = preload("res://Game Aspects/spawn_no-physics.tscn")
 @onready var placeholder := $MeshInstance3D
 
 var spawn_limit = 0

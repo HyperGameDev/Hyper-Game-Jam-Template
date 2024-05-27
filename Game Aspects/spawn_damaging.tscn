@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://dbvrc1yha5s1n"]
+
+[ext_resource type="Script" path="res://Game Aspects/spawn.gd" id="1_skoe5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bw0a0"]
+size = Vector3(1, 1, 1.7804)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_picjd"]
+height = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6lmbc"]
+albedo_color = Color(1, 0, 0.254902, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_m3drd"]
+size = Vector3(0.55, 1.015, 0.375)
+
+[node name="Spawn" type="Node3D"]
+script = ExtResource("1_skoe5")
+spawn_direction = Vector3(0, 0, 1)
+spawn_is_damaging = true
+spawn_is_collectible = false
+collectible_points = 10
+
+[node name="Spawn_Area" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spawn_Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.390198)
+shape = SubResource("BoxShape3D_bw0a0")
+
+[node name="Spawn_Mesh" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Spawn_Mesh"]
+mesh = SubResource("CylinderMesh_picjd")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_6lmbc")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Spawn_Mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.694297, 0)
+mesh = SubResource("PrismMesh_m3drd")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_6lmbc")

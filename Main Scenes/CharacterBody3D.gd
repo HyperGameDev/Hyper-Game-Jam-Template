@@ -19,7 +19,6 @@ var default_material = StandardMaterial3D.new()
 var active_material = StandardMaterial3D.new()
 
 func _ready():
-	$Timer.timeout.connect(on_timeout)
 	Messenger.game_over.connect(end_game)
 	Messenger.player_dead.connect(kill_player)
 	Messenger.on_bought_prism.connect(bought_prism)
@@ -44,14 +43,6 @@ func bought_square():
 	
 	$Player_Mesh_Prism.visible = false
 	$Player_Collision_Prism.disabled = true
-	
-	
-func on_timeout():
-	#var block1 = randi()
-	#var block2 = randi()
-	#
-	#match block1 
-	pass
 
 func end_game():
 	#Engine.set_time_scale(.3)

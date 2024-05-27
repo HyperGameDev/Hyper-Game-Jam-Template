@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c8pm7s7y8rdf8"]
 
-[ext_resource type="Script" path="res://Game Aspects/spawn.gd" id="1_owafv"]
+[ext_resource type="Script" path="res://Game Aspects/spawn.gd" id="1_3amch"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bw0a0"]
 size = Vector3(1, 1, 1.7804)
@@ -9,15 +9,14 @@ size = Vector3(1, 1, 1.7804)
 height = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6lmbc"]
-albedo_color = Color(1, 0, 0.254902, 1)
+albedo_color = Color(1, 0.788235, 0.254902, 1)
 
 [sub_resource type="PrismMesh" id="PrismMesh_m3drd"]
 size = Vector3(0.55, 1.015, 0.375)
 
 [node name="Spawn" type="Node3D"]
-script = ExtResource("1_owafv")
+script = ExtResource("1_3amch")
 spawn_direction = Vector3(0, 0, 1)
-spawn_is_enemy = true
 spawn_is_collectible = false
 collectible_points = 10
 
@@ -37,6 +36,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_6lmbc")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Spawn_Mesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.694297, 0)
+visible = false
 mesh = SubResource("PrismMesh_m3drd")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_6lmbc")

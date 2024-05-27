@@ -12,8 +12,8 @@ albedo_color = Color(1.2, 1.2, 1.2, 1)
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_7rx1n")
-spawn_is_enemy = true
-spawn_is_collectible = false
+spawn_direction = Vector3(0, 0, 1)
+collectible_points = 50
 
 [node name="Spawn_Area" type="Area3D" parent="."]
 

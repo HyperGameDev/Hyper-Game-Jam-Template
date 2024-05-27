@@ -6,13 +6,17 @@
 size = Vector2(3000, 3000)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hevxf"]
-albedo_color = Color(0.13, 0.07, 0.27, 1)
+albedo_color = Color(0.133333, 0.258824, 0, 1)
+metallic = 0.491
+metallic_specular = 0.39
+roughness = 0.859
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dg2cm"]
 points = PackedVector3Array(-1500, 0, -1500, -1500, 0, 1500, 1500, 0, -1500, 1500, 0, 1500)
 
 [node name="Ground" type="StaticBody3D"]
 script = ExtResource("1_phhx0")
+ground_metallic = null
 
 [node name="Ground-Mesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_r58wa")

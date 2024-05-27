@@ -24,7 +24,7 @@ size = Vector3(0.08, 0.04, 0.355)
 [node name="Spawn" type="Node3D"]
 script = ExtResource("1_mnkdy")
 spawn_direction = Vector3(0, 0, 1)
-spawn_is_enemy = true
+spawn_is_everlasting = true
 spawn_is_collectible = false
 collectible_points = 10
 
