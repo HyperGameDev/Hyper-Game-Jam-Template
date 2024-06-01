@@ -1,0 +1,110 @@
+[gd_scene load_steps=10 format=3 uid="uid://dtifi3fkeh8qv"]
+
+[ext_resource type="Script" path="res://Jam Scenes/Build/build.gd" id="1_drpgp"]
+[ext_resource type="PackedScene" uid="uid://buurv000eq5jx" path="res://Game Aspects/environment.tscn" id="1_udo23"]
+[ext_resource type="PackedScene" uid="uid://rkba7etkgvan" path="res://UI/ui.tscn" id="2_ns1iu"]
+[ext_resource type="PackedScene" uid="uid://bd37hkqpxvoy8" path="res://Game Aspects/ground.tscn" id="3_ry222"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1busx"]
+lightmap_size_hint = Vector2i(27, 23)
+size = Vector2(48.635, 2.865)
+
+[sub_resource type="Gradient" id="Gradient_v1lyj"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.5)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0d88t"]
+noise_type = 2
+frequency = 0.002
+fractal_type = 0
+cellular_jitter = 0.0
+cellular_return_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_n8umj"]
+color_ramp = SubResource("Gradient_v1lyj")
+noise = SubResource("FastNoiseLite_0d88t")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5cqgw"]
+shading_mode = 0
+albedo_texture = SubResource("NoiseTexture2D_n8umj")
+uv1_scale = Vector3(-0.275, -0.275, -0.275)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_drpgp")
+
+[node name="WorldEnvironment" parent="." instance=ExtResource("1_udo23")]
+sun_color = Color(0.737255, 0.854902, 1, 1)
+sun_energy = 1.594
+sky_top_color = Color(0.454902, 0.372549, 0.752941, 1)
+sky_horizon_color = Color(0.52549, 0.411765, 0.32549, 1)
+sky_color_curve = 0.1241
+ground_bottom_color = Color(0.258824, 0.231373, 0, 1)
+ground_horizon_color = Color(0, 0.117647, 0, 1)
+ground_color_curve = 0.3284
+ground_energy = 9.3594
+
+[node name="DirectionalLight3D" parent="WorldEnvironment" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.198598, 0.980081, 0, -0.980081, 0.198598, 0, 27.0051, 0)
+light_color = Color(0.737255, 0.854902, 1, 1)
+light_energy = 1.594
+
+[node name="Finish-Line" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.258819, -0.965926, 0, 0.965926, 0.258819, 0, 5.15538, -4.351)
+
+[node name="Finish-Line_Mesh" type="MeshInstance3D" parent="Finish-Line"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0.00999999, 0)
+sorting_use_aabb_center = false
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_1busx")
+surface_material_override/0 = SubResource("StandardMaterial3D_5cqgw")
+
+[node name="UI" parent="." instance=ExtResource("2_ns1iu")]
+restart_visible = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.971134, 0.238533, 0, -0.238533, 0.971134, 1, 5.449, 9.024)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 187.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 55
+theme_override_constants/margin_bottom = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 75
+alignment = 1
+
+[node name="Drop 1" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "  Drop  "
+
+[node name="Drop 2" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "  Drop  "
+
+[node name="Drop 3" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "  Drop  "
+
+[node name="Ground" parent="." instance=ExtResource("3_ry222")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+ground_color = Color(0.133333, 0.258824, 0, 1)
+ground_roughness = 0.859
+ground_metallic = 0.491
+ground_specular = 0.39
+
+[connection signal="button_down" from="CanvasLayer/MarginContainer/HBoxContainer/Drop 1" to="." method="_on_drop_1_button_down"]
+[connection signal="button_down" from="CanvasLayer/MarginContainer/HBoxContainer/Drop 2" to="." method="_on_drop_2_button_down"]
+[connection signal="button_down" from="CanvasLayer/MarginContainer/HBoxContainer/Drop 3" to="." method="_on_drop_3_button_down"]
+
+[editable path="WorldEnvironment"]

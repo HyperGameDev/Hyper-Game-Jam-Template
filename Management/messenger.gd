@@ -17,3 +17,5 @@ signal on_bought_prism
 signal kill_enemy
 
 signal change_tiles
+
+signal button_pressed

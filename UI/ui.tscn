@@ -12,17 +12,19 @@
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_6hci8")
 timer_visible = true
-timer_length = 46.743
+timer_length = 60.0
 score_visible = true
 
 [node name="Restart-Panel" type="Panel" parent="."]
-visible = false
-anchors_preset = 1
+anchors_preset = 3
 anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = -187.0
-offset_bottom = 96.0
+offset_top = -96.0
 grow_horizontal = 0
+grow_vertical = 0
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_gfd4g")
 script = ExtResource("3_oqhc3")

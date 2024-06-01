@@ -16,7 +16,7 @@ func _ready():
 func update_score(new_points):
 	if scoring_allowed:
 		score += new_points
-		%Score.text = str(score)
+		%Score.text = str(round(score))
 	
 func stop_scoring():
 	scoring_allowed = false

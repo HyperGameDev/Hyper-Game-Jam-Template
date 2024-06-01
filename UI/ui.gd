@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+@export_category("General")
+@export var restart_visible = false
 @export_category("Timer")
 @export var timer_visible = false
 @export_group("Timer Settings")

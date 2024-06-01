@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1qeadnfg6s4b"]
+
+[ext_resource type="Script" path="res://Game Aspects/droppable_block.gd" id="1_tx5ia"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ooy6t"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nqbme"]
+
+[node name="RigidBody3D" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.60981, 2.16252)
+script = ExtResource("1_tx5ia")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.999985, -0.00470079, 0.00293467, 0.00470832, 0.999986, -0.00256322, -0.00292258, 0.002577, 0.999992, 0, 0, 0)
+mesh = SubResource("BoxMesh_ooy6t")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_nqbme")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.195547)
+billboard = 1
+no_depth_test = true
+text = "0"
+font_size = 100
+outline_size = 67
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true

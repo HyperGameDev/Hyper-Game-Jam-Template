@@ -5,6 +5,8 @@ extends Panel
 func _ready():
 	$"Restart-Box/Restart-Button".pressed.connect(restart)
 	Messenger.game_over.connect(showing)
+	if get_owner().restart_visible:
+		show()
 
 func showing():
 	show()
