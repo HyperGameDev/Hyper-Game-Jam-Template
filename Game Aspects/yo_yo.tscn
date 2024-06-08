@@ -1,0 +1,148 @@
+[gd_scene load_steps=12 format=3 uid="uid://du4ynurtq6v3s"]
+
+[ext_resource type="Script" path="res://YoYo.gd" id="1_3ckm1"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_6fut7"]
+inner_radius = 1.765
+outer_radius = 0.687
+rings = 529
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8etk2"]
+albedo_color = Color(0, 1, 0.0666667, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_fjouq"]
+top_radius = 1.3
+bottom_radius = 1.3
+height = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cwmjd"]
+albedo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1hyi5"]
+radius = 0.1
+height = 10.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jlha2"]
+size = Vector3(4, 1, 4)
+
+[sub_resource type="Animation" id="Animation_uy7u4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mesh:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0.123313)]
+}
+
+[sub_resource type="Animation" id="Animation_1l2cn"]
+resource_name = "up_slow"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mesh:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 2.7, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.123313), Vector3(0, 2.7, 0.123)]
+}
+
+[sub_resource type="Animation" id="Animation_hf8dy"]
+resource_name = "down_slow"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mesh:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 2.7, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 2.7, 0.123), Vector3(0, 0, 0.123313)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u71n0"]
+_data = {
+"RESET": SubResource("Animation_uy7u4"),
+"down_slow": SubResource("Animation_hf8dy"),
+"up_slow": SubResource("Animation_1l2cn")
+}
+
+[node name="YoYo" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.64806, -1.94613)
+script = ExtResource("1_3ckm1")
+
+[node name="Mesh" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("TorusMesh_6fut7")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_8etk2")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_fjouq")
+skeleton = NodePath("../MeshInstance3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_cwmjd")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00688887, 5.00816, 0.129786)
+mesh = SubResource("CapsuleMesh_1hyi5")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.123313)
+shape = SubResource("BoxShape3D_jlha2")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_u71n0")
+}

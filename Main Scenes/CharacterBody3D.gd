@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-const SPEED = 10
+const SPEED = 16
 const JUMP_VELOCITY = 5
 
 @export var default_color: Color = Color(.35,.2,.4)
