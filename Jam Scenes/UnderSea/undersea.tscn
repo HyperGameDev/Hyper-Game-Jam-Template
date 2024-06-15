@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c2cs6fskbmq6h"]
+[gd_scene load_steps=18 format=3 uid="uid://c2cs6fskbmq6h"]
 
 [ext_resource type="PackedScene" uid="uid://buurv000eq5jx" path="res://Game Aspects/environment.tscn" id="1_hlj0r"]
 [ext_resource type="PackedScene" uid="uid://rkba7etkgvan" path="res://UI/ui.tscn" id="2_sd26t"]
@@ -38,6 +38,10 @@ metallic = 0.491
 metallic_specular = 0.39
 roughness = 0.859
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_u3hvq"]
+lightmap_size_hint = Vector2i(27, 23)
+size = Vector2(25, 27.49)
+
 [sub_resource type="BoxMesh" id="BoxMesh_jrhib"]
 size = Vector3(23.345, 55.305, 51.21)
 
@@ -72,6 +76,7 @@ controls_normal = false
 
 [node name="Ground Water" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -473.064, 1.50715, -0.363806)
+visible = false
 
 [node name="Ground-Mesh" type="MeshInstance3D" parent="Ground Water"]
 transparency = 0.41
@@ -88,7 +93,7 @@ disabled = true
 shape = SubResource("ConvexPolygonShape3D_dg2cm")
 
 [node name="Ground Water2" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.76823, -53.5254, -0.363806)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.76823, 1.4746, -0.363806)
 
 [node name="Ground-Mesh" type="MeshInstance3D" parent="Ground Water2"]
 mesh = SubResource("PlaneMesh_eci78")
@@ -103,9 +108,29 @@ disabled = true
 [node name="Ground-Collision" type="CollisionShape3D" parent="Ground Water2/Area_Ground"]
 shape = SubResource("ConvexPolygonShape3D_dg2cm")
 
+[node name="Ground Water3" type="StaticBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.657, -1498.71, -0.364)
+
+[node name="Ground-Mesh" type="MeshInstance3D" parent="Ground Water3"]
+mesh = SubResource("PlaneMesh_eci78")
+surface_material_override/0 = SubResource("StandardMaterial3D_b7lch")
+
+[node name="Ground-Collision" type="CollisionShape3D" parent="Ground Water3"]
+shape = SubResource("ConvexPolygonShape3D_dg2cm")
+disabled = true
+
+[node name="Area_Ground" type="Area3D" parent="Ground Water3"]
+
+[node name="Ground-Collision" type="CollisionShape3D" parent="Ground Water3/Area_Ground"]
+shape = SubResource("ConvexPolygonShape3D_dg2cm")
+
 [node name="Finish-Line" parent="." instance=ExtResource("5_hstle")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.768232, -0.110936, -19.2148)
 finish_line_visible = true
+
+[node name="Finish-Line_Mesh" parent="Finish-Line" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.01, 0)
+mesh = SubResource("PlaneMesh_u3hvq")
 
 [node name="Spatial_Context" type="Node3D" parent="."]
 transform = Transform3D(-0.04137, 0, 0.999144, 0, 1, 0, -0.999144, 0, -0.04137, 13.5438, -0.120936, -13.5574)
@@ -126,7 +151,7 @@ ground_metallic = 0.491
 ground_specular = 0.39
 
 [node name="Ground-Mesh" parent="Ground" index="0"]
-transparency = 1.0
+visible = false
 
 [node name="Spawn" parent="." instance=ExtResource("7_53os1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.759806, 0.350715, 24.7981)
@@ -206,4 +231,5 @@ skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_w08db")
 
 [editable path="WorldEnvironment"]
+[editable path="Finish-Line"]
 [editable path="Ground"]
