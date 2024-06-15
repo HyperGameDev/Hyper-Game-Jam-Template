@@ -1,10 +1,12 @@
 extends CharacterBody3D
 
 const SPEED = 16
-const JUMP_VELOCITY = 5
+const JUMP_VELOCITY = 10
 
 @export var default_color: Color = Color(.35,.2,.4)
 @export var active_color: Color = Color(1,1,.6)
+@export var controls_normal = true
+
 
 # Get the gravity from the project ssettings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -19,6 +21,7 @@ var default_material = StandardMaterial3D.new()
 var active_material = StandardMaterial3D.new()
 
 func _ready():
+	$AnimationPlayer.play("swim")
 	Messenger.game_over.connect(end_game)
 	Messenger.player_dead.connect(kill_player)
 	Messenger.on_bought_prism.connect(bought_prism)
@@ -94,16 +97,28 @@ func movement(delta):
 
 	# Get the input direction and handle the movement/deceleration.aw
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	if controls_normal:
+		var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+		var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	# For 2D movement, just swap everything after = with 0 on each the if and else
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		if direction:
+			velocity.x = direction.x * SPEED
+			velocity.z = direction.z * SPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.z = move_toward(velocity.z, 0, SPEED)
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		var input_dir = Input.get_vector("ui_up", "ui_down", "ui_right", "ui_left")
+		var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	
+	# For 2D movement, just swap everything after = with 0 on each the if and else
+		if direction:
+			velocity.x = 0
+			velocity.z = direction.z * SPEED
+		else:
+			velocity.x = 0
+			velocity.z = move_toward(velocity.z, 0, SPEED)
 		
 	#velocity.x = 0
 	#velocity.z = -1 * SPEED

@@ -16,7 +16,6 @@ points = PackedVector3Array(-1500, 0, -1500, -1500, 0, 1500, 1500, 0, -1500, 150
 
 [node name="Ground" type="StaticBody3D"]
 script = ExtResource("1_phhx0")
-ground_metallic = null
 
 [node name="Ground-Mesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_r58wa")

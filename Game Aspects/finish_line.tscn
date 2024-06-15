@@ -27,8 +27,8 @@ uv1_scale = Vector3(-0.275, -0.275, -0.275)
 uv1_triplanar = true
 uv1_world_triplanar = true
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_tch6w"]
-points = PackedVector3Array(12.5, 3.5, 3.5, 12.5, 3.5, -3.5, -12.5, 3.5, 3.5, 12.5, -3.5, 3.5, 12.5, -3.5, -3.5, -12.5, 3.5, -3.5, -12.5, -3.5, 3.5, -12.5, -3.5, -3.5)
+[sub_resource type="BoxShape3D" id="BoxShape3D_6cybp"]
+size = Vector3(25.501, 28.5979, 6.0625)
 
 [node name="Finish-Line" type="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12.851)
@@ -41,4 +41,4 @@ mesh = SubResource("PlaneMesh_cgwo2")
 surface_material_override/0 = SubResource("StandardMaterial3D_5cqgw")
 
 [node name="Finish-Line_Collision" type="CollisionShape3D" parent="."]
-shape = SubResource("ConvexPolygonShape3D_tch6w")
+shape = SubResource("BoxShape3D_6cybp")

@@ -36,6 +36,9 @@ func _ready():
 func _process(delta):
 	if spawn_moving:
 		position += spawn_velocity * spawn_direction.normalized() * delta
+	
+	if position.z > 200:
+		queue_free()
 		
 func player_collided(area):
 	if area.is_in_group("Detectable"):

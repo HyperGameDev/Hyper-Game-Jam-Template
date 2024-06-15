@@ -1,0 +1,209 @@
+[gd_scene load_steps=17 format=3 uid="uid://c2cs6fskbmq6h"]
+
+[ext_resource type="PackedScene" uid="uid://buurv000eq5jx" path="res://Game Aspects/environment.tscn" id="1_hlj0r"]
+[ext_resource type="PackedScene" uid="uid://rkba7etkgvan" path="res://UI/ui.tscn" id="2_sd26t"]
+[ext_resource type="PackedScene" uid="uid://cony25eh2s7r5" path="res://Game Aspects/player.tscn" id="3_qo3xm"]
+[ext_resource type="PackedScene" uid="uid://bd37hkqpxvoy8" path="res://Game Aspects/ground.tscn" id="4_7qecm"]
+[ext_resource type="PackedScene" uid="uid://cvrx5pd67sotw" path="res://Game Aspects/finish_line.tscn" id="5_hstle"]
+[ext_resource type="PackedScene" uid="uid://i8k4f65p7crh" path="res://Test Scenes/3d_test_1.tscn" id="6_c1rg0"]
+[ext_resource type="PackedScene" uid="uid://dbvrc1yha5s1n" path="res://Game Aspects/spawn_damaging.tscn" id="7_53os1"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_eci78"]
+size = Vector2(3000, 3000)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wyrff"]
+albedo_color = Color(0.0470588, 0.207843, 0.607843, 1)
+metallic = 0.491
+metallic_specular = 0.39
+roughness = 0.859
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dg2cm"]
+points = PackedVector3Array(-1500, 0, -1500, -1500, 0, 1500, 1500, 0, -1500, 1500, 0, 1500)
+
+[sub_resource type="Gradient" id="Gradient_x5rr6"]
+offsets = PackedFloat32Array(0.411765, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_lkdj5"]
+frequency = 0.5895
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0uc4r"]
+width = 417
+color_ramp = SubResource("Gradient_x5rr6")
+noise = SubResource("FastNoiseLite_lkdj5")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b7lch"]
+albedo_color = Color(0.243137, 0, 0.94902, 1)
+albedo_texture = SubResource("NoiseTexture2D_0uc4r")
+metallic = 0.491
+metallic_specular = 0.39
+roughness = 0.859
+
+[sub_resource type="BoxMesh" id="BoxMesh_jrhib"]
+size = Vector3(23.345, 55.305, 51.21)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w08db"]
+albedo_color = Color(0.560784, 0.360784, 0.184314, 1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" parent="." instance=ExtResource("1_hlj0r")]
+sun_color = Color(0.737255, 0.854902, 1, 1)
+sun_energy = 1.594
+sky_top_color = Color(0.454902, 0.372549, 0.752941, 1)
+sky_horizon_color = Color(0.52549, 0.411765, 0.32549, 1)
+sky_color_curve = 0.1241
+ground_bottom_color = Color(0.258824, 0.231373, 0, 1)
+ground_horizon_color = Color(0, 0.117647, 0, 1)
+ground_color_curve = 0.3284
+ground_energy = 9.3594
+
+[node name="DirectionalLight3D" parent="WorldEnvironment" index="0"]
+transform = Transform3D(1, 0, 0, 0, -0.260791, 0.965395, 0, -0.965395, -0.260791, 0, 27.0051, 0)
+light_color = Color(0.737255, 0.854902, 1, 1)
+light_energy = 1.594
+
+[node name="UI" parent="." instance=ExtResource("2_sd26t")]
+timer_length = 0.0
+timer_countup = true
+
+[node name="Player" parent="." groups=["Detectable"] instance=ExtResource("3_qo3xm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.768232, 0.426798, 132.5)
+controls_normal = false
+
+[node name="Ground Water" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -473.064, 1.50715, -0.363806)
+
+[node name="Ground-Mesh" type="MeshInstance3D" parent="Ground Water"]
+transparency = 0.41
+mesh = SubResource("PlaneMesh_eci78")
+surface_material_override/0 = SubResource("StandardMaterial3D_wyrff")
+
+[node name="Ground-Collision" type="CollisionShape3D" parent="Ground Water"]
+shape = SubResource("ConvexPolygonShape3D_dg2cm")
+disabled = true
+
+[node name="Area_Ground" type="Area3D" parent="Ground Water"]
+
+[node name="Ground-Collision" type="CollisionShape3D" parent="Ground Water/Area_Ground"]
+shape = SubResource("ConvexPolygonShape3D_dg2cm")
+
+[node name="Ground Water2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.76823, -53.5254, -0.363806)
+
+[node name="Ground-Mesh" type="MeshInstance3D" parent="Ground Water2"]
+mesh = SubResource("PlaneMesh_eci78")
+surface_material_override/0 = SubResource("StandardMaterial3D_b7lch")
+
+[node name="Ground-Collision" type="CollisionShape3D" parent="Ground Water2"]
+shape = SubResource("ConvexPolygonShape3D_dg2cm")
+disabled = true
+
+[node name="Area_Ground" type="Area3D" parent="Ground Water2"]
+
+[node name="Ground-Collision" type="CollisionShape3D" parent="Ground Water2/Area_Ground"]
+shape = SubResource("ConvexPolygonShape3D_dg2cm")
+
+[node name="Finish-Line" parent="." instance=ExtResource("5_hstle")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.768232, -0.110936, -19.2148)
+finish_line_visible = true
+
+[node name="Spatial_Context" type="Node3D" parent="."]
+transform = Transform3D(-0.04137, 0, 0.999144, 0, 1, 0, -0.999144, 0, -0.04137, 13.5438, -0.120936, -13.5574)
+
+[node name="3D_Test-1" parent="Spatial_Context" instance=ExtResource("6_c1rg0")]
+
+[node name="3D_Test-2" parent="Spatial_Context" instance=ExtResource("6_c1rg0")]
+transform = Transform3D(-0.961103, 0, 0.276191, 0, 1, 0, -0.276191, 0, -0.961103, -0.55133, 0, 13.3154)
+
+[node name="3D_Test-3" parent="Spatial_Context" instance=ExtResource("6_c1rg0")]
+transform = Transform3D(-0.302004, 0, -0.953307, 0, 1, 0, 0.953307, 0, -0.302004, 13.3375, 0, 8.03235)
+
+[node name="Ground" parent="." instance=ExtResource("4_7qecm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.335083, 0)
+ground_color = Color(0.133333, 0.258824, 0, 1)
+ground_roughness = 0.859
+ground_metallic = 0.491
+ground_specular = 0.39
+
+[node name="Ground-Mesh" parent="Ground" index="0"]
+transparency = 1.0
+
+[node name="Spawn" parent="." instance=ExtResource("7_53os1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.759806, 0.350715, 24.7981)
+spawn_is_everlasting = true
+
+[node name="Spawn3" parent="." instance=ExtResource("7_53os1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.759806, 0.350715, 41.3392)
+spawn_is_everlasting = true
+
+[node name="Spawn10" parent="." instance=ExtResource("7_53os1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.759806, 0.350715, 59.6371)
+spawn_is_everlasting = true
+
+[node name="Spawn11" parent="." instance=ExtResource("7_53os1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.759806, 0.350715, 84.0281)
+spawn_is_everlasting = true
+
+[node name="Spawn12" parent="." instance=ExtResource("7_53os1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.759806, 0.350715, 106.946)
+spawn_is_everlasting = true
+
+[node name="Spawn4" parent="." instance=ExtResource("7_53os1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.759806, 0.350715, 1.27505)
+spawn_is_everlasting = true
+
+[node name="Spawn5" parent="." instance=ExtResource("7_53os1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.759806, 0.350715, -10.9095)
+spawn_is_everlasting = true
+
+[node name="Spawn6" parent="." instance=ExtResource("7_53os1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.759806, 0.350715, -30.4831)
+spawn_is_everlasting = true
+
+[node name="Spawn7" parent="." instance=ExtResource("7_53os1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.759806, 0.350715, -35.1719)
+spawn_is_everlasting = true
+
+[node name="Spawn8" parent="." instance=ExtResource("7_53os1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.759806, 0.350715, -39.8547)
+spawn_is_everlasting = true
+
+[node name="Spawn9" parent="." instance=ExtResource("7_53os1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.759806, 0.350715, -47.3282)
+spawn_is_everlasting = true
+
+[node name="Spawn13" parent="." instance=ExtResource("7_53os1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.759806, 0.350715, -60.0008)
+spawn_is_everlasting = true
+
+[node name="Spawn14" parent="." instance=ExtResource("7_53os1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.759806, 0.350715, -70.3679)
+spawn_is_everlasting = true
+
+[node name="Spawn2" parent="." instance=ExtResource("7_53os1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.759806, 0.350715, 21.0444)
+spawn_is_everlasting = true
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(3.71254, 1.82133, 1.0643, -2.0463, 2.58603, 2.71256, 0.51245, -2.86847, 3.12125, -122.367, -72.7501, 166.331)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1, 7.45058e-09, 0, 7.45058e-09, 1, 0, 7.45058e-09, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_jrhib")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_w08db")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(0.996317, -0.0634334, 0.0576959, 0.0606581, 0.996973, 0.0486456, -0.060607, -0.0449666, 0.997148, -40.4105, 18.603, -48.2201)
+mesh = SubResource("BoxMesh_jrhib")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_w08db")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(0.920878, 0.250621, -0.298619, -0.310242, 0.934962, -0.172036, 0.236081, 0.251068, 0.938739, -47.8434, 55.3085, -89.8887)
+mesh = SubResource("BoxMesh_jrhib")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_w08db")
+
+[editable path="WorldEnvironment"]
+[editable path="Ground"]
