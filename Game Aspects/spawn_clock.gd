@@ -33,7 +33,7 @@ func player_collided(area):
 	if area.is_in_group("Detectable"):
 		if spawn_is_enemy and enemy_instakills:
 			Messenger.player_dead.emit()
-			Messenger.game_over.emit(false)
+			Messenger.game_over.emit()
 			
 		if spawn_is_collectible:
 			if area.is_in_group("Detectable"):

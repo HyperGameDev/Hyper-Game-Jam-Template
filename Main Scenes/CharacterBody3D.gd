@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 const SPEED = 16
-const JUMP_VELOCITY = 9
+const JUMP_VELOCITY = 10
 
 @export var default_color: Color = Color(.35,.2,.4)
 @export var active_color: Color = Color(1,1,.6)
@@ -47,7 +47,7 @@ func bought_square():
 	$Player_Mesh_Prism.visible = false
 	$Player_Collision_Prism.disabled = true
 
-func end_game(won):
+func end_game():
 	#Engine.set_time_scale(.3)
 	#await get_tree().create_timer(.3).timeout
 	game_over = true
