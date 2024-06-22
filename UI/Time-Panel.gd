@@ -38,18 +38,20 @@ func _process(delta):
 		get_owner().timer_autostart = false
 		%Time.text = str(0)
 		if end_on_zero:
-			Messenger.game_over.emit()
+			Messenger.game_over.emit(false)
 		
 	if get_owner().timer_for_racing and !race_begun and !dead:
 		if Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_right") or Input.is_action_pressed("ui_up") or Input.is_action_pressed("ui_down") or Input.is_action_pressed("ui_accept"):
 			get_owner().timer_autostart = true
 			await get_tree().create_timer(1.0).timeout
 			race_begun = true
+			Messenger.button_pressed.emit()
 			
 func on_button_pressed():
-	get_owner().timer_autostart = true
-	await get_tree().create_timer(1.0).timeout
-	race_begun = true
+	#get_owner().timer_autostart = true
+	#await get_tree().create_timer(1.0).timeout
+	#race_begun = true
+	pass
 
 func on_add_time(time_to_add):
 	print(time_to_add, " is trying to be added")

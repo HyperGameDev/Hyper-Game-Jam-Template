@@ -1,11 +1,12 @@
 extends CharacterBody3D
 
 const SPEED = 16
-const JUMP_VELOCITY = 10
+const JUMP_VELOCITY = 9
 
 @export var default_color: Color = Color(.35,.2,.4)
 @export var active_color: Color = Color(1,1,.6)
 @export var controls_normal = true
+@export var jump = true
 
 
 # Get the gravity from the project ssettings to be synced with RigidBody nodes.
@@ -47,7 +48,7 @@ func bought_square():
 	$Player_Mesh_Prism.visible = false
 	$Player_Collision_Prism.disabled = true
 
-func end_game():
+func end_game(won):
 	#Engine.set_time_scale(.3)
 	#await get_tree().create_timer(.3).timeout
 	game_over = true
@@ -85,7 +86,7 @@ func _physics_process(delta):
 
 func movement(delta):
 	# Handle Jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor() and jump:
 		velocity.y = JUMP_VELOCITY
 	if Input.is_action_just_pressed("Action"):
 		#velocity.y = JUMP_VELOCITY
