@@ -18,11 +18,11 @@ func update_score(new_points):
 		score += new_points
 		%Score.text = str(round(score))
 	
-func stop_scoring(won):
+func stop_scoring():
 	scoring_allowed = false
 
 func _process(delta):
 	#if score <= 0:
 		#%AudioStreamPlayer.playing = true
-		#Messenger.game_over.emit(false)	
+		#Messenger.game_over.emit()	
 	pass

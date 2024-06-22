@@ -38,7 +38,7 @@ func _process(delta):
 		get_owner().timer_autostart = false
 		%Time.text = str(0)
 		if end_on_zero:
-			Messenger.game_over.emit(false)
+			Messenger.game_over.emit()
 		
 	if get_owner().timer_for_racing and !race_begun and !dead:
 		if Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_right") or Input.is_action_pressed("ui_up") or Input.is_action_pressed("ui_down") or Input.is_action_pressed("ui_accept"):
