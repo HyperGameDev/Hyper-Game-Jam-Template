@@ -7,4 +7,4 @@ func _ready():
 
 func on_area_entered(area):
 	if area.is_in_group("Detectable"):
-		Messenger.game_over.emit()
+		Messenger.game_over.emit(false)
