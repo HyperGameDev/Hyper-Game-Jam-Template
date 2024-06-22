@@ -16,17 +16,14 @@ timer_length = 60.0
 score_visible = true
 
 [node name="Restart-Panel" type="Panel" parent="."]
-<<<<<<< HEAD
-visible = false
 anchors_preset = 3
 anchor_left = 1.0
-=======
-anchors_preset = 2
->>>>>>> 0bcf77bed0466d76864ba82441d7a04bf07c18fa
 anchor_top = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -187.0
 offset_top = -96.0
-offset_right = 187.0
+grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_gfd4g")
@@ -74,13 +71,16 @@ theme_override_font_sizes/font_size = 40
 text = "Triangle (3)"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-anchors_preset = 5
+anchors_preset = 7
 anchor_left = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
+anchor_bottom = 1.0
 offset_left = -193.0
+offset_top = -93.0
 offset_right = 193.0
-offset_bottom = 93.0
 grow_horizontal = 2
+grow_vertical = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2

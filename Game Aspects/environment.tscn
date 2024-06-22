@@ -27,4 +27,5 @@ script = ExtResource("1_jgxhw")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.501768, -0.865003, 0, 0.865003, 0.501768, 0, 23.0051, 0)
+light_color = Color(0.337, 0.431, 0.718, 1)
 shadow_enabled = true

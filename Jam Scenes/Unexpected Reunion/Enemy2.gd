@@ -7,7 +7,7 @@ func _ready():
 
 func been_hit(area):
 	if area.is_in_group("Weapon"):
-		Messenger.game_over.emit(true)
+		Messenger.game_over.emit()
 		Messenger.you_won.emit()
 		await get_tree().create_timer(.01).timeout
 		queue_free()

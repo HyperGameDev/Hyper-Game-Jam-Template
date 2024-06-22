@@ -8,7 +8,7 @@ func _ready():
 	if get_owner().restart_visible:
 		show()
 
-func showing(won):
+func showing():
 	show()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
