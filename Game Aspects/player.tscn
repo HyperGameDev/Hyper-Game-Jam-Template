@@ -1,16 +1,16 @@
-[gd_scene load_steps=22 format=3 uid="uid://cony25eh2s7r5"]
+[gd_scene load_steps=21 format=3 uid="uid://cony25eh2s7r5"]
 
 [ext_resource type="Script" path="res://Main Scenes/CharacterBody3D.gd" id="1_153wd"]
 [ext_resource type="Script" path="res://Game Aspects/Detectable_Area.gd" id="2_3cgcg"]
 [ext_resource type="Script" path="res://Game Aspects/Weapon_Area.gd" id="3_qw486"]
 [ext_resource type="PackedScene" uid="uid://bb2sbidenwgor" path="res://Models/human_01_00.tscn" id="4_dnxd0"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fwqik"]
-radius = 0.299555
-height = 1.22157
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_8ssib"]
 size = Vector3(1, 0.662354, 2.21277)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fwqik"]
+radius = 0.1
+height = 0.5
 
 [sub_resource type="SphereMesh" id="SphereMesh_cssmp"]
 height = 2.408
@@ -46,12 +46,6 @@ albedo_color = Color(0.0784314, 1, 1, 1)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ryvlp"]
 points = PackedVector3Array(0.888715, 0.105812, 0.2, -0.888715, -0.116367, -0.188889, -0.825235, 0.0978766, -0.175, 0.888715, -0.116367, -0.188889, -0.888715, -0.116367, 0.2, -0.888715, 0.105812, 0.2, 0.888715, -0.116367, 0.2, 0.825235, 0.0978766, -0.175)
 
-<<<<<<< Updated upstream
-=======
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cc1gj"]
-albedo_color = Color(1, 1, 0, 1)
-
->>>>>>> Stashed changes
 [sub_resource type="Animation" id="Animation_mns3n"]
 length = 0.001
 tracks/0/type = "value"
@@ -147,49 +141,38 @@ collision_mask = 3
 script = ExtResource("2_3cgcg")
 
 [node name="Player_Collision" type="CollisionShape3D" parent="Player_Area"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13505, 0)
-shape = SubResource("CapsuleShape3D_fwqik")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00129902, -0.219299)
+shape = SubResource("BoxShape3D_8ssib")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-<<<<<<< Updated upstream
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.132, 0.001, 0.053)
-=======
-transform = Transform3D(1, 0, 0, 0, 0.912627, 0.408792, 0, -0.408792, 0.912627, 0, 2.555, 1.945)
->>>>>>> Stashed changes
 current = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0402821, -0.219299)
-visible = false
 shape = SubResource("BoxShape3D_8ssib")
+
+[node name="Player_Collision2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.212535, 0)
+shape = SubResource("CapsuleShape3D_fwqik")
 disabled = true
 
 [node name="Player_Mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.393594)
-visible = false
 mesh = SubResource("SphereMesh_cssmp")
 surface_material_override/0 = SubResource("StandardMaterial3D_gkwbk")
 
 [node name="Player_Mesh2" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1.31831e-06, 0.364174, 0.93133, -1, -3.61999e-06, -1.71722e-15, 3.37141e-06, -0.93133, 0.364174, -0.081362, 0, 0.59951)
-<<<<<<< Updated upstream
-=======
-visible = false
->>>>>>> Stashed changes
 mesh = SubResource("PrismMesh_eo2u5")
 surface_material_override/0 = SubResource("StandardMaterial3D_gkwbk")
 
 [node name="Player_Mesh3" type="MeshInstance3D" parent="."]
 transform = Transform3D(2.06915e-06, -0.571591, 0.820538, -1, -3.61999e-06, 1.3027e-15, 2.97034e-06, -0.820538, -0.571591, 0.363918, 0, -0.233847)
-<<<<<<< Updated upstream
-=======
-visible = false
->>>>>>> Stashed changes
 mesh = SubResource("PrismMesh_d3mle")
 surface_material_override/0 = SubResource("StandardMaterial3D_gkwbk")
 
-[node name="Player_Collision3" type="CollisionShape3D" parent="."]
-visible = false
+[node name="Player_Collision" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_fh1ra")
 disabled = true
 
@@ -215,19 +198,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.301122, 0)
 collision_mask = 2
 
 [node name="human_01_00" parent="." instance=ExtResource("4_dnxd0")]
-transform = Transform3D(-2.5, 0, -3.77489e-07, 0, 2.5, 0, 3.77489e-07, 0, -2.5, 0, -0.453325, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.453325, 0)
 
 [node name="Human_Auto-Armature" parent="human_01_00/Human_02_00/Skeleton3D" index="0"]
 cast_shadow = 0
-surface_material_override/0 = SubResource("StandardMaterial3D_cc1gj")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_gdjvp")
 }
-
-[node name="Player_Collision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13505, 0)
-shape = SubResource("CapsuleShape3D_fwqik")
 
 [editable path="human_01_00"]

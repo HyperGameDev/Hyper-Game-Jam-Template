@@ -45,13 +45,11 @@ func _process(delta):
 			get_owner().timer_autostart = true
 			await get_tree().create_timer(1.0).timeout
 			race_begun = true
-			Messenger.button_pressed.emit()
 			
 func on_button_pressed():
-	#get_owner().timer_autostart = true
-	#await get_tree().create_timer(1.0).timeout
-	#race_begun = true
-	pass
+	get_owner().timer_autostart = true
+	await get_tree().create_timer(1.0).timeout
+	race_begun = true
 
 func on_add_time(time_to_add):
 	print(time_to_add, " is trying to be added")
