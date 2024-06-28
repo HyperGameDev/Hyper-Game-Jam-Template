@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://wuq7yv75do15"]
+
+[ext_resource type="Script" path="res://Game Aspects/maze_wall_selfdestruct.gd" id="1_e0iry"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f3ago"]
+albedo_color = Color(0.137255, 0.956863, 0.741176, 1)
+
+[node name="MazeWall" type="Node3D"]
+script = ExtResource("1_e0iry")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0858917, 0.990723, 0)
+material_override = SubResource("StandardMaterial3D_f3ago")
+use_collision = true
+size = Vector3(10.7293, 8.12646, 1)
+
+[node name="BOX_L" type="CSGBox3D" parent="."]
+transform = Transform3D(-0.00155617, -0.00131845, 0.999998, -0.000101361, 0.999999, 0.00131829, -0.999999, -9.93081e-05, -0.0015563, -4.91411, 0.990723, 2.8)
+material_override = SubResource("StandardMaterial3D_f3ago")
+use_collision = true
+size = Vector3(5.854, 8.12646, 1)
+
+[node name="BOX_R" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.08589, 0.990723, 2.8)
+material_override = SubResource("StandardMaterial3D_f3ago")
+use_collision = true
+size = Vector3(5.854, 8.12646, 1)
+
+[node name="Label Left" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8, 0.995547)
+billboard = 2
+text = "<"
+font_size = 645
+outline_size = 127
+
+[node name="Label Right" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8, 0.995547)
+billboard = 2
+text = ">"
+font_size = 645
+outline_size = 127
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true

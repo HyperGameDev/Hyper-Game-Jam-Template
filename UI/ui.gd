@@ -20,7 +20,7 @@ func _ready():
 	Messenger.game_over.connect(end_game)
 	Messenger.game_win.connect(show_win)
 	
-func end_game():
+func end_game(won):
 	timer_autostart = false
 	#%"You Lost".visible = true
 	pass

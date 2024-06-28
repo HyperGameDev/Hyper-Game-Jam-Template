@@ -21,7 +21,7 @@ var default_material = StandardMaterial3D.new()
 var active_material = StandardMaterial3D.new()
 
 func _ready():
-	$AnimationPlayer.play("swim")
+	#$AnimationPlayer.play("swim")
 	Messenger.game_over.connect(end_game)
 	Messenger.player_dead.connect(kill_player)
 	Messenger.on_bought_prism.connect(bought_prism)
@@ -47,7 +47,7 @@ func bought_square():
 	$Player_Mesh_Prism.visible = false
 	$Player_Collision_Prism.disabled = true
 
-func end_game():
+func end_game(won):
 	#Engine.set_time_scale(.3)
 	#await get_tree().create_timer(.3).timeout
 	game_over = true

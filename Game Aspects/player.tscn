@@ -1,19 +1,20 @@
-[gd_scene load_steps=21 format=3 uid="uid://cony25eh2s7r5"]
+[gd_scene load_steps=19 format=3 uid="uid://cony25eh2s7r5"]
 
 [ext_resource type="Script" path="res://Main Scenes/CharacterBody3D.gd" id="1_153wd"]
 [ext_resource type="Script" path="res://Game Aspects/Detectable_Area.gd" id="2_3cgcg"]
 [ext_resource type="Script" path="res://Game Aspects/Weapon_Area.gd" id="3_qw486"]
 [ext_resource type="PackedScene" uid="uid://bb2sbidenwgor" path="res://Models/human_01_00.tscn" id="4_dnxd0"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_8ssib"]
-size = Vector3(1, 0.662354, 2.21277)
+[sub_resource type="SphereShape3D" id="SphereShape3D_ojxaf"]
+radius = 0.81
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fwqik"]
 radius = 0.1
 height = 0.5
 
 [sub_resource type="SphereMesh" id="SphereMesh_cssmp"]
-height = 2.408
+radius = 0.8
+height = 1.6
 
 [sub_resource type="Gradient" id="Gradient_5p81p"]
 colors = PackedColorArray(0, 0.478431, 0.941176, 1, 1, 1, 1, 1)
@@ -28,14 +29,8 @@ noise = SubResource("FastNoiseLite_oy3gc")
 albedo_color = Color(0.615686, 0.819608, 0.698039, 1)
 albedo_texture = SubResource("NoiseTexture2D_n5mgj")
 
-[sub_resource type="PrismMesh" id="PrismMesh_eo2u5"]
-size = Vector3(1.595, 0.805, 0.575)
-
-[sub_resource type="PrismMesh" id="PrismMesh_d3mle"]
-size = Vector3(0.63, 0.725, 0.46)
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_fh1ra"]
-points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+[sub_resource type="SphereShape3D" id="SphereShape3D_pql8e"]
+radius = 0.8
 
 [sub_resource type="BoxMesh" id="BoxMesh_dytbt"]
 size = Vector3(1.75, 0.205, 0.35)
@@ -46,84 +41,12 @@ albedo_color = Color(0.0784314, 1, 1, 1)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ryvlp"]
 points = PackedVector3Array(0.888715, 0.105812, 0.2, -0.888715, -0.116367, -0.188889, -0.825235, 0.0978766, -0.175, 0.888715, -0.116367, -0.188889, -0.888715, -0.116367, 0.2, -0.888715, 0.105812, 0.2, 0.888715, -0.116367, 0.2, 0.825235, 0.0978766, -0.175)
 
+[sub_resource type="Animation" id="Animation_mns3n"]
+length = 0.001
+
 [sub_resource type="Animation" id="Animation_utv0s"]
 resource_name = "swim"
 loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Player_Mesh3:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-1.3027e-15, 2.17924, -1.5708), Vector3(0, 3.2149, -1.5708)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Player_Mesh2:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.7),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-0.081362, 0, 0.59951), Vector3(0.0636961, 0, 0.59951)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Player_Mesh2:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.7),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(1.71722e-15, 1.19805, -1.5708), Vector3(5.3033e-16, 1.81317, -1.5708)]
-}
-
-[sub_resource type="Animation" id="Animation_mns3n"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Player_Mesh3:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-1.3027e-15, 2.17924, -1.5708)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Player_Mesh2:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.081362, 0, 0.59951)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Player_Mesh2:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1.71722e-15, 1.19805, -1.5708)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gdjvp"]
 _data = {
@@ -141,16 +64,14 @@ collision_mask = 3
 script = ExtResource("2_3cgcg")
 
 [node name="Player_Collision" type="CollisionShape3D" parent="Player_Area"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00129902, -0.219299)
-shape = SubResource("BoxShape3D_8ssib")
+shape = SubResource("SphereShape3D_ojxaf")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D_side" type="Camera3D" parent="."]
 transform = Transform3D(-4.37114e-08, -0.453991, 0.891007, 0, 0.891007, 0.453991, -1, 1.98446e-08, -3.89471e-08, 7.13227, 2.71603, 0.0526712)
-current = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0402821, -0.219299)
-shape = SubResource("BoxShape3D_8ssib")
+[node name="Camera3D_behind1" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.976673, 0.214735, 0, -0.214735, 0.976673, 0, 2.38, 3.705)
+current = true
 
 [node name="Player_Collision2" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.212535, 0)
@@ -158,23 +79,11 @@ shape = SubResource("CapsuleShape3D_fwqik")
 disabled = true
 
 [node name="Player_Mesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.393594)
 mesh = SubResource("SphereMesh_cssmp")
 surface_material_override/0 = SubResource("StandardMaterial3D_gkwbk")
 
-[node name="Player_Mesh2" type="MeshInstance3D" parent="."]
-transform = Transform3D(-1.59187e-08, 0.364178, 0.931329, -1, -4.37114e-08, -1.71722e-15, 4.07097e-08, -0.931329, 0.364178, -0.081362, 0, 0.59951)
-mesh = SubResource("PrismMesh_eo2u5")
-surface_material_override/0 = SubResource("StandardMaterial3D_gkwbk")
-
-[node name="Player_Mesh3" type="MeshInstance3D" parent="."]
-transform = Transform3D(2.49849e-08, -0.571587, 0.820541, -1, -4.37114e-08, 1.3027e-15, 3.5867e-08, -0.820541, -0.571587, 0.363918, 0, -0.233847)
-mesh = SubResource("PrismMesh_d3mle")
-surface_material_override/0 = SubResource("StandardMaterial3D_gkwbk")
-
 [node name="Player_Collision" type="CollisionShape3D" parent="."]
-shape = SubResource("ConvexPolygonShape3D_fh1ra")
-disabled = true
+shape = SubResource("SphereShape3D_pql8e")
 
 [node name="Weapon_Area" type="Area3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.219016, 0.332664, -1.48956)
