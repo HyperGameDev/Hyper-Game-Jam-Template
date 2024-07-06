@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dixn67jmnhcwc"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_goc3b"]
+points = PackedVector3Array(-3.7325, -3.8425, -1.965, -3.7325, -3.8425, 1.965, -0.000730515, 3.8425, -1.965, 3.73177, -3.8425, -1.965, 3.73177, -3.8425, 1.965, -0.000730515, 3.8425, 1.965)
+
+[sub_resource type="PrismMesh" id="PrismMesh_64f2v"]
+size = Vector3(7.465, 7.685, 3.93)
+
+[node name="Spike" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.750836, 2.04658)
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.915265, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.915265, 0)
+shape = SubResource("ConvexPolygonShape3D_goc3b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("PrismMesh_64f2v")

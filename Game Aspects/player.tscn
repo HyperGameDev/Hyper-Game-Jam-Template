@@ -1,9 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://cony25eh2s7r5"]
+[gd_scene load_steps=23 format=3 uid="uid://cony25eh2s7r5"]
 
 [ext_resource type="Script" path="res://Main Scenes/CharacterBody3D.gd" id="1_153wd"]
 [ext_resource type="Script" path="res://Game Aspects/Detectable_Area.gd" id="2_3cgcg"]
 [ext_resource type="Script" path="res://Game Aspects/Weapon_Area.gd" id="3_qw486"]
 [ext_resource type="PackedScene" uid="uid://bb2sbidenwgor" path="res://Models/human_01_00.tscn" id="4_dnxd0"]
+[ext_resource type="Texture2D" uid="uid://dogbky45y0xuw" path="res://Jam Scenes/Workplae Hazard/Untitled design (18).png" id="5_fw37y"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ojxaf"]
 radius = 0.81
@@ -41,6 +42,9 @@ albedo_color = Color(0.0784314, 1, 1, 1)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ryvlp"]
 points = PackedVector3Array(0.888715, 0.105812, 0.2, -0.888715, -0.116367, -0.188889, -0.825235, 0.0978766, -0.175, 0.888715, -0.116367, -0.188889, -0.888715, -0.116367, 0.2, -0.888715, 0.105812, 0.2, 0.888715, -0.116367, 0.2, 0.825235, 0.0978766, -0.175)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_olc7l"]
+albedo_color = Color(0.541176, 0.329412, 0, 1)
+
 [sub_resource type="Animation" id="Animation_mns3n"]
 length = 0.001
 
@@ -53,6 +57,16 @@ _data = {
 "RESET": SubResource("Animation_mns3n"),
 "swim": SubResource("Animation_utv0s")
 }
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1j85g"]
+transparency = 1
+albedo_texture = ExtResource("5_fw37y")
+rim_enabled = true
+rim = 0.16
+uv1_scale = Vector3(0.985, 0.985, 0.985)
+uv1_offset = Vector3(1.015, 0, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wanhv"]
 
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.547734, 0)
@@ -67,11 +81,11 @@ script = ExtResource("2_3cgcg")
 shape = SubResource("SphereShape3D_ojxaf")
 
 [node name="Camera3D_side" type="Camera3D" parent="."]
-transform = Transform3D(-4.37114e-08, -0.453991, 0.891007, 0, 0.891007, 0.453991, -1, 1.98446e-08, -3.89471e-08, 7.13227, 2.71603, 0.0526712)
+transform = Transform3D(-4.37114e-08, -0.453991, 0.891007, 0, 0.891007, 0.453991, -1, 1.98446e-08, -3.89471e-08, 3.982, 2.541, 0.053)
+current = true
 
 [node name="Camera3D_behind1" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.976673, 0.214735, 0, -0.214735, 0.976673, 0, 2.38, 3.705)
-current = true
 
 [node name="Player_Collision2" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.212535, 0)
@@ -79,6 +93,7 @@ shape = SubResource("CapsuleShape3D_fwqik")
 disabled = true
 
 [node name="Player_Mesh" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("SphereMesh_cssmp")
 surface_material_override/0 = SubResource("StandardMaterial3D_gkwbk")
 
@@ -107,14 +122,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.301122, 0)
 collision_mask = 2
 
 [node name="human_01_00" parent="." instance=ExtResource("4_dnxd0")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.453325, 0)
+transform = Transform3D(-2.48, 0, -3.7447e-07, 0, 2.48, 0, 3.7447e-07, 0, -2.48, 0, -0.453325, 0)
+visible = false
 
 [node name="Human_Auto-Armature" parent="human_01_00/Human_02_00/Skeleton3D" index="0"]
 cast_shadow = 0
+surface_material_override/0 = SubResource("StandardMaterial3D_olc7l")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_gdjvp")
 }
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, 4.37114e-08, 1.91069e-15, -1, -1, -4.37114e-08, -4.37114e-08, 0, 0.417761, 0)
+material_override = SubResource("StandardMaterial3D_1j85g")
+mesh = SubResource("PlaneMesh_wanhv")
 
 [editable path="human_01_00"]

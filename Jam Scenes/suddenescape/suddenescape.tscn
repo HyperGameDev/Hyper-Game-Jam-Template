@@ -1,0 +1,76 @@
+[gd_scene load_steps=10 format=3 uid="uid://cbhg38lvfyqrd"]
+
+[ext_resource type="Script" path="res://CharacterBody3D.gd" id="1_cdvtf"]
+[ext_resource type="PackedScene" uid="uid://buurv000eq5jx" path="res://Game Aspects/environment.tscn" id="2_wmua6"]
+[ext_resource type="PackedScene" uid="uid://bd37hkqpxvoy8" path="res://Game Aspects/ground.tscn" id="3_6qe73"]
+[ext_resource type="PackedScene" uid="uid://bnx8nykvd6qxj" path="res://Game Aspects/cage.tscn" id="4_6msxw"]
+[ext_resource type="PackedScene" uid="uid://rkba7etkgvan" path="res://UI/ui.tscn" id="5_63wh8"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_3ismc"]
+radius = 0.8
+height = 1.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s2n2c"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_tafue"]
+radius = 0.8
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3ne5b"]
+radius = 0.82
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.915265, 0)
+script = ExtResource("1_cdvtf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+mesh = SubResource("SphereMesh_3ismc")
+surface_material_override/0 = SubResource("StandardMaterial3D_s2n2c")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("SphereShape3D_tafue")
+
+[node name="Area3D" type="Area3D" parent="CharacterBody3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.915265, 0)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="CharacterBody3D/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("SphereShape3D_3ne5b")
+
+[node name="WorldEnvironment" parent="." instance=ExtResource("2_wmua6")]
+sun_color = Color(0.737255, 0.854902, 1, 1)
+sun_energy = 1.594
+sky_top_color = Color(0.454902, 0.372549, 0.752941, 1)
+sky_horizon_color = Color(0.52549, 0.411765, 0.32549, 1)
+sky_color_curve = 0.1241
+ground_bottom_color = Color(0.258824, 0.231373, 0, 1)
+ground_horizon_color = Color(0, 0.117647, 0, 1)
+ground_color_curve = 0.3284
+ground_energy = 9.3594
+
+[node name="DirectionalLight3D" parent="WorldEnvironment" index="0"]
+transform = Transform3D(0.866025, 0.482698, 0.130396, 0, -0.260791, 0.965395, 0.5, -0.836057, -0.225852, 0, 27.0051, 0)
+light_color = Color(0.737255, 0.854902, 1, 1)
+light_energy = 1.594
+
+[node name="Ground" parent="." instance=ExtResource("3_6qe73")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+ground_color = Color(0.211765, 0.211765, 0.211765, 1)
+ground_roughness = 0.859
+ground_metallic = 0.491
+ground_specular = 0.39
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.559193, 0.829037, 0, -0.829037, 0.559193, 0, 25.26, 22.84)
+
+[node name="Cage" parent="." instance=ExtResource("4_6msxw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+
+[node name="UI" parent="." instance=ExtResource("5_63wh8")]
+timer_visible = false
+score_visible = false
+
+[editable path="WorldEnvironment"]

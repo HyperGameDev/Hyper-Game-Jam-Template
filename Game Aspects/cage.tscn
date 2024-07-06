@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnx8nykvd6qxj"]
+
+[ext_resource type="PackedScene" uid="uid://bwenhshhcoxqq" path="res://Game Aspects/long_maze_wall.tscn" id="1_48cfm"]
+[ext_resource type="Script" path="res://Game Aspects/cage.gd" id="1_v4oyh"]
+[ext_resource type="PackedScene" uid="uid://dixn67jmnhcwc" path="res://Game Aspects/spike.tscn" id="2_g102f"]
+[ext_resource type="PackedScene" uid="uid://b8dc6hpp21fof" path="res://Game Aspects/long_wall_invis.tscn" id="4_4g6vs"]
+
+[node name="Cage" type="Node3D"]
+script = ExtResource("1_v4oyh")
+
+[node name="LongMazeWall_back" parent="." instance=ExtResource("1_48cfm")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.116737, -3.85373, -20.0344)
+
+[node name="Spike" parent="LongMazeWall_back" instance=ExtResource("2_g102f")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.116737, 0.604566, 4.08098)
+visible = false
+
+[node name="Spike2" parent="LongMazeWall_back" instance=ExtResource("2_g102f")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -13.1167, 0.604566, 4.08098)
+visible = false
+
+[node name="Spike3" parent="LongMazeWall_back" instance=ExtResource("2_g102f")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 12.8833, 0.604566, 4.08098)
+visible = false
+
+[node name="Long_Wall_Invis2" parent="LongMazeWall_back" instance=ExtResource("4_4g6vs")]
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -20, 7.8, 0.500002)
+
+[node name="LongMazeWall_front" parent="." instance=ExtResource("1_48cfm")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.116737, -3.85373, 19.9656)
+
+[node name="Spike6" parent="LongMazeWall_front" instance=ExtResource("2_g102f")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -0.116737, 0.604566, -3.41902)
+visible = false
+
+[node name="Spike7" parent="LongMazeWall_front" instance=ExtResource("2_g102f")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 12.8833, 0.604566, -3.41902)
+visible = false
+
+[node name="Spike8" parent="LongMazeWall_front" instance=ExtResource("2_g102f")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -13.1167, 0.604566, -3.41901)
+visible = false
+
+[node name="Long_Wall_Invis3" parent="LongMazeWall_front" instance=ExtResource("4_4g6vs")]
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -20, 7.8, 15.1)
+
+[node name="LongMazeWall3" parent="." instance=ExtResource("1_48cfm")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -19.8833, -3.85373, -0.0344)
+
+[node name="Long_Wall_Invis" parent="LongMazeWall3" instance=ExtResource("4_4g6vs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.23517e-08, 7.8, 0.65)
+
+[node name="LongMazeWall4" parent="." instance=ExtResource("1_48cfm")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 20.1167, -3.85373, -0.0344)
+
+[node name="Long_Wall_Invis2" parent="LongMazeWall4" instance=ExtResource("4_4g6vs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.66827e-07, 7.8, 15.25)
