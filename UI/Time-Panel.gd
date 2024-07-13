@@ -41,7 +41,7 @@ func _process(delta):
 			Messenger.game_over.emit(false)
 		
 	if get_owner().timer_for_racing and !race_begun and !dead:
-		if Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_right") or Input.is_action_pressed("ui_up") or Input.is_action_pressed("ui_down") or Input.is_action_pressed("ui_accept"):
+		if Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_right") or Input.is_action_pressed("ui_up") or Input.is_action_pressed("ui_down") or Input.is_action_pressed("ui_accept") or Input.is_action_pressed("Grab"):
 			get_owner().timer_autostart = true
 			await get_tree().create_timer(1.0).timeout
 			race_begun = true

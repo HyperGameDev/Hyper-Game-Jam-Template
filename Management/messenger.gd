@@ -19,3 +19,5 @@ signal kill_enemy
 signal change_tiles
 
 signal button_pressed
+
+signal scroll_value

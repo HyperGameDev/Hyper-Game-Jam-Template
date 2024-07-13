@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://rkba7etkgvan"]
+[gd_scene load_steps=9 format=3 uid="uid://rkba7etkgvan"]
 
 [ext_resource type="Script" path="res://UI/ui.gd" id="1_6hci8"]
 [ext_resource type="Script" path="res://UI/Score-Panel.gd" id="2_bfoar"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://UI/BuyMenu.gd" id="3_mynwa"]
 [ext_resource type="Script" path="res://UI/Restart-Panel.gd" id="3_oqhc3"]
 [ext_resource type="AudioStream" uid="uid://os3b04qj7w7" path="res://UI/GORESqsh_Brain Crush Splat Squish Layer 1-003.wav" id="6_lm7ob"]
+[ext_resource type="Script" path="res://UI/Scrollbar.gd" id="7_nustv"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gfd4g"]
 
@@ -85,7 +86,6 @@ layout_mode = 2
 theme_override_constants/separation = 100
 
 [node name="Score-Panel" type="Panel" parent="MarginContainer/HBoxContainer"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("2_bfoar")
@@ -192,6 +192,24 @@ text = "You Lost..."
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("6_lm7ob")
+
+[node name="Scrollbar" type="MarginContainer" parent="."]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 212.0
+grow_vertical = 2
+script = ExtResource("7_nustv")
+
+[node name="VScrollBar" type="VScrollBar" parent="Scrollbar"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+max_value = 2.0
+
+[node name="Label" type="Label" parent="Scrollbar"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 61
+text = "GRAB!"
+horizontal_alignment = 1
 
 [connection signal="pressed" from="BuyMenu/Square" to="BuyMenu" method="_on_square_pressed"]
 [connection signal="pressed" from="BuyMenu/Prism" to="BuyMenu" method="_on_prism_pressed"]
