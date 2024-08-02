@@ -1,0 +1,144 @@
+[gd_scene load_steps=22 format=3 uid="uid://b5b0qax5jci2f"]
+
+[ext_resource type="Script" path="res://Jam Scenes/battery/Battery.gd" id="1_i76kr"]
+[ext_resource type="Texture2D" uid="uid://d0ivbyc68f0sq" path="res://Jam Scenes/battery/lightning.png" id="1_wuoyf"]
+[ext_resource type="PackedScene" uid="uid://buurv000eq5jx" path="res://Game Aspects/environment.tscn" id="3_r1m0b"]
+[ext_resource type="PackedScene" uid="uid://bd37hkqpxvoy8" path="res://Game Aspects/ground.tscn" id="4_oblg7"]
+[ext_resource type="PackedScene" uid="uid://rkba7etkgvan" path="res://UI/ui.tscn" id="5_en0ig"]
+[ext_resource type="Script" path="res://Jam Scenes/battery/Robot.gd" id="6_rsgr1"]
+[ext_resource type="Texture2D" uid="uid://ck7770fjd3uwe" path="res://Jam Scenes/battery/robotface2.png" id="7_wur5n"]
+[ext_resource type="PackedScene" uid="uid://cvrx5pd67sotw" path="res://Game Aspects/finish_line.tscn" id="8_qls8n"]
+[ext_resource type="Script" path="res://Game Aspects/spawncontrol.gd" id="9_5th4q"]
+[ext_resource type="PackedScene" uid="uid://dtopi63n0n2rp" path="res://Game Aspects/spawn_point.tscn" id="10_u8bwj"]
+[ext_resource type="PackedScene" uid="uid://dbvrc1yha5s1n" path="res://Game Aspects/spawn_damaging.tscn" id="11_r30px"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_hdpuo"]
+height = 1.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_54fcm"]
+albedo_color = Color(0.298039, 0.298039, 0.298039, 1)
+albedo_texture = ExtResource("1_wuoyf")
+rim_enabled = true
+uv1_offset = Vector3(0, 0.18, 0)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_pxb3i"]
+height = 0.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vcj6l"]
+albedo_color = Color(1, 0.443137, 0, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_sd15l"]
+height = 2.28847
+radius = 0.534775
+
+[sub_resource type="BoxMesh" id="BoxMesh_h1vws"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vrpu7"]
+transparency = 1
+albedo_texture = ExtResource("7_wur5n")
+uv1_scale = Vector3(1.52, 1.52, 1.52)
+uv1_offset = Vector3(0, 0.125, 0)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ivabn"]
+radius = 0.7
+height = 1.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a1gcv"]
+albedo_color = Color(0.4, 0.4, 0.4, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q3ucl"]
+size = Vector3(1.0752, 2.44043, 1.55566)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Battery" type="Area3D" parent="."]
+transform = Transform3D(0.837041, 0, 0.54714, 0, 1, 0, -0.54714, 0, 0.837041, 1.05709, 1.77738, 6.44472)
+script = ExtResource("1_i76kr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Battery"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0.856936, 0)
+mesh = SubResource("CylinderMesh_hdpuo")
+surface_material_override/0 = SubResource("StandardMaterial3D_54fcm")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Battery"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.95608, 0)
+mesh = SubResource("CylinderMesh_pxb3i")
+surface_material_override/0 = SubResource("StandardMaterial3D_vcj6l")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Battery"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14238, 0)
+shape = SubResource("CylinderShape3D_sd15l")
+
+[node name="WorldEnvironment" parent="." instance=ExtResource("3_r1m0b")]
+sun_color = Color(0.737255, 0.854902, 1, 1)
+sun_energy = 1.594
+sky_top_color = Color(0.592157, 0.737255, 0.988235, 1)
+sky_horizon_color = Color(0.52549, 0.411765, 0.32549, 1)
+sky_color_curve = 0.1241
+ground_bottom_color = Color(0.258824, 0.231373, 0, 1)
+ground_horizon_color = Color(0, 0.117647, 0, 1)
+ground_color_curve = 0.3284
+ground_energy = 9.3594
+
+[node name="DirectionalLight3D" parent="WorldEnvironment" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.27406, 0.961713, 0, -0.961713, 0.27406, 0, 27.0051, 0)
+light_color = Color(0.737255, 0.854902, 1, 1)
+light_energy = 1.594
+
+[node name="Ground" parent="." instance=ExtResource("4_oblg7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+ground_color = Color(0.356863, 0.160784, 0, 1)
+ground_roughness = 0.859
+ground_metallic = 0.491
+ground_specular = 0.39
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.976296, 0.21644, 0, -0.21644, 0.976296, 2.904, 3.261, 8.764)
+
+[node name="UI" parent="." instance=ExtResource("5_en0ig")]
+timer_length = 0.0
+timer_countup = true
+score_visible = false
+
+[node name="Finish-Line" parent="." instance=ExtResource("8_qls8n")]
+transform = Transform3D(-0.0809122, 0, -0.996721, 0, 1, 0, 0.996721, 0, -0.0809122, 14.779, 0.002, -4.397)
+finish_line_visible = true
+
+[node name="Robot" type="Area3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.945052, 0, -0.326921, 0, 1, 0, 0.326921, 0, 0.945052, 0, 0, 0)
+script = ExtResource("6_rsgr1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Robot"]
+transform = Transform3D(0.926463, 0, -0.376386, 0, 1, 0, 0.376386, 0, 0.926463, 0, 1.51725, 0)
+mesh = SubResource("BoxMesh_h1vws")
+surface_material_override/0 = SubResource("StandardMaterial3D_vrpu7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Robot/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.01748, 0)
+mesh = SubResource("SphereMesh_ivabn")
+surface_material_override/0 = SubResource("StandardMaterial3D_a1gcv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Robot"]
+transform = Transform3D(1, 0, -8.72612e-05, 0, 1, 0, 8.72612e-05, 0, 1, 0.0720898, 0.772705, -0.024938)
+shape = SubResource("BoxShape3D_q3ucl")
+
+[node name="Spawn_Controller" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+script = ExtResource("9_5th4q")
+spawn_limit = 10
+
+[node name="spawnPoint_damage" parent="Spawn_Controller" instance=ExtResource("10_u8bwj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.86228, 8.24183, -0.0926259)
+spawn_object = ExtResource("11_r30px")
+
+[node name="spawnPoint_damage2" parent="Spawn_Controller" instance=ExtResource("10_u8bwj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.79213, 4.38306, -0.0926259)
+spawn_object = ExtResource("11_r30px")
+
+[node name="spawnPoint_damage3" parent="Spawn_Controller" instance=ExtResource("10_u8bwj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.18389, 14.3621, -0.0926259)
+spawn_object = ExtResource("11_r30px")
+
+[editable path="WorldEnvironment"]

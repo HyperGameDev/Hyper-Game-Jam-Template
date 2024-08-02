@@ -11,12 +11,16 @@ signal close_doors_1
 signal you_won
 signal game_win
 
+signal bar_amount
+
 signal on_bought_square
 signal on_bought_prism
 
 signal kill_enemy
 
 signal change_tiles
+
+signal battery_used
 
 signal button_pressed
 

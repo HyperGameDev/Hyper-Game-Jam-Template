@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://rkba7etkgvan"]
+[gd_scene load_steps=12 format=3 uid="uid://rkba7etkgvan"]
 
 [ext_resource type="Script" path="res://UI/ui.gd" id="1_6hci8"]
 [ext_resource type="Script" path="res://UI/Score-Panel.gd" id="2_bfoar"]
@@ -7,8 +7,15 @@
 [ext_resource type="Script" path="res://UI/Restart-Panel.gd" id="3_oqhc3"]
 [ext_resource type="AudioStream" uid="uid://os3b04qj7w7" path="res://UI/GORESqsh_Brain Crush Splat Squish Layer 1-003.wav" id="6_lm7ob"]
 [ext_resource type="Script" path="res://UI/Scrollbar.gd" id="7_nustv"]
+[ext_resource type="Script" path="res://UI/Progress_Container.gd" id="8_bjg1k"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gfd4g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ush2"]
+bg_color = Color(0.109804, 0.109804, 0.109804, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jd3nm"]
+bg_color = Color(0.737255, 0.709804, 0, 1)
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_6hci8")
@@ -17,13 +24,8 @@ timer_length = 60.0
 score_visible = true
 
 [node name="Restart-Panel" type="Panel" parent="."]
-visible = false
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -96.0
 offset_right = 187.0
-grow_vertical = 0
+offset_bottom = 96.0
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_gfd4g")
 script = ExtResource("3_oqhc3")
@@ -70,16 +72,13 @@ theme_override_font_sizes/font_size = 40
 text = "Triangle (3)"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-anchors_preset = 7
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 1.0
 offset_left = -193.0
-offset_top = -93.0
 offset_right = 193.0
+offset_bottom = 93.0
 grow_horizontal = 2
-grow_vertical = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -194,6 +193,7 @@ unique_name_in_owner = true
 stream = ExtResource("6_lm7ob")
 
 [node name="Scrollbar" type="MarginContainer" parent="."]
+visible = false
 anchors_preset = 9
 anchor_bottom = 1.0
 offset_right = 212.0
@@ -210,6 +210,25 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 61
 text = "GRAB!"
 horizontal_alignment = 1
+
+[node name="Progress_Container" type="MarginContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -86.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("8_bjg1k")
+
+[node name="ProgressBar" type="ProgressBar" parent="Progress_Container"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 25
+theme_override_font_sizes/font_size = 61
+theme_override_styles/background = SubResource("StyleBoxFlat_0ush2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_jd3nm")
 
 [connection signal="pressed" from="BuyMenu/Square" to="BuyMenu" method="_on_square_pressed"]
 [connection signal="pressed" from="BuyMenu/Prism" to="BuyMenu" method="_on_prism_pressed"]

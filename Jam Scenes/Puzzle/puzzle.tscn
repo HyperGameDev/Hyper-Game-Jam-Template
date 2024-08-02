@@ -1,0 +1,175 @@
+[gd_scene load_steps=16 format=3 uid="uid://dnhhr054f0jao"]
+
+[ext_resource type="Texture2D" uid="uid://c1ncm5rkdgxmc" path="res://Jam Scenes/Puzzle/Puzzle1/5.png" id="1_ghexh"]
+[ext_resource type="Texture2D" uid="uid://dtugpxevjhnuj" path="res://Jam Scenes/Puzzle/Puzzle1/6.png" id="2_5jjd7"]
+[ext_resource type="Texture2D" uid="uid://bynuhvnvw3fae" path="res://Jam Scenes/Puzzle/Puzzle1/7.png" id="3_jv3my"]
+[ext_resource type="Script" path="res://Jam Scenes/Puzzle/puzzlepiece.gd" id="4_ef02a"]
+[ext_resource type="Script" path="res://Jam Scenes/Puzzle/Mouse.gd" id="5_oxjw0"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_oontk"]
+load_path = "res://.godot/imported/4.png-ab759977659688c95fc597733332890b.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rmr1v"]
+texture = SubResource("CompressedTexture2D_oontk")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gg1d5"]
+texture = ExtResource("1_ghexh")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i1phk"]
+texture = ExtResource("2_5jjd7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_orseg"]
+texture = ExtResource("3_jv3my")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bdxt0"]
+size = Vector2(100, 100)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_557qv"]
+texture = ExtResource("1_ghexh")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gxvjn"]
+texture = ExtResource("2_5jjd7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_td86i"]
+texture = ExtResource("3_jv3my")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6utfv"]
+size = Vector2(50, 50)
+
+[node name="Node3D" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = -1
+anchor_left = 0.0895028
+anchor_top = 0.0962672
+anchor_right = 0.321547
+anchor_bottom = 0.51277
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="FlowContainer" type="FlowContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+
+[node name="1_1" type="Panel" parent="CanvasLayer/MarginContainer/FlowContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_rmr1v")
+
+[node name="1_2" type="Panel" parent="CanvasLayer/MarginContainer/FlowContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_gg1d5")
+
+[node name="1_3" type="Panel" parent="CanvasLayer/MarginContainer/FlowContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_i1phk")
+
+[node name="1_4" type="Panel" parent="CanvasLayer/MarginContainer/FlowContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_orseg")
+
+[node name="Area_1-1" type="Area2D" parent="."]
+position = Vector2(107, 422)
+script = ExtResource("4_ef02a")
+
+[node name="1_1" type="Panel" parent="Area_1-1"]
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_rmr1v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area_1-1"]
+shape = SubResource("RectangleShape2D_bdxt0")
+
+[node name="Area_1-2" type="Area2D" parent="."]
+position = Vector2(260, 426)
+script = ExtResource("4_ef02a")
+
+[node name="1_1" type="Panel" parent="Area_1-2"]
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_557qv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area_1-2"]
+shape = SubResource("RectangleShape2D_bdxt0")
+
+[node name="Area_1-3" type="Area2D" parent="."]
+position = Vector2(460, 424)
+script = ExtResource("4_ef02a")
+
+[node name="1_1" type="Panel" parent="Area_1-3"]
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_gxvjn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area_1-3"]
+shape = SubResource("RectangleShape2D_bdxt0")
+
+[node name="Area_1-4" type="Area2D" parent="."]
+position = Vector2(684, 428)
+script = ExtResource("4_ef02a")
+
+[node name="1_1" type="Panel" parent="Area_1-4"]
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_td86i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area_1-4"]
+shape = SubResource("RectangleShape2D_bdxt0")
+
+[node name="Mouse" type="Area2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("5_oxjw0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mouse"]
+shape = SubResource("RectangleShape2D_6utfv")
+
+[node name="Panel" type="Panel" parent="Mouse"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0

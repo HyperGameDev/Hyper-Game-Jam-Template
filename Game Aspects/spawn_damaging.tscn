@@ -27,7 +27,7 @@ size = Vector2(0.085, 1.98)
 
 [node name="Spawn" type="Node3D"]
 script = ExtResource("1_skoe5")
-spawn_direction = Vector3(0, 0, 1)
+spawn_direction = Vector3(0, -1, 0)
 spawn_is_damaging = true
 spawn_is_collectible = false
 collectible_points = 10
@@ -42,7 +42,6 @@ shape = SubResource("BoxShape3D_bw0a0")
 transform = Transform3D(0.916461, -0.400125, 1.749e-08, 0, -4.37114e-08, -1, 0.400125, 0.916461, -4.00598e-08, 0, -0.104691, 0.0550331)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Spawn_Mesh"]
-visible = false
 mesh = SubResource("CylinderMesh_picjd")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_6lmbc")
@@ -61,26 +60,31 @@ surface_material_override/0 = SubResource("StandardMaterial3D_0cbmx")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="Spawn_Mesh"]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, -0.35618, 1.55691e-08)
+visible = false
 mesh = SubResource("PlaneMesh_0egck")
 surface_material_override/0 = SubResource("StandardMaterial3D_0cbmx")
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="Spawn_Mesh"]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0.374763, -1.63814e-08)
+visible = false
 mesh = SubResource("PlaneMesh_0egck")
 surface_material_override/0 = SubResource("StandardMaterial3D_0cbmx")
 
 [node name="MeshInstance3D6" type="MeshInstance3D" parent="Spawn_Mesh"]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0.724081, -3.16506e-08)
+visible = false
 mesh = SubResource("PlaneMesh_0egck")
 surface_material_override/0 = SubResource("StandardMaterial3D_0cbmx")
 
 [node name="MeshInstance3D7" type="MeshInstance3D" parent="Spawn_Mesh"]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 1.11567, -4.87674e-08)
+visible = false
 mesh = SubResource("PlaneMesh_0egck")
 surface_material_override/0 = SubResource("StandardMaterial3D_0cbmx")
 
 [node name="MeshInstance3D8" type="MeshInstance3D" parent="Spawn_Mesh"]
 transform = Transform3D(-4.37114e-08, 1, 0, 4.37114e-08, 1.91069e-15, -1, -1, -4.37114e-08, -4.37114e-08, 0, 0.356659, -1.559e-08)
+visible = false
 mesh = SubResource("PlaneMesh_8hxlc")
 surface_material_override/0 = SubResource("StandardMaterial3D_0cbmx")
 

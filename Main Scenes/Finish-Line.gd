@@ -12,6 +12,7 @@ func _ready():
 
 func crossed(area):
 	if area.is_in_group("Detectable"):
+		print("It worked")
 		if wins_game:
 			Messenger.game_over.emit(true)
 		if !is_checkpoint:

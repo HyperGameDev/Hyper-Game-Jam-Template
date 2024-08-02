@@ -23,7 +23,8 @@ func _ready():
 func end_game(won):
 	timer_autostart = false
 	#%"You Lost".visible = true
-	pass
+	if !won:
+		get_tree().reload_current_scene()
 
 func show_win():
 	#%"You Won".visible = true

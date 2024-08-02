@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://db0axon3t78ms"
+path="res://.godot/imported/15.png-3ed977ac0d6a996fc0f1f72867f1fd74.ctex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://Jam Scenes/Puzzle/Puzzle3/15.png"
+dest_files=["res://.godot/imported/15.png-3ed977ac0d6a996fc0f1f72867f1fd74.ctex"]
+
+[params]
+
+compress/mode=0
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=false
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=1
