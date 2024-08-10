@@ -1,0 +1,71 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4pqyoxfg2lxp"]
+
+[ext_resource type="Script" path="res://Buttons.gd" id="1_44hwq"]
+
+[node name="Canvas" type="CanvasLayer"]
+script = ExtResource("1_44hwq")
+
+[node name="Buttons" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+anchors_preset = -1
+anchor_top = 0.734774
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Buttons"]
+layout_mode = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="1" type="Button" parent="Buttons/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "$1"
+
+[node name="10" type="Button" parent="Buttons/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "$10"
+
+[node name="30" type="Button" parent="Buttons/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "$30"
+
+[node name="65" type="Button" parent="Buttons/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "$65"
+
+[node name="100" type="Button" parent="Buttons/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "$100"
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 75.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="MarginContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 50
+theme_override_font_sizes/font_size = 56
+text = "$100,000"
+horizontal_alignment = 1
